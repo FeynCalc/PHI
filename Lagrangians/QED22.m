@@ -27,7 +27,11 @@ Description:         Counterterm QED lagrangian
 *)
 
 
-Begin["Phi`Objects`"];
+Begin["`Package`"]
+End[]
+
+
+Begin["`QED22`Private`"]
 
 (* --------------------------------------------------------------- *)
 
@@ -61,37 +65,37 @@ CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[
 QED[2],1,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 	SuperscriptBox[
 	MakeBoxes[StyleForm["\[Delta]m",FontSlant->"Italic"]][[1]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[
 QED[2],2,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["Z",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[2]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[
 QED[2],3,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["Z",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[3]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 (* --------------------------------------------------------------- *)
 
@@ -135,3 +139,5 @@ FieldsSet[QED2[2]] :=
 	QuantumField[Particle[Photon,RenormalizationState[0]],LorentzIndex[\[Mu]]]};
 
 $Lagrangians = Union[$Lagrangians,{QED2[2]}];
+
+End[]

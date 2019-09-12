@@ -23,8 +23,6 @@ Description:         The simplest ChPT lagrangian.
 *)
 
 
-Begin["Phi`Objects`"];
-
 (* --------------------------------------------------------------- *)
 
 ChPTPhoton22::usage =
@@ -34,7 +32,11 @@ lagrangian with coupling to a photon.  To evaluate use ArgumentsSupply.";
 
 (* --------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTPhoton22`Private`"]
 
 (* --------------------------------------------------------------- *)
 
@@ -54,3 +56,5 @@ FieldsSet[ChPTPhoton2[2]] :=
 	]};
 
 $Lagrangians = Union[$Lagrangians,{ChPTPhoton2[2]}];
+
+End[]

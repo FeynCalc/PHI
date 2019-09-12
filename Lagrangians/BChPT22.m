@@ -22,8 +22,6 @@ Description:         The simplest ChPT lagrangian.
 *)
 
 
-Begin["Phi`Objects`"];
-
 (* ------------------------------------------------------------------ *)
 
 BChPT22::usage =
@@ -37,7 +35,11 @@ coupling constant.";
 
 (* ------------------------------------------------------------------ *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`BChPT22`Private`"]
 
 (* ------------------------------------------------------------------ *)
 
@@ -50,13 +52,13 @@ GAV = CouplingConstant[BChPT2[2]];
 CouplingConstant /:
 MakeBoxes[
 CouplingConstant[BChPT2[2],st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___QuarkMassExpansionState],
+	sc___RenormalizationScheme,qs___QuarkMassExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["g",FontSlant->"Italic"]][[1]],
 	MakeBoxes["A"],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 (* ------------------------------------------------------------------ *)
 
@@ -81,9 +83,9 @@ UVector[QuantumField[Particle[Nucleon]]]]);*)
 Lagrangian[BChPT2[2]] :=
 	UTrace[NM[USmall[\[Mu]],USmall[\[Nu]]]]*
 	(UDot[UVector[DiracBar[QuantumField[Particle[Nucleon]]]],
-	  CNDr[CNDr[UVector[QuantumField[Particle[Nucleon]]],{\[Nu]}],{\[Mu]}]]+
+	CNDr[CNDr[UVector[QuantumField[Particle[Nucleon]]],{\[Nu]}],{\[Mu]}]]+
 	Adjoint[UDot[UVector[DiracBar[QuantumField[Particle[Nucleon]]]],
-	  CNDr[CNDr[UVector[QuantumField[Particle[Nucleon]]],{\[Nu]}],{\[Mu]}]]]);
+	CNDr[CNDr[UVector[QuantumField[Particle[Nucleon]]],{\[Nu]}],{\[Mu]}]]]);
 
 (* ------------------------------------------------------------------ *)
 
@@ -93,3 +95,5 @@ FieldsSet[BChPT2[2]] :=
 	QuantumField[Particle[Nucleon,RenormalizationState[0]]]};
 
 $Lagrangians = Union[$Lagrangians,{BChPT2[2]}];
+
+End[]

@@ -145,10 +145,7 @@ listrepl[{aa___,PerturbationOrder->b_List,bb___},nn_Integer] :=
 
 (
 olddir=Directory[];
-SetDirectory[$HEPDir];
-SetDirectory["FeynCalc"];
-SetDirectory["Phi"];
-SetDirectory["CouplingVectors"];
+SetDirectory[FileNameJoin[{$PHIDirectory,"CouplingVectors"}]];
 
 Do[
 

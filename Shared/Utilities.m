@@ -196,14 +196,6 @@ OptionsSelect::usage =
 accepted by function.  When an option occurs several times in opts, the first \
 setting is selected";
 
-Begin["`Package`"]
-End[]
-
-(*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*)
-
-Begin["`Utilities`Private`"];
-
-
 (* Errors *)
 
 CayleyHamilton::baddim =
@@ -220,6 +212,34 @@ feyncalc@feyncalc.org).";
 UPerturb::"badlim" = "Error: `1` is not a valid summation limit.";
 
 DiscardOrders::wffac = "Warning: Expression contains unknown renormalization factor(s).";
+
+Begin["`Package`"]
+End[]
+
+
+Begin["`Utilities`Private`"];
+
+
+trtr::usage="";
+trid::usage="";
+trsp::usage="";
+trdot::usage="";
+vecd::usage="";
+trsig::usage="";
+treps::usage="";
+fccombs::usage="";
+dum::usage="";
+usu::usage="";
+ditchmom::usage="";
+fcdiga1::usage="";
+
+tmp1::usage="";
+tmp2::usage="";
+ufis::usage="";
+red::usage="";
+lorentzdummy::usage="";
+mu1::usage="";
+mu2::usage="";
 
 
 (* Boxes *)
@@ -295,9 +315,8 @@ Options[DiscardOrders] = {
 	ScalarProductForm -> MomentaScalarProduct
 };
 
-(*TODO := -> = *)
-Options[FCToTracer] := {
-		TracerIndicesString -> "l"
+Options[FCToTracer] = {
+	TracerIndicesString -> "l"
 };
 
 Options[SurfaceReduce] = {
@@ -352,10 +371,10 @@ Options[CayleyHamiltonTrick] = {
 	CommutatorReduce -> True,
 	UReduce -> True,
 	UMatrices :> {
-		{	I NM[Adjoint[CovariantFieldDerivative[MM[Global`x_], Global`x_, {Global`\[Rho]1_}]], MM[Global`x_]],
-			I NM[Adjoint[MM[Global`x_]], CovariantFieldDerivative[MM[Global`x_], Global`x_, {Global`\[Rho]2_}]],
-			NM[Adjoint[CovariantFieldDerivative[MM[Global`x_], Global`x_, {Global`\[Rho]1_}]],
-			CovariantFieldDerivative[MM[Global`x_], Global`x_, {Global`\[Rho]2_}]]
+		{	I NM[Adjoint[CovariantFieldDerivative[MM[x_], x_, {\[Rho]1_}]], MM[x_]],
+			I NM[Adjoint[MM[x_]], CovariantFieldDerivative[MM[x_], x_, {\[Rho]2_}]],
+			NM[Adjoint[CovariantFieldDerivative[MM[x_], x_, {\[Rho]1_}]],
+			CovariantFieldDerivative[MM[_], _, {\[Rho]2_}]]
 		}
 	}
 };
@@ -453,8 +472,8 @@ MandelstamReduce1[amp_, opts___Rule] :=
 	] /.
 	Polarization[a__] :> ToExpression/@Polarization[a]] /. sturules[opts] /.
 	If[ (OnMassShell /. Flatten[{opts}] /. Options[MandelstamReduce]),
-		Table[Pair[Momentum[mv[opts][irep], ___], Momentum[mv[opts][irep], ___]] ->
-				masses1[opts][irep]^2, {irep, 4}],
+		Table[Pair[Momentum[mv[opts][i], ___], Momentum[mv[opts][i], ___]] ->
+				masses1[opts][i]^2, {i, 4}],
 		{}
 	] /.
 	If[ !(Cancel /. Flatten[{opts}] /.
@@ -463,8 +482,8 @@ MandelstamReduce1[amp_, opts___Rule] :=
 		{}
 	] /.
 	If[ (OnMassShell /. Flatten[{opts}] /. Options[MandelstamReduce]),
-		Table[Pair[Momentum[mv[opts][irep], ___], Momentum[mv[opts][irep], ___]] ->
-				masses1[opts][irep]^2, {irep, 4}],
+		Table[Pair[Momentum[mv[opts][i], ___], Momentum[mv[opts][i], ___]] ->
+				masses1[opts][i]^2, {i, 4}],
 		{}
 	];
 
@@ -527,8 +546,8 @@ fcdiga1[lorentzdummy, dim___], i_] :=
 IsoCrosses and IsoSymmetricCrosses of iso-spin vectors: *)
 
 LorentzIndicesSupply[aa_, (optss___Rule | optss___List)] :=
-	(aa /.	(Pair | ScalarProduct)[a_, b_]^n_ :> times1 @@ Table[DOT[a, b], {rep, n}] /.
-	Power[a_, b_ /; b > 0 && IntegerQ[b]] :> times1 @@ Table[a, {ddum, 1, b}]/.
+	(aa /.	(Pair | ScalarProduct)[a_, b_]^n_ :> times1 @@ Table[DOT[a, b], {i, n}] /.
+	Power[a_, b_ /; b > 0 && IntegerQ[b]] :> times1 @@ Table[a, {j, 1, b}]/.
 	{indicesdotrule1[optss], indicesdotrule2[optss]} /. loritemp -> LorentzIndex /.	times1 -> Times);
 
 
@@ -580,22 +599,25 @@ FourPoint[q_, FeynAmpDenominator[PD[Momentum[q_, d___], m0_], PD[Momentum[q_ + _
 				Pair[LorentzIndex[l2_, d___], Momentum[q_, d___]]*
 				Pair[LorentzIndex[l3_, d___], Momentum[q_, d___]]*
 				Pair[LorentzIndex[l4_, d___], Momentum[q_, d___]], OptionsPattern[]] :=
-	(
-	pp[1] = p1;
-	pp[2] = p2;
-	pp[3] = p3;
-	pp[4] = p4;
+	Block[{PP11,PP12,PP23,PP22,PP33,PP13},(
+
+	PP11 = Pair[Momentum[Global`p1, d], Momentum[Global`p1, d]];
+	PP12 = Pair[Momentum[Global`p1 + Global`p2, d], Momentum[Global`p1 + Global`p2, d]];
+	PP13 = Pair[Momentum[Global`p1 + Global`p3, d], Momentum[Global`p1 + Global`p3, d]];
+	PP23 = Pair[Momentum[Global`p2 + Global`p3, d], Momentum[Global`p2 + Global`p3, d]];
+	PP33 = Pair[Momentum[Global`p3, d], Momentum[Global`p3, d]];
+	PP22 = Pair[Momentum[Global`p2, d], Momentum[Global`p2, d]];
+
+	pp[1] = Global`p1;
+	pp[2] = Global`p2;
+	pp[3] = Global`p3;
+	pp[4] = Global`p4;
+
 	I*Pi^2*((	Pair[LorentzIndex[l1], LorentzIndex[l2]]*Pair[LorentzIndex[l3], LorentzIndex[l4]] +
 				Pair[LorentzIndex[l1], LorentzIndex[l3]]*Pair[LorentzIndex[l2], LorentzIndex[l4]] +
 				Pair[LorentzIndex[l1], LorentzIndex[l4]]*Pair[LorentzIndex[l2], LorentzIndex[l3]])*
 					PaVe[0, 0, 0,
-						0, {Pair[Momentum[p1, d], Momentum[p1, d]],
-							Pair[Momentum[p1 + p2, d], Momentum[p1 + p2, d]],
-							Pair[Momentum[p2 + p3, d], Momentum[p2 + p3, d]],
-							Pair[Momentum[p3, d], Momentum[p3, d]],
-							Pair[Momentum[p2, d], Momentum[p2, d]],
-							Pair[Momentum[p1 + p3, d], Momentum[p1 + p3, d]]}, {m0^2, m1^2,
-							m2^2, m3^2}] +
+						0, {PP11, PP12, PP23, PP33, PP22, PP13}, {m0^2, m1^2, m2^2, m3^2}] +
 				Sum[(Pair[LorentzIndex[l1], LorentzIndex[l2]]*Pair[Momentum[pp[i]], LorentzIndex[l3]]*
 								Pair[Momentum[pp[j]], LorentzIndex[l4]] +
 								Pair[LorentzIndex[l1], LorentzIndex[l3]]*
@@ -609,23 +631,13 @@ FourPoint[q_, FeynAmpDenominator[PD[Momentum[q_, d___], m0_], PD[Momentum[q_ + _
 									Pair[Momentum[pp[j]], LorentzIndex[l3]] +
 								Pair[LorentzIndex[l3], LorentzIndex[l4]]*Pair[Momentum[pp[i]], LorentzIndex[l1]]*
 									Pair[Momentum[pp[j]], LorentzIndex[l2]])*
-						PaVe[0, 0, i, j, {Pair[Momentum[p1, d], Momentum[p1, d]],
-								Pair[Momentum[p1 + p2, d], Momentum[p1 + p2, d]],
-								Pair[Momentum[p2 + p3, d], Momentum[p2 + p3, d]],
-								Pair[Momentum[p3, d], Momentum[p3, d]],
-								Pair[Momentum[p2, d], Momentum[p2, d]],
-								Pair[Momentum[p1 + p3, d], Momentum[p1 + p3, d]]}, {m0^2, m1^2,
-								m2^2, m3^2}], {i, 3}, {j, 3}] +
+						PaVe[0, 0, i, j, {PP11, PP12, PP23, PP33, PP22, PP13}, {m0^2, m1^2, m2^2, m3^2}], {i, 3}, {j, 3}] +
 				Sum[(Pair[Momentum[pp[i]], LorentzIndex[l1]]*Pair[Momentum[pp[j]], LorentzIndex[l3]]*
 								Pair[Momentum[pp[k]], LorentzIndex[l1]]*
 								Pair[Momentum[pp[l]], LorentzIndex[l3]])*
-						PaVe[i, j, k, l, {Pair[Momentum[p1, d], Momentum[p1, d]],
-								Pair[Momentum[p1 + p2, d], Momentum[p1 + p2, d]],
-								Pair[Momentum[p2 + p3, d], Momentum[p2 + p3, d]],
-								Pair[Momentum[p3, d], Momentum[p3, d]],
-								Pair[Momentum[p2, d], Momentum[p2, d]],
-								Pair[Momentum[p1 + p3, d], Momentum[p1 + p3, d]]}, {m0^2, m1^2,
-								m2^2, m3^2}], {i, 3}, {j, 3}, {k, 3}, {l, 3}]));
+						PaVe[i, j, k, l, {PP11, PP12, PP23, PP33, PP22, PP13}, {m0^2, m1^2,
+								m2^2, m3^2}], {i, 3}, {j, 3}, {k, 3}, {l, 3}]))
+		];
 
 
 
@@ -649,13 +661,14 @@ FourPoint[q_, aa : HoldPattern[_[PD[Momentum[_, ___], _] ..]], opts___] :=
 
 
 gaso[DiracGamma[LorentzIndex[mu_, r1___], rr1___], DiracGamma[LorentzIndex[nu_, r2___], rr2___], opts___] :=
+	Block[{orderfkt},
 	(
 	orderfkt = (OrderingFunction /. Flatten[{opts}] /. Options[GammaSort]);
 	If[ orderfkt[{DiracGamma[LorentzIndex[mu, r1], rr1], DiracGamma[LorentzIndex[nu, r2], rr2]}],
 		tl[DiracGamma[LorentzIndex[mu, r1], rr1], DiracGamma[LorentzIndex[nu, r2], rr2]],
 		tl[DiracGamma[LorentzIndex[nu, r2], rr2], DiracGamma[LorentzIndex[mu, r1], rr1]] - 2*Pair[LorentzIndex[mu, r1], LorentzIndex[nu, r2]]
 	]
-	);
+	)];
 
 par[x_, i_] :=
 	(
@@ -667,30 +680,30 @@ par[x_, i_] :=
 	);
 
 sortrules[opts___] :=
-	(
-	orderfkt = (OrderingFunction /. Flatten[{opts}] /. Options[GammaSort]);
-		{
-			tl[f___, fi_, red[fii_], fiii___] /; Head[fi] =!= Plus :>
-			(
-			iso = gaso[fi, fii, opts]; fiso = iso /. Pair[__] -> 0; giso = iso - fiso;
-			If[ Sort[{f, fi, fii}][[-1]] =!= fii,
-				tl[f, red[par[fiso, 1]], par[fiso, 2], fiii] + tl[f, giso, fiii],
-				tl[f, red[fi], fii, fiii]
-			]
-			),
-			tl[a___, b_, c__] /; FreeQ[b, DiracGamma] -> b*tl[a, c],
-			tl[a__, b_, c___] /; FreeQ[b, DiracGamma] -> b*tl[a, c],
-			tl[a___, Plus[b_, bb__], c__] :> Plus @@ (tl[a, #, c] & /@ {b, bb}),
-			tl[f___, fi_, fii_] /; (! orderfkt[{f, fi, fii}] && FreeQ[{f, fi, fii}, red]) -> tl[f, fi, red[fii]],
-			tl[red[f_], fi___, fii_] /; (! orderfkt[{f, fi, fii}]) -> tl[f, fi, red[fii]]
-		}
-	);
+	Block[{orderfkt,iso,fiso,giso},
+		orderfkt = (OrderingFunction /. Flatten[{opts}] /. Options[GammaSort]);
+			{
+				tl[f___, fi_, red[fii_], fiii___] /; Head[fi] =!= Plus :>
+				(
+				iso = gaso[fi, fii, opts]; fiso = iso /. Pair[__] -> 0; giso = iso - fiso;
+				If[ Sort[{f, fi, fii}][[-1]] =!= fii,
+					tl[f, red[par[fiso, 1]], par[fiso, 2], fiii] + tl[f, giso, fiii],
+					tl[f, red[fi], fii, fiii]
+				]
+				),
+				tl[a___, b_, c__] /; FreeQ[b, DiracGamma] -> b*tl[a, c],
+				tl[a__, b_, c___] /; FreeQ[b, DiracGamma] -> b*tl[a, c],
+				tl[a___, Plus[b_, bb__], c__] :> Plus @@ (tl[a, #, c] & /@ {b, bb}),
+				tl[f___, fi_, fii_] /; (! orderfkt[{f, fi, fii}] && FreeQ[{f, fi, fii}, red]) -> tl[f, fi, red[fii]],
+				tl[red[f_], fi___, fii_] /; (! orderfkt[{f, fi, fii}]) -> tl[f, fi, red[fii]]
+			}
+	];
 
 gammasort[xx__, opts___Rule | opts___List] :=
 	tl[xx] //. sortrules[opts] /. tl -> DOT /. red[x_] -> x;
 
 GammaSort[DOT[exp_, ex__], opts___] :=
-	(
+	Block[{exp1,exp2,pos},(
 	exp1 =
 		If[ (Gamma5AntiCommute /. Flatten[{opts}] /. Options[GammaSort]) && !FreeQ[tl[exp, ex], DiracGamma[LorentzIndex[5, ___], ___]],
 
@@ -716,7 +729,7 @@ GammaSort[DOT[exp_, ex__], opts___] :=
 			tl[gsort[a]]
 	};
 	DOT @@ Flatten[{exp2} /. {gsort -> gammasort, tl -> Sequence}]
-	);
+	)];
 
 GammaSort[Plus[x_, y__], OptionsPattern[]] :=
 	Plus @@ GammaSort /@ {x, y};
@@ -752,7 +765,7 @@ tin[opts___] :=
 	ToExpression[(TracerIndicesString /. Flatten[{opts}] /. Options[FCToTracer]) <> ToString[$TracerIndicesCounter]]);
 
 FCToTracer[exp_, opts___] :=
-	(
+	Block[{res1},
 	res1 = exp /. DiracTrace[DOT[a__], ___] :> trtr[tin[opts],
 		DOT[a] /. {
 			DOT[LorentzIndex[mu_, ___], LorentzIndex[nu_, ___]] -> trdot[{LorentzIndex[mu]}, {LorentzIndex[nu]}],
@@ -760,9 +773,11 @@ FCToTracer[exp_, opts___] :=
 			DiracGamma[LorentzIndex[mu_, ___], ___] -> {LorentzIndex[mu]},
 			Plus[aa___, b_, c___] /; FreeQ[b, DiracGamma] -> Plus[aa, trid*b, c],
 			Eps[aa__] -> (treps[aa] /. LorentzIndex[mu_] -> {LorentzIndex[mu]})
-		} /. DOT -> Sequence] /. DiracGamma[p_, ___] /; (! FreeQ[p, Momentum]) :> (p /. Momentum[pp_, ___] -> pp));
+		} /. DOT -> Sequence] /. DiracGamma[p_, ___] /; (! FreeQ[p, Momentum]) :> (p /. Momentum[pp_, ___] -> pp)
+	];
 
-TracerToFC[exp_] :=
+TracerToFC[exp_, opts___] :=
+	Block[{res2,curdim,trl},
 	(
 	If[ Tracer`Private`d === 4,
 		curdim = Sequence[],
@@ -783,7 +798,7 @@ TracerToFC[exp_] :=
 		trsig :> fcsig,
 		treps[a__] :> (Eps[a] /. {LorentzIndex[mu_]} -> LorentzIndex[mu, curdim])
 	}
-	);
+	)];
 
 (*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*)
 (********************************************************************************)
@@ -794,11 +809,11 @@ TracerToFC[exp_] :=
 (*Commented out 16/9-2002. Will look at DOT instead*)
 (*SetAttributes[ditchmom, NumericFunction];*)
 DiscardOrders[am_, opts___] :=
-	(
-	If[ !FreeQ[am, Phi`Couplings`WFFactor1],
+	Block[{spf},
+	If[ !FreeQ[am, WFFactor1],
 		Message[DiscardOrders::wffac]
 	];
-	(spf = (Phi`Objects`ScalarProductForm /. Flatten[{opts}] /. Options[DiscardOrders]);
+	(spf = (ScalarProductForm /. Flatten[{opts}] /. Options[DiscardOrders]);
 	Cancel[ExpandAll[ditchmom[]^2*am /.
 		If[ (DiscardMomenta /. Flatten[{opts}] /. Options[DiscardOrders]),
 			{
@@ -816,7 +831,7 @@ DiscardOrders[am_, opts___] :=
 			} /. ff_[temprec] -> ff /. temprec -> Sequence[]]] /. ditchmom[]^i_ /;
 					i > (PerturbationOrder + 2 /. Flatten[{opts}] /. Options[DiscardOrders]) -> 0 /.
 					ditchmom[] -> 1)
-	);
+	];
 
 (*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*)
 (********************************************************************************)
@@ -854,9 +869,9 @@ CayleyHamilton[m__, opts___Rule] :=
 					If[ k === 1,
 						0,
 						Plus@@Table[submat =
-							NM[Sequence@@Table[{m}[[1]], {dum, 1, len - sp + 1}], Sequence@@ Drop[{m}, len - sp + 1]];
-							FCPrint[2, "Eliminating ", submat, " with coefficients", " ", Coefficient[ch[k], submat], " ", Coefficient[el[sp], submat]];
-							Coefficient[ch[k], submat]/Coefficient[el[sp], submat]el[sp], {sp, 1, k - 1}]
+							NM[Sequence@@Table[{m}[[1]], {dum, 1, len - s + 1}], Sequence@@ Drop[{m}, len - s + 1]];
+							FCPrint[2, "Eliminating ", submat, " with coefficients", " ", Coefficient[ch[k], submat], " ", Coefficient[el[s], submat]];
+							Coefficient[ch[k], submat]/Coefficient[el[s], submat]el[s], {s, 1, k - 1}]
 					] // Expand, {k, 1, len}
 				];
 				el[len]
@@ -884,7 +899,7 @@ calhamSort =
 	]&;
 
 CayleyHamiltonRules[mats_List, opts___Rule] :=
-	Block[ {},
+	Block[ {calhamrules,len,submats,subres,calham,scalham,rightside,fac},
 		calhamrules = {};
 		FCPrint[3, Length[mats], " sets of matrices"];
 		Do[
@@ -1030,12 +1045,12 @@ ddua[li1_][x_] =
 	Adjoint[CovariantFieldDerivative[SMM[x], x, LorentzIndex[li1]]];
 
 uRules10 = {
-	rul[nm[f___, duu[li1_][x_], Adjoint[SMM[x_]], g___],
-	cond[-nm[f, SMM[x], duaa[li1][x], g], (mq[pt[{dum, f}, -1], SMM[_] | Adjoint[SMM[_]]] || mq[pt[{dum, dum, f}, {-2, -1}],
+	rul[nm[f___, duu[l_][x_], Adjoint[SMM[x_]], g___],
+	cond[-nm[f, SMM[x], duaa[l][x], g], (mq[pt[{dum, f}, -1], SMM[_] | Adjoint[SMM[_]]] || mq[pt[{dum, dum, f}, {-2, -1}],
 	{duu[_][_] | duaa[_][_] | SMM[_] | Adjoint[SMM[_]], duu[_][_] | duaa[_][_] | SMM[_] | Adjoint[SMM[_]]}] ||
 	eq[{f}, {}] && (mq[pt[{dum, g}, -1],  SMM[_] | Adjoint[SMM[_]]] || mq[pt[{dum, dum, g}, {-2, -1}], {duu[_][_] |
-	duaa[_][_] | SMM[_] | Adjoint[SMM[_]], duu[_][_] | duaa[_][_] | SMM[_] | Adjoint[SMM[_]]}]))]], rul[nm[f___, duaa[li1_][x_], SMM[x_], g___],
-	cond[-nm[f, Adjoint[SMM[x]], duu[li1][x], g], (mq[pt[{dum, f}, -1],	SMM[_] | Adjoint[SMM[_]]] || mq[pt[{dum, dum, f}, {-2, -1}],
+	duaa[_][_] | SMM[_] | Adjoint[SMM[_]], duu[_][_] | duaa[_][_] | SMM[_] | Adjoint[SMM[_]]}]))]], rul[nm[f___, duaa[l_][x_], SMM[x_], g___],
+	cond[-nm[f, Adjoint[SMM[x]], duu[l][x], g], (mq[pt[{dum, f}, -1],	SMM[_] | Adjoint[SMM[_]]] || mq[pt[{dum, dum, f}, {-2, -1}],
 	{duu[_][_] | duaa[_][_] | SMM[_] | Adjoint[SMM[_]],	duu[_][_] | duaa[_][_] | SMM[_] | Adjoint[SMM[_]]}] || eq[{f}, {}] &&
 	(mq[pt[{dum, g}, -1], SMM[_] | Adjoint[SMM[_]]] || mq[pt[{dum, dum, g}, {-2, -1}], {duu[_][_] | duaa[_][_] | SMM[_] |
 	Adjoint[SMM[_]], duu[_][_] | duaa[_][_] | SMM[_] | Adjoint[SMM[_]]}]))]]
@@ -1048,18 +1063,18 @@ applyuRules1 =
 	(# /. NM -> nm /. uRules1 /. nm -> NM) &;
 
 UOrder =
-	(# /. NM -> nm /. (uRules1 /. Condition -> cc /. cc[a_, _] -> a) /. nm -> NM) &;
+	(# /. NM -> nm /. (uRules1 /. Condition -> c /. c[a_, _] -> a) /. nm -> NM) &;
 
 uRules20 = {
 
-	rul[nm[f___, SMM[x_], duaa[li1_][x_], g___], cond[-nm[f, duu[li1][x], Adjoint[SMM[x]], g],
+	rul[nm[f___, SMM[x_], duaa[l_][x_], g___], cond[-nm[f, duu[l][x], Adjoint[SMM[x]], g],
 	(mq[pt[{g, dum}, 1], SMM[_] | Adjoint[SMM[_]]] || mq[pt[{g, dum, dum}, {1, 2}], {duu[_][_] | duaa[_][_] |
 	SMM[_] | Adjoint[SMM[_]], duu[_][_] | duaa[_][_] | SMM[_] |	Adjoint[SMM[_]]}] || eq[{g}, {}] && (mq[pt[{f, dum}, 1],
 	SMM[_] | Adjoint[SMM[_]]] || mq[pt[{f, dum, dum}, {1, 2}], {duu[_][_] |	duaa[_][_] | SMM[_] | Adjoint[SMM[_]],
 	duu[_][_] | duaa[_][_] | SMM[_] | Adjoint[SMM[_]]}]))]],
 
-	rul[nm[f___, Adjoint[SMM[x_]], duu[li1_][x_], g___],
-	cond[-nm[f, duaa[li1][x], SMM[x], g], (mq[pt[{g, dum}, 1], SMM[_] | Adjoint[SMM[_]]] ||
+	rul[nm[f___, Adjoint[SMM[x_]], duu[l_][x_], g___],
+	cond[-nm[f, duaa[l][x], SMM[x], g], (mq[pt[{g, dum}, 1], SMM[_] | Adjoint[SMM[_]]] ||
 	mq[pt[{g, dum, dum}, {1, 2}], {duu[_][_] | duaa[_][_] | SMM[_] | Adjoint[SMM[_]], duu[_][_] | duaa[_][_] |
 	SMM[_] | Adjoint[SMM[_]]}] || eq[{g}, {}] && (mq[pt[{f, dum}, 1], SMM[_] | Adjoint[SMM[_]]] ||
 	mq[pt[{f, dum, dum}, {1, 2}], {duu[_][_] | duaa[_][_] | SMM[_] | Adjoint[SMM[_]], duu[_][_] | duaa[_][_] |
@@ -1075,19 +1090,19 @@ applyuRules2 =
 	(# /. NM -> nm /. uRules2 /. nm -> NM) &;
 
 UOrder1 =
-	(# /. NM -> nm /. (uRules2 /. Condition -> cc /. cc[a_, _] -> a) /. nm -> NM) &;
+	(# /. NM -> nm /. (uRules2 /. Condition -> d /. d[a_, _] -> a) /. nm -> NM) &;
 
 applyuRules12 =
 	(# /. NM -> nm /. uRules1 /. uRules2 /. nm -> NM) &;
 
 applyuRules12n =
-	(# /. NM -> nm /. (uRules1 /. Condition -> cc /. cc[a_, _] -> a) /. (uRules2 /. Condition -> cc /. cc[a_, _] -> a) /. nm -> NM) &;
+	(# /. NM -> nm /. (uRules1 /. Condition -> d /. d[a_, _] -> a) /. (uRules2 /. Condition -> d /. d[a_, _] -> a) /. nm -> NM) &;
 
 applyuRules21 =
 	(# /. NM -> nm /. uRules2 /. uRules1 /. nm -> NM) &;
 
 applyuRules21n =
-	(# /. NM -> nm /. (uRules2 /. Condition -> cc /. cc[a_, _] -> a) /. (uRules1 /. Condition -> cc /. cc[a_, _] -> a) /. nm -> NM) &;
+	(# /. NM -> nm /. (uRules2 /. Condition -> d /. d[a_, _] -> a) /. (uRules1 /. Condition -> d /. d[a_, _] -> a) /. nm -> NM) &;
 
 (* Use this to get u's side by side: *)
 
@@ -1099,7 +1114,8 @@ usurules = {
 };
 
 UPair[exp_, opts___Rule] :=
-	(exp /. (a : HoldPattern[NM[__]]) :>
+	Block[{tmpa},
+		(exp /. (a : HoldPattern[NM[__]]) :>
 		(tmpa = a // applyuRules1;
 		If[ Count[a /. usurules, usu, Infinity] > Count[tmpa /. usurules, usu, Infinity],
 			a,
@@ -1118,10 +1134,11 @@ UPair[exp_, opts___Rule] :=
 			a,
 			tmpa
 		]) // UIdTrick[#,opts]&
-	);
+	)
+	];
 
 UDrop[exp_, opts___Rule] :=
-	Block[ {(*tmpexp,tmpexp1,res*)},
+	Block[ {tmpexp,tmpexp1,res},
 		tmpexp = exp // UOrder //  UIdTrick[#,opts]& // CycleUTraces;
 		tmpexp1 = exp /. UTrace1 -> (UTrace[RotateLeft[#]] &) // UOrder //  UIdTrick[#,opts]& // CycleUTraces;
 		res = {exp,tmpexp,tmpexp1}[[Ordering[LeafCount/@{exp,tmpexp,tmpexp1}][[1]]]];
@@ -1215,10 +1232,10 @@ bigURules = {
 };
 
 SMMToMM[exp_,opts___Rule] :=
-	(
-	max = Max[(Length /@ Cases[exp, _NM, Infinity])];
-	FixedPoint[(# /. bigURules /. diffURules  /. diffBigURules[(SUNN /. {opts} /. Options[UReduce])]// NMExpand) &, exp /. NM -> nm, max] /. nm -> NM
-	);
+	Block[{max},
+		max = Max[(Length /@ Cases[exp, _NM, Infinity])];
+		FixedPoint[(# /. bigURules /. diffURules  /. diffBigURules[(SUNN /. {opts} /. Options[UReduce])]// NMExpand) &, exp /. NM -> nm, max] /. nm -> NM
+	];
 
 (* Have tr(d_mu U d_mu U^(+) d_nu U d_nu U^(+)) replaced with
 	tr(d_mu U^(+)  d_mu Ud_nu U^(+) d_nu U).
@@ -1226,22 +1243,26 @@ SMMToMM[exp_,opts___Rule] :=
 	calculations than p^8, well change the 8 below accordingly :-)*)
 
 ddURules =
+	Block[{ex,mu},
 	Table[(ex = (
 		cut[UTrace1[nm@@Table[seq[idd[CovariantFieldDerivative[MM[pat[x,_]],pat[x,_], LorentzIndex[mu[i]]]],
 			adj[CovariantFieldDerivative[MM[pat[x,_]],pat[x,_], LorentzIndex[mu[i+1]]]]],{i,1,n,2}]]]/.seq->Sequence
 		);
 		rull[(ex/.mu:>(pat[ToExpression["mu"<>ToString[#]], Blank[]]&)/.pat->Pattern/.{idd-> Identity,adj->Adjoint}),
 		condd[(ex/.mu:>(ToExpression["mu"<>ToString[#]]&)/.{idd->Adjoint, adj->Identity}/.pat[_,_]->x),
-		usq[sor[{mu1,mu2}],{mu1,mu2}]]]),{n,2,8,2}]/.{nm->NM, rull->RuleDelayed,condd->Condition,usq->SameQ, sor->Sort, cut->CycleUTraces};
+		usq[sor[{mu1,mu2}],{mu1,mu2}]]]),{n,2,8,2}]/.{nm->NM, rull->RuleDelayed,condd->Condition,usq->SameQ, sor->Sort, cut->CycleUTraces}
+	];
 
 ddURules1 =
+	Block[{ex,mu},
 		Table[(ex = (cut[UTrace1[nm@@Table[
 			seq[idd[CovariantFieldDerivative[MM[pat[x,_]],pat[x,_], LorentzIndex[mu[i]]]],
 			adj[CovariantFieldDerivative[MM[pat[x,_]],pat[x,_], LorentzIndex[mu[i+1]]]]],{i,1,n,2}]]]/.seq->Sequence);
 			rull[(ex/.mu:>(pat[ToExpression["mu"<>ToString[#]], Blank[]]&)/.pat->Pattern/.{idd->Adjoint, adj->Identity}),
 				condd[(ex/.mu:>(ToExpression["mu"<>ToString[#]]&)/.{idd->Identity, adj->Adjoint}/.pat[_,_]->x),
 					usq[sor[{mu1,mu2}],{mu1,mu2}]]]), {n,2,8,2}
-		]/. {nm->NM, rull->RuleDelayed,condd->Condition,usq->SameQ, sor->Sort, cut->CycleUTraces};
+		]/. {nm->NM, rull->RuleDelayed,condd->Condition,usq->SameQ, sor->Sort, cut->CycleUTraces}
+	];
 
 UReduce[exp_, opts___Rule] :=
 	Block[ {res,opsMM,opsSMM,end},
@@ -1291,67 +1312,68 @@ surfaceRules[n_] :=
 	{
 	surdum + nm[f___,FieldDerivative[dd_,x_,LorentzIndex[li1_]],r___] :>
 		surdum + idd[-nm[fdr[nm[f,r],x,LorentzIndex[li1]],dd]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&&
-	(sr0 || Length[{f,r}]>0&&((m1 = Max[Depth/@Union[Cases[{f,r},_FCPartialD| _FieldDerivative,Infinity,Heads->True]]]) <
-	(m2 = Max[Depth/@Union[Cases[{dd},_FCPartialD| _FieldDerivative,Infinity,Heads->True]]])+n || m1==-Infinity&&m2==-Infinity&&n<=1)),
+	(sr0 || Length[{f,r}]>0&&((tmp1 = Max[Depth/@Union[Cases[{f,r},_FCPartialD| _FieldDerivative,Infinity,Heads->True]]]) <
+	(tmp2 = Max[Depth/@Union[Cases[{dd},_FCPartialD| _FieldDerivative,Infinity,Heads->True]]])+n || tmp1==-Infinity && tmp2==-Infinity && n<=1)),
 
 	surdum + nm[uo___,NM[f___,FieldDerivative[dd_,x_,LorentzIndex[li1_]],r___], ou___] :>
 		surdum + idd[nm[nm[uo,ou,-nm[NM[fdr[NM[f],x,LorentzIndex[li1]],dd,r]]- nm[NM[f,dd,fdr[NM[r],x,LorentzIndex[li1]]]]]-
 		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]],NM[f,dd,r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True) &&
-		(sr0 || (m1 = Max[Depth/@Union[Cases[{f,r,ou},_FCPartialD|_FieldDerivative,Infinity, Heads->True]]])<(m2 = Max[Depth/@
-		Union[Cases[{dd},_FCPartialD|_FieldDerivative,Infinity, Heads->True]]])+n || m1==-Infinity&&m2==-Infinity&&n<=1),
+		(sr0 || (tmp1 = Max[Depth/@Union[Cases[{f,r,ou},_FCPartialD|_FieldDerivative,Infinity, Heads->True]]])<(tmp2 = Max[Depth/@
+		Union[Cases[{dd},_FCPartialD|_FieldDerivative,Infinity, Heads->True]]])+n || tmp1==-Infinity&&tmp2==-Infinity&&n<=1),
 
 	surdum + nm[uo___, utr[NM[f___,FieldDerivative[dd_,x_, LorentzIndex[li1_]], r___]],ou___]:>
 		surdum + idd[-nm[uo,ou,utr[NM[fdr[NM[f],x,LorentzIndex[li1]],dd,r]+ NM[f,dd,fdr[NM[r],x,LorentzIndex[li1]]]]]-
 		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]], utr[NM[f,dd,r]]]]/;
-		((FreeQ[dd, ufis, Heads->True] =!=True)) && (sr0 || (m1 = Max[Depth/@Union[Cases[{f,r,ou},_FCPartialD| _FieldDerivative,Infinity,
-		Heads->True]]])<(m2 = Max[Depth/@Union[Cases[{dd},_FCPartialD|	_FieldDerivative,Infinity, Heads->True]]])+n || m1==-Infinity&&m2==-Infinity&&n<=1),
+		((FreeQ[dd, ufis, Heads->True] =!=True)) && (sr0 || (tmp1 = Max[Depth/@Union[Cases[{f,r,ou},_FCPartialD| _FieldDerivative,Infinity,
+		Heads->True]]])<(tmp2 = Max[Depth/@Union[Cases[{dd},_FCPartialD|	_FieldDerivative,Infinity, Heads->True]]])+n || tmp1==-Infinity&&tmp2==-Infinity&&n<=1),
 
 	surdum + nm[uo___,NM[f___,Adjoint[FieldDerivative[dd_,x_,LorentzIndex[li1_]]],r___], ou___] :>
 		surdum + idd[nm[nm[uo,ou,-NM[fdr[NM[f],x,LorentzIndex[li1]],Adjoint[dd],r]- NM[f,Adjoint[dd],fdr[NM[r],x,LorentzIndex[li1]]]]-
-		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]],NM[f,Adjoint[dd],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (m1 = Max[Depth/@
-		Union[Cases[{f,r,ou},_FCPartialD|_FieldDerivative,Infinity, Heads->True]]])<(m2 = Max[Depth/@Union[Cases[{dd},_FCPartialD|_FieldDerivative,Infinity,
-		Heads->True]]])+n || m1==-Infinity&&m2==-Infinity&&n<=1),
+		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]],NM[f,Adjoint[dd],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (tmp1 = Max[Depth/@
+		Union[Cases[{f,r,ou},_FCPartialD|_FieldDerivative,Infinity, Heads->True]]])<(tmp2 = Max[Depth/@Union[Cases[{dd},_FCPartialD|_FieldDerivative,Infinity,
+		Heads->True]]])+n || tmp1==-Infinity&&tmp2==-Infinity&&n<=1),
 
 	surdum + nm[uo___,utr[NM[f___,Adjoint[FieldDerivative[dd_,x_, LorentzIndex[li1_]]], r___]],ou___]:>
 		surdum + idd[-nm[uo,ou,	utr[NM[fdr[NM[f],x,LorentzIndex[li1]],Adjoint[dd],r] +NM[f,Adjoint[dd],fdr[NM[r],x,LorentzIndex[li1]]]]]-
-		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]],	utr[NM[f,Adjoint[dd],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (m1 = Max[Depth/@
-		Union[Cases[{f,r,ou},_FCPartialD| _FieldDerivative,Infinity, Heads->True]]])<= (m2 = Max[Depth/@ Union[Cases[{dd},_FCPartialD|_FieldDerivative,Infinity,
-		Heads->True]]])+n-1 || m1==-Infinity&&m2==-Infinity&&n<=1)
+		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]],	utr[NM[f,Adjoint[dd],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (tmp1 = Max[Depth/@
+		Union[Cases[{f,r,ou},_FCPartialD| _FieldDerivative,Infinity, Heads->True]]])<= (tmp2 = Max[Depth/@ Union[Cases[{dd},_FCPartialD|_FieldDerivative,Infinity,
+		Heads->True]]])+n-1 || tmp1==-Infinity&&tmp2==-Infinity&&n<=1)
 	};
 
 surfaceRules1[n_] :=
 	{
 	surdum + nm[f___,dd:(QuantumField[FCPartialD[li1_,___], _, ___][x_] | (IsoVector | UVector | UMatrix)[QuantumField[FCPartialD[li1_,___], __]][x_] |
 	IsoDot[IsoVector[QuantumField[FCPartialD[li1_,___], __]][x_], IsoVector[UMatrix[UGenerator[___], ___], ___]]),r___] :>
-		surdum + idd[-nm[fdr[nm[f,r],x,LorentzIndex[li1]],dd/.FCPartialD[__]->Sequence[]]]/;(FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || Length[{f,r}]>0&&((m1 = Max[Depth/@
-		Union[Cases[{f,r},_FCPartialD| _FieldDerivative,Infinity,Heads->True]]])< (m2 = Max[Depth/@	Union[Cases[{dd},_FCPartialD| _FieldDerivative,Infinity,Heads->True]]])+n ||
-		m1==-Infinity&&m2==-Infinity&&n<=1)),
+		surdum + idd[-nm[fdr[nm[f,r],x,LorentzIndex[li1]],dd/.FCPartialD[__]->Sequence[]]]/;(FreeQ[dd, ufis, Heads->True] =!=True)&&
+		(sr0 || Length[{f,r}]>0&&((tmp1 = Max[Depth/@
+		Union[Cases[{f,r},_FCPartialD| _FieldDerivative,Infinity,Heads->True]]])< (tmp2 = Max[Depth/@	Union[Cases[{dd},_FCPartialD| _FieldDerivative,Infinity,Heads->True]]])+n ||
+		tmp1==-Infinity&&tmp2==-Infinity&&n<=1)),
 
 	surdum + nm[uo___,NM[f___,dd:(QuantumField[FCPartialD[li1_,___], _, ___][x_] | (IsoVector | UVector | UMatrix)[QuantumField[FCPartialD[li1_,___], __]][x_] |
 	IsoDot[IsoVector[QuantumField[FCPartialD[li1_,___], __]][x_], IsoVector[UMatrix[UGenerator[___], ___], ___]]),r___], ou___] :>
 		surdum + idd[nm[nm[uo,ou,-nm[NM[fdr[NM[f],x,LorentzIndex[li1]],dd/.FCPartialD[__]->Sequence[],r]]- nm[NM[f,dd,fdr[NM[r],x,LorentzIndex[li1]]]]]-
-		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]],NM[f,dd/.FCPartialD[__]->Sequence[],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (m1 = Max[Depth/@
-		Union[Cases[{f,r,ou},_FCPartialD|_FieldDerivative,Infinity, Heads->True]]])< (m2 = Max[Depth/@ Union[Cases[{dd},_FCPartialD| _FieldDerivative,Infinity,
-		Heads->True]]])+n || m1==-Infinity&&m2==-Infinity&&n<=1),
+		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]],NM[f,dd/.FCPartialD[__]->Sequence[],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (tmp1 = Max[Depth/@
+		Union[Cases[{f,r,ou},_FCPartialD|_FieldDerivative,Infinity, Heads->True]]])< (tmp2 = Max[Depth/@ Union[Cases[{dd},_FCPartialD| _FieldDerivative,Infinity,
+		Heads->True]]])+n || tmp1==-Infinity&&tmp2==-Infinity&&n<=1),
 
 	surdum + nm[uo___, utr[NM[f___,dd:(QuantumField[FCPartialD[li1_,___], _, ___][x_] | (IsoVector | UVector | UMatrix)[QuantumField[FCPartialD[li1_,___], __]][x_] |
 	IsoDot[IsoVector[QuantumField[FCPartialD[li1_,___], __]][x_], IsoVector[UMatrix[UGenerator[___], ___], ___]]), r___]],ou___]:>
 		surdum + idd[-nm[uo,ou,utr[	NM[fdr[NM[f],x,LorentzIndex[li1]],dd/.FCPartialD[__]->Sequence[],r]+ NM[f,dd/.FCPartialD[__]->Sequence[],fdr[NM[r],x,LorentzIndex[li1]]]]]-
-		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]], utr[NM[f,dd/.FCPartialD[__]->Sequence[],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (m1 = Max[Depth/@
-		Union[Cases[{f,r,ou},_FCPartialD|_FieldDerivative,Infinity,	Heads->True]]])< (m2 = Max[Depth/@ Union[Cases[{dd},_FCPartialD| _FieldDerivative,Infinity,
-		Heads->True]]])+n || m1==-Infinity&&m2==-Infinity&&n<=1),
+		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]], utr[NM[f,dd/.FCPartialD[__]->Sequence[],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (tmp1 = Max[Depth/@
+		Union[Cases[{f,r,ou},_FCPartialD|_FieldDerivative,Infinity,	Heads->True]]])< (tmp2 = Max[Depth/@ Union[Cases[{dd},_FCPartialD| _FieldDerivative,Infinity,
+		Heads->True]]])+n || tmp1==-Infinity&&tmp2==-Infinity&&n<=1),
 
 	surdum + nm[uo___,NM[f___,Adjoint[dd:(QuantumField[FCPartialD[li1_,___], _, ___][x_] | (IsoVector | UVector | UMatrix)[QuantumField[FCPartialD[li1_,___], __]][x_] |
 	IsoDot[IsoVector[QuantumField[FCPartialD[li1_,___], __]][x_], IsoVector[UMatrix[UGenerator[___], ___], ___]])],r___], ou___] :>
 		surdum + idd[nm[nm[uo,ou,-NM[fdr[NM[f],x,LorentzIndex[li1]],Adjoint[dd/.FCPartialD[__]->Sequence[]],r]-	NM[f,Adjoint[dd/.FCPartialD[__]->Sequence[]],fdr[NM[r],x,LorentzIndex[li1]]]]-
-		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]],NM[f,Adjoint[dd/.FCPartialD[__]->Sequence[]],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (m1 = Max[Depth/@ Union[Cases[{f,r,ou},_FCPartialD|
-		_FieldDerivative,Infinity, Heads->True]]])<(m2 = Max[Depth/@Union[Cases[{dd},_FCPartialD|_FieldDerivative,Infinity, Heads->True]]])+n || m1==-Infinity&&m2==-Infinity&&n<=1),
+		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]],NM[f,Adjoint[dd/.FCPartialD[__]->Sequence[]],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (tmp1 = Max[Depth/@ Union[Cases[{f,r,ou},_FCPartialD|
+		_FieldDerivative,Infinity, Heads->True]]])<(tmp2 = Max[Depth/@Union[Cases[{dd},_FCPartialD|_FieldDerivative,Infinity, Heads->True]]])+n || tmp1==-Infinity&&tmp2==-Infinity&&n<=1),
 
 	surdum + nm[uo___,utr[NM[f___,Adjoint[dd:(QuantumField[FCPartialD[li1_,___], _, ___][x_] | (IsoVector | UVector | UMatrix)[QuantumField[FCPartialD[li1_,___], __]][x_] |
 	IsoDot[IsoVector[QuantumField[FCPartialD[li1_,___], __]][x_], IsoVector[UMatrix[UGenerator[___], ___], ___]])], r___]],ou___]:>
 		surdum + idd[-nm[uo,ou, utr[NM[fdr[NM[f],x,LorentzIndex[li1]],Adjoint[dd/.FCPartialD[__]->Sequence[]],r] +NM[f,Adjoint[dd/.FCPartialD[__]->Sequence[]],fdr[NM[r],x,LorentzIndex[li1]]]]]-
-		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]], utr[NM[f,Adjoint[dd/.FCPartialD[__]->Sequence[]],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (m1 = Max[Depth/@ Union[Cases[{f,r,ou},_FCPartialD|
-		_FieldDerivative,Infinity, Heads->True]]])<= (m2 = Max[Depth/@Union[Cases[{dd},_FCPartialD| _FieldDerivative,Infinity, Heads->True]]])+n-1 || m1==-Infinity&&m2==-Infinity&&n<=1)
+		nm[fdr[nm[uo,ou],x,LorentzIndex[li1]], utr[NM[f,Adjoint[dd/.FCPartialD[__]->Sequence[]],r]]]]/; (FreeQ[dd, ufis, Heads->True] =!=True)&& (sr0 || (tmp1 = Max[Depth/@ Union[Cases[{f,r,ou},_FCPartialD|
+		_FieldDerivative,Infinity, Heads->True]]])<= (tmp2 = Max[Depth/@Union[Cases[{dd},_FCPartialD| _FieldDerivative,Infinity, Heads->True]]])+n-1 || tmp1==-Infinity&&tmp2==-Infinity&&n<=1)
 	};
 
 SurfaceReduce[expr_,opts___Rule] :=
@@ -1363,7 +1385,7 @@ SurfaceReduce[expr_,opts___Rule] :=
 			If[ Head[#]===Times,
 				nm@@#,
 				nm[#]
-			]&/@re]] /. UTrace1[a_]^n_ :> (Sequence@@Table[utr[a],{n}])  /. UTrace1->utr //.
+			]&/@re]] /. UTrace1[a_]^nn_ :> (Sequence@@Table[utr[a],{nn}])  /. UTrace1->utr //.
 			(surfaceRules1[n]/.sr0->False/.fq->FreeQ/.usq->UnsameQ) //.
 			(surfaceRules[n]/.sr0->False/.fq->FreeQ/.usq->UnsameQ) /. idd -> Identity /. nm -> Times /. surdum -> 0/.
 			qf -> QuantumField /.isod -> IsoDot /. fdr -> FieldDerivative /. utr -> UTrace/. FieldDerivative[_,LorentzIndex[_]]->0 //
@@ -1632,10 +1654,9 @@ PhiToLaTeX[x_] :=
 			x /. _RenormalizationState -> Sequence[] /.
 				SUNIndex | ExplicitSUNIndex -> Identity /.
 				(SU2Delta|SU3Delta|SUNDelta)[a_, b_] :> "\\delta_{" <> ToString[a] <> ToString[b] <> "}" /.
-				Pair[Momentum[p2], Momentum[p2]]^i_ :> "q^" <> ToString[2i] //.
-				(*Phi`Renormalization` is not in $ContextPath *)
+				Pair[Momentum[Global`p2], Momentum[Global`p2]]^i_ :> "q^" <> ToString[2i] //.
 				{
-					Phi`Renormalization`LeutwylerJBar[a__, __Rule] :> Phi`Renormalization`LeutwylerJBar[a],
+					LeutwylerJBar[a__, __Rule] :> LeutwylerJBar[a],
 					QuarkCondensate[___] -> "B_0",
 					Pi -> "\\pi",
 					Log -> "\\log",
@@ -1653,7 +1674,7 @@ PhiToLaTeX[x_] :=
 					ParticleMass[Kaon] -> "m_{\\rm K}",
 					ParticleMass[EtaMeson] -> "m_{\\rm \\eta}",
 					ScaleMu -> "\\mu",
-					Pair[Momentum[p2], Momentum[p2]] -> "q^2"
+					Pair[Momentum[Global`p2], Momentum[Global`p2]] -> "q^2"
 				},
 
 				FormatType -> InputForm, PageWidth -> 120], {

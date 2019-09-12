@@ -65,15 +65,12 @@ LoadConfiguration[conf_] :=
 	Block[ {olddir},
 		olddir = Directory[];
 		FCPrint[3, "Storing current directory ", olddir];
-		SetDirectory[Phi`$HEPDir];
-		SetDirectory["FeynCalc"];
-		SetDirectory["Phi"];
-		SetDirectory["Configurations"];
+		SetDirectory[FileNameJoin[{$PHIDirectory, "Configurations"}]];
 		FCPrint[3, "Loading configuration ", conf];
-		Global`$Configuration = conf;
+		$Configuration = conf;
 		$PaletteConfiguration = conf;
-			(* Set context for the name of the configuration *)
-		Evaluate[ToExpression["Phi`Objects`"<>conf]];
+		(* Set context for the name of the configuration *)
+		Evaluate[ToExpression["FeynCalc`"<>conf]];
 		Get[conf <> ".conf"];
 		FCPrint[3, "Resetting to directory ", olddir];
 		SetDirectory[olddir];
@@ -95,11 +92,7 @@ RebuildConfigurationsPalette :=
 
 		(* The directory is set *)
 		olddir = Directory[];
-		SetDirectory[Phi`$HEPDir];
-		SetDirectory["FeynCalc"];
-		SetDirectory["Phi"];
-		SetDirectory["Configurations"];
-
+		SetDirectory[FileNameJoin[{$PHIDirectory, "Configurations"}]];
 		(* A list of the configuration files present: *)
 
 		(*Change 14/5 - 1999, Mac filenames start with colon*)
@@ -170,8 +163,7 @@ RebuildConfigurationsPalette :=
 		ResetDirectory[];
 		SetDirectory["Palettes"];
 		Put[nb, "PhiConfigurations.nb"];
-		NotebookOpen[ToFileName[{Phi`$HEPDir,"FeynCalc","Phi","Palettes"},"PhiConfigurations.nb"]];
-
+		NotebookOpen[ToFileName[{$PHIDirectory, "Palettes"},"PhiConfigurations.nb"]];
 		(* The directory is reset *)
 		SetDirectory[olddir];
 	];
@@ -189,33 +181,23 @@ RebuildConfigurationsPalette :=
 LoadLagrangian[] :=
 	None;
 
-LoadLagrangian[fn_] /; Depth[fn] == 1 :=
-	Block[ {olddir},
-		olddir = Directory[];
-		FCPrint[3, "Storing current directory ", olddir];
-		SetDirectory[Phi`$HEPDir];
-		SetDirectory["FeynCalc"];
-		SetDirectory["Phi"];
-		SetDirectory["Lagrangians"];
-		Get[ToString[fn] <> ".m"];
-		FCPrint[2,"$Lagrangians is now ", Global`$Lagrangians//FullForm];
-		FCPrint[3, "Resetting to directory ", olddir];
-		SetDirectory[olddir];
+LoadLagrangian[fn_/; Depth[fn] == 1] :=
+	Block[ {path},
+		path = ToFileName[{$PHIDirectory, "Lagrangians"}, ToString[fn] <> ".m"];
+		Print[path];
+		FCDeclareHeader[path];
+		Get[path];
+		FCPrint[2,"$Lagrangians is now ", $Lagrangians//FullForm];
 		FAUpdate;
 	];
 
-LoadLagrangian[fn_] /; Depth[fn] == 2 :=
-	Block[ {olddir},
-		olddir = Directory[];
-		FCPrint[3, "Storing current directory ", olddir];
-		SetDirectory[Phi`$HEPDir];
-		SetDirectory["FeynCalc"];
-		SetDirectory["Phi"];
-		SetDirectory["Lagrangians"];
-		Get[ToString[ToExpression[ToString[fn]][[0]]] <> ToString[ToExpression[ToString[fn]][[1]]] <> ".m"];
-		FCPrint[2,"$Lagrangians is now ", Global`$Lagrangians//FullForm];
-		FCPrint[3, "Resetting to directory ", olddir];
-		SetDirectory[olddir];
+LoadLagrangian[fn_/; Depth[fn] == 2] :=
+	Block[ {path},
+		path = ToFileName[{$PHIDirectory, "Lagrangians"}, ToString[ToExpression[ToString[fn]][[0]]] <>
+			ToString[ToExpression[ToString[fn]][[1]]] <> ".m"];
+		FCDeclareHeader[path];
+		Get[path];
+		FCPrint[2,"$Lagrangians is now ", $Lagrangians//FullForm];
 		FAUpdate;
 	];
 
@@ -232,11 +214,7 @@ RebuildLagrangiansPalette :=
 
 		(* The directory is set *)
 		olddir = Directory[];
-		SetDirectory[Phi`$HEPDir];
-		SetDirectory["FeynCalc"];
-		SetDirectory["Phi"];
-		SetDirectory["Lagrangians"];
-
+		SetDirectory[FileNameJoin[{$PHIDirectory, "Lagrangians"}]];
 		(* A list of the configuration files present: *)
 		names =
 			If[ StringMatchQ[#, ":*"]&& StringMatchQ[$System, "MacOS*"],
@@ -311,8 +289,7 @@ RebuildLagrangiansPalette :=
 		ResetDirectory[];
 		SetDirectory["Palettes"];
 		Put[nb, "PhiLagrangians.nb"];
-		NotebookOpen[ToFileName[{Phi`$HEPDir,"FeynCalc", "Phi","Palettes"},"PhiLagrangians.nb"]];
-
+		NotebookOpen[ToFileName[{$PHIDirectory, "Palettes"},"PhiLagrangians.nb"]];
 		(* The directory is reset *)
 		SetDirectory[olddir];
 	];

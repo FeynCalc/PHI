@@ -25,8 +25,6 @@ Description:         The ChPT lagrangian for pion to fourth
 *)
 
 
-Begin["Phi`Objects`"];
-
 (* -------------------------------------------------------------- *)
 
 ChPT34::usage =
@@ -85,7 +83,11 @@ fourth order ChPT lagrangian.";
 
 (* ---------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPT34`Private`"]
 
 (* ---------------------------------------------------------------- *)
 
@@ -111,35 +113,35 @@ H2 = CouplingConstant[ChPT3[4],12];
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPT3[4],11,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["H",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[1]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPT3[4],12,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["H",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[2]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPT3[4],i_,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["L",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[i]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 (* ---------------------------------------------------------------- *)
 
@@ -159,7 +161,7 @@ Lagrangian[ChPT3[4]] :=
 
 	L3[0]*
 	UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]],
-			   CDr[MM,{\[Nu]}],Adjoint[CDr[MM,{\[Nu]}]]] ]+
+			CDr[MM,{\[Nu]}],Adjoint[CDr[MM,{\[Nu]}]]] ]+
 
 	L4[0]*
 	NM[ UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]]],
@@ -171,11 +173,11 @@ Lagrangian[ChPT3[4]] :=
 
 	L6[0]*
 	NM[UTrace[ NM[UChiMatrix,Adjoint[MM]]+NM[MM,Adjoint[UChiMatrix]] ] ,
-	   UTrace[ NM[UChiMatrix,Adjoint[MM]]+NM[MM,Adjoint[UChiMatrix]] ] ]+
+	UTrace[ NM[UChiMatrix,Adjoint[MM]]+NM[MM,Adjoint[UChiMatrix]] ] ]+
 
 	L7[0]*
 	NM[UTrace[ NM[UChiMatrix,Adjoint[MM]]-NM[MM,Adjoint[UChiMatrix]] ] ,
-	   UTrace[ NM[UChiMatrix,Adjoint[MM]]-NM[MM,Adjoint[UChiMatrix]] ] ]+
+	UTrace[ NM[UChiMatrix,Adjoint[MM]]-NM[MM,Adjoint[UChiMatrix]] ] ]+
 
 	L8[0]*
 	UTrace[ NM[UChiMatrix,Adjoint[MM],UChiMatrix,Adjoint[MM]]+
@@ -200,13 +202,13 @@ Lagrangian[ChPT3[4]] :=
 
 	L9[0]*I*
 	UTrace[ NM[FST[LeftComponent[0],{\[Mu]},{\[Nu]}],
-			   CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Nu]}]]]+
+			CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Nu]}]]]+
 			NM[FST[RightComponent[0],{\[Mu]},{\[Nu]}],
-			   Adjoint[CDr[MM,{\[Mu]}]],CDr[MM,{\[Nu]}]] ]+
+			Adjoint[CDr[MM,{\[Mu]}]],CDr[MM,{\[Nu]}]] ]+
 
 	L10[0]*
 	UTrace[ NM[FST[LeftComponent[0],{\[Mu]},{\[Nu]}],MM,
-			   FST[RightComponent[0],{\[Mu]},{\[Nu]}],Adjoint[MM]] ]+
+			FST[RightComponent[0],{\[Mu]},{\[Nu]}],Adjoint[MM]] ]+
 
 	H1[0]*
 	UTrace[ NM[FST[LeftComponent[0],{\[Mu]},{\[Nu]}],FST[LeftComponent[0],{\[Mu]},{\[Nu]}]]+
@@ -223,3 +225,5 @@ FieldsSet[ChPT3[4]] :=
 	{IsoVector[
 	QuantumField[Particle[PhiMeson,RenormalizationState[0]]]
 	]};
+
+End[]

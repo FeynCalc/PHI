@@ -272,6 +272,13 @@ End[]
 
 Begin["`Renormalization`Private`"];
 
+
+
+ellnumerator::usage="";
+integrator::usage="";
+ddiimm::usage="";
+tmpInd::usage="";
+elldenominator::usage="";
 (*
 Boxes
 *)
@@ -279,9 +286,9 @@ Boxes
 IntegrateHeld /:
 	MakeBoxes[IntegrateHeld[a__, b : _List .. ], TraditionalForm] :=
 	RowBox[Join[Table[
-		UnderoverscriptBox["\[Integral]", ToBoxes[TraditionalForm[{b}[[rep, 2]]]],
-		ToBoxes[TraditionalForm[{b}[[rep, 3]]]]], {rep,Length[{b}]}], {MakeBoxes[TraditionalForm[a]]},
-		Reverse[Table[RowBox[{"\[DifferentialD]", ToBoxes[TraditionalForm[{b}[[rep, 1]]]]}], {rep,Length[{b}]}]]]
+		UnderoverscriptBox["\[Integral]", ToBoxes[TraditionalForm[{b}[[r, 2]]]],
+		ToBoxes[TraditionalForm[{b}[[r, 3]]]]], {r,Length[{b}]}], {MakeBoxes[TraditionalForm[a]]},
+		Reverse[Table[RowBox[{"\[DifferentialD]", ToBoxes[TraditionalForm[{b}[[r, 1]]]]}], {r,Length[{b}]}]]]
 	];
 
 FeynmanX /:
@@ -481,14 +488,14 @@ FeynmanIntegral[p10_, m10_, m20_, n1_, n2_, d_, d1_, opts___] :=
 	(
 	(-1)^(n1 + n2)*I*Pi^(d1/2)*Gamma[n1 + n2 - d/2]/(Gamma[n1]*Gamma[n2])*
 	IntegrateHeld[
-		Global`x^(n1 - 1)*(1 - Global`x)^(n2 - 1)/ DenominatorD1[m10, m20, p10, Global`x, opts]^(n1 + n2 - d1/2), {Global`x, 0, 1}]
+		FCGV["x"]^(n1 - 1)*(1 - FCGV["x"])^(n2 - 1)/ DenominatorD1[m10, m20, p10, FCGV["x"], opts]^(n1 + n2 - d1/2), {FCGV["x"], 0, 1}]
 	) /. DenominatorD1 -> DenominatorD /. IntegrateHeld -> (FCIntegrate /. Flatten[{opts}] /. Options[FeynmanIntegral]);
 
 VeltmanB0[p10_, m10_, m20_, opts___?OptionQ] /; (B0Evaluation /. Flatten[{opts}] /. Options[VeltmanB0]) === "none" :=
 	B0[p10, m10, m20];
 
 VeltmanB0[p10_, m10_, m20_, opts___?OptionQ] /; (B0Evaluation /. Flatten[{opts}] /. Options[VeltmanB0]) === "direct1" :=
-	(
+	Block[{bdi,dedi,dedim,iib0},(
 	bdi = Dimension /. Flatten[{opts}] /. Options[VeltmanB0];
 	dedi = DimensionExpand /. Flatten[{opts}] /. Options[VeltmanB0];
 	dedim =
@@ -510,7 +517,8 @@ VeltmanB0[p10_, m10_, m20_, opts___?OptionQ] /; (B0Evaluation /. Flatten[{opts}]
 		Evaluate[DimensionExpand[iib0, Dimension->dedim, opts]],
 		iib0
 	] /. IntegrateHeld -> (FCIntegrate /. Flatten[{opts}] /. Options[VeltmanB0])
-	);
+	)
+	];
 
 
 (* Expansion of the Gamma functions of (D-4) around 0 starting with the term
@@ -641,19 +649,23 @@ Spence[x_] :=
 I Pi^2 as in Passarino and Veltman): *)
 
 alpha[a_, b_, c_, n_] :=
+	Block[{alpsol},
 	(alpsol = Solve[a*\[Alpha]^2 + b*\[Alpha] + c == 0, \[Alpha]];
 	If[ alpsol === {},
 		(FCPrint[1, "Warning : no roots found, using 0"];
 		0),
 		\[Alpha] /. alpsol[[3 - 2*n]]
-	]);
+	])
+	];
 
 alpha1[a_, b_, c_, n_] :=
-	(alpsol = Solve[a*\[Alpha]^2 + b*\[Alpha] + c == 0, \[Alpha]];
-	If[ alpsol === {},
-		0,
-		\[Alpha] /. alpsol[[3 - 2*n]]
-	]);
+	Block[{alpsol},
+		alpsol = Solve[a*\[Alpha]^2 + b*\[Alpha] + c == 0, \[Alpha]];
+		If[ alpsol === {},
+			0,
+			\[Alpha] /. alpsol[[3 - 2*n]]
+		]
+	];
 
 
 (* 't Hooft and Veltman use the metric (-1,1,1,1), so the definitions from
@@ -709,9 +721,13 @@ VeltmanC0[p10_, p20_, p12_, m10_, m20_, m30_, opts___] /; (C0Evaluation /. Flatt
 	Block[ {a = veaa[p20], b = vebb[p10], c = vecc[p10, p20, p12],
 			d = vedd[p20, m20, m30], e = veee[p10, p12, p20, m10, m20],
 			eps = (SmallEpsilon /. Flatten[{opts}] /. Options[VeltmanC0]),
-			f = veff[m30, eps], alp = alpha[b, c, a, 1],
-			y0 = -(d + e*alp)/(c + 2*alp*b), y1 = y0 + alp, y2 = y0/(1 - alp),
-			y3 = -y0/alp},
+			f = veff[m30, eps], alp = alpha[b, c, a, 1], y0,y1,y2,y3},
+
+			y0 = -(d + e*alp)/(c + 2*alp*b);
+			y1 = y0 + alp;
+			y2 = y0/(1 - alp);
+			y3 = -y0/alp;
+
 		IntegrateHeld[1/((c + 2*alp*b)*y + d + e*alp + 2*a + c*alp)*(Log[b*y^2 + (c + e)*y + a + d + f] -
 		Log[b*y1^2 + (c + e)*y1 + a + d + f]) - (1 - alp)/((c + 2*alp*b)*(1 - alp)*y + d + e*alp)*(Log[(a +
 			b + c)*y^2 + (e + d)*y + f] - Log[(a + b + c)*y2^2 + (e + d)*y2 + f]) - alp/(-(c +
@@ -745,7 +761,7 @@ rr[y0_, y1_] :=
 (* The S_3 of appendix B of 't Hooft and Veltman: *)
 
 s3[a_, b_, c_, yy0_, opts___] :=
-	(
+	Block[{epsi,delta,eps,yy1,yy2,imzero1,imzero2},(
 	epsi = -Sign[Im[c]];
 	delta = -Sign[Im[a*yy0^2 + b*yy0 + c]];
 	eps = (SmallEpsilon /. Flatten[{opts}] /. Options[VeltmanC0]);
@@ -764,7 +780,8 @@ s3[a_, b_, c_, yy0_, opts___] :=
 		]
 	];
 	rr[yy0, yy1] + rr[yy0, yy2] - (eta[-yy1, -yy2] - eta[yy0 - yy1, yy0 - yy2] - eta[a - I*epsi*eps, 1/(a - I*delta*eps)])*Log[(yy0 - 1)/yy0]
-	);
+	)
+	];
 
 
 (* This is formula (5.6) using the above S_3: *)
@@ -773,15 +790,19 @@ VeltmanC0[p10_, p20_, p12_, m10_, m20_, m30_, opts___] /; (C0Evaluation /. Flatt
 	Block[ {a = veaa[p20], b = vebb[p10], c = vecc[p10, p20, p12],
 			d = vedd[p20, m20, m30], e = veee[p10, p12, p20, m10, m20],
 			eps = (SmallEpsilon /. Flatten[{opts}] /. Options[VeltmanC0]),
-			f = veff[m30, eps], alp = alpha[b, c, a, 1],
-			y0 = -(d + e*alp)/(c + 2*alp*b), y1 = y0 + alp, y2 = y0/(1 - alp),
-			y3 = -y0/alp},
-		1/(c + 2*alp*b)*
-				s3[b, c + e, a + d + f, -(d + e*alp + 2*a + c*alp)/(c + 2*alp*b),
-					opts] - (1 - alp)/((c + 2*alp*b)*(1 - alp))*
-				s3[a + b + c, e + d, f, -(d + e*alp)/((c + 2*alp*b)*(1 - alp)),
-					opts] - alp/(-(c + 2*alp*b)*alp)*
-				s3[a, d, f, (d + e*alp)/((c + 2*alp*b)*alp), opts]
+			f = veff[m30, eps], alp = alpha[b, c, a, 1], y0, y1, y2 ,y3},
+
+			y0 = -(d + e*alp)/(c + 2*alp*b);
+			y1 = y0 + alp;
+			y2 = y0/(1 - alp);
+			y3 = -y0/alp;
+
+			1/(c + 2*alp*b)*
+			s3[b, c + e, a + d + f, -(d + e*alp + 2*a + c*alp)/(c + 2*alp*b),
+				opts] - (1 - alp)/((c + 2*alp*b)*(1 - alp))*
+			s3[a + b + c, e + d, f, -(d + e*alp)/((c + 2*alp*b)*(1 - alp)),
+				opts] - alp/(-(c + 2*alp*b)*alp)*
+			s3[a, d, f, (d + e*alp)/((c + 2*alp*b)*alp), opts]
 	];
 
 
@@ -789,15 +810,13 @@ VeltmanC0[p10_, p20_, p12_, m10_, m20_, m30_, opts___] /; (C0Evaluation /. Flatt
 a,..,f directly: *)
 
 vC0[a_, b_, c_, d_, e_, f_, opts___] :=
-	(
-	alp = alpha[b, c, a, 1];
-	1/(c + 2*alp*b)*
-			s3[b, c + e, a + d + f, -(d + e*alp + 2*a + c*alp)/(c + 2*alp*b),
-				opts] - (1 - alp)/((c + 2*alp*b)*(1 - alp))*
-			s3[a + b + c, e + d, f, -(d + e*alp)/((c + 2*alp*b)*(1 - alp)),
-				opts] - alp/(-(c + 2*alp*b)*alp)*
-			s3[a, d, f, (d + e*alp)/((c + 2*alp*b)*alp), opts]
-	);
+	Block[{alp},
+		alp = alpha[b, c, a, 1];
+		1/(c + 2*alp*b)*
+		s3[b, c + e, a + d + f, -(d + e*alp + 2*a + c*alp)/(c + 2*alp*b), opts] - (1 - alp)/((c + 2*alp*b)*(1 - alp))*
+		s3[a + b + c, e + d, f, -(d + e*alp)/((c + 2*alp*b)*(1 - alp)), opts] - alp/(-(c + 2*alp*b)*alp)*
+		s3[a, d, f, (d + e*alp)/((c + 2*alp*b)*alp), opts]
+	];
 
 
 (* The S_3 of appendix B of 't Hooft and Veltman using Mathematica's symbolic
@@ -834,9 +853,13 @@ VeltmanC0[p10_, p20_, p12_, m10_, m20_, m30_, opts___] /; (C0Evaluation /. Flatt
 	Block[ {a = veaa[p20], b = vebb[p10], c = vecc[p10, p20, p12],
 			d = vedd[p20, m20, m30], e = veee[p10, p12, p20, m10, m20],
 			eps = (SmallEpsilon /. Flatten[{opts}] /. Options[VeltmanC0]),
-			f = veff[m30, eps], alp = alpha[b, c, a, 1],
-			y0 = -(d + e*alp)/(c + 2*alp*b), y1 = y0 + alp, y2 = y0/(1 - alp),
-			y3 = -y0/alp},
+			f = veff[m30, eps], alp = alpha[b, c, a, 1],y0,y1,y2,y3},
+
+			y0 = -(d + e*alp)/(c + 2*alp*b);
+			y1 = y0 + alp;
+			y2 = y0/(1 - alp);
+			y3 = -y0/alp;
+
 		1/(c + 2*alp*b)*
 				s33[b, c + e, a + d + f, -(d + e*alp + 2*a + c*alp)/(c + 2*alp*b),
 					opts] - (1 - alp)/((c + 2*alp*b)*(1 - alp))*
@@ -921,7 +944,7 @@ pp2[i_, j_, moms__] :=
 		{moms}[[2]];
 	ppsq[3] :=
 		{moms}[[3]];
-	(Sum[ppsq[rep], {rep, i, j - 1}] + 2*Sum[ppl[rep, rep1], {rep1, i, j - 1}, {rep, i, rep1}])
+	(Sum[ppsq[r], {r, i, j - 1}] + 2*Sum[ppl[r, l], {l, i, j - 1}, {r, i, l}])
 	);
 
 
@@ -931,6 +954,7 @@ ll[i_, j_, moms__, {masses__}] :=
 	pp2[i, j, moms] + {masses}[[i]] + {masses}[[j]];
 
 aa[1, moms__, {masses__}] :=
+	Block[{res},
 	(
 	res = aa[2, moms, {masses}]*(ll[1, 2, moms, {masses}] +
 		Sqrt[ll[1, 2, moms, {masses}]^2 - 4*{masses}[[1]]*{masses}[[2]]])/(2*{masses}[[1]]);
@@ -939,7 +963,8 @@ aa[1, moms__, {masses__}] :=
 		FCPrint[1, "Warning: A[1] not real - ", res];
 		res
 	]
-	);
+	)
+	];
 
 
 (* The final result is independent of A_2, so we just set it to some value: *)
@@ -948,31 +973,32 @@ aa[2, __, {__}] :=
 	10000000;
 
 aa[3, moms__, {masses__}] :=
-	(
-	res = ({masses}[[2]]*
-	aa[2, moms, {masses}]^2 - {masses}[[1]]*
-	aa[1, moms, {masses}]^2)/(ll[2, 3, moms, {masses}]*
-	aa[2, moms, {masses}] -
-	ll[1, 3, moms, {masses}]*aa[1, moms, {masses}]);
-	If[ ! NumericQ[res] || Im[res] === 0,
-		res,
-		FCPrint[1, "Warning: A[3] not real - ", res];
-		res
-	]
-	);
+	Block[{res},
+		res = ({masses}[[2]]*
+		aa[2, moms, {masses}]^2 - {masses}[[1]]*
+		aa[1, moms, {masses}]^2)/(ll[2, 3, moms, {masses}]*
+		aa[2, moms, {masses}] -
+		ll[1, 3, moms, {masses}]*aa[1, moms, {masses}]);
+		If[ ! NumericQ[res] || Im[res] === 0,
+			res,
+			FCPrint[1, "Warning: A[3] not real - ", res];
+			res
+		]
+	];
+
 aa[4, moms__, {masses__}] :=
-	(
-	res = ({masses}[[2]]*
-	aa[2, moms, {masses}]^2 - {masses}[[1]]*
-	aa[1, moms, {masses}]^2)/(ll[2, 4, moms, {masses}]*
-	aa[2, moms, {masses}] -
-	ll[1, 4, moms, {masses}]*aa[1, moms, {masses}]);
-	If[ ! NumericQ[res] || Im[res] === 0,
-		res,
-		FCPrint[1, "Warning: A[4] not real - ", res];
-		res
-	]
-	);
+	Block[{res},
+		res = ({masses}[[2]]*
+		aa[2, moms, {masses}]^2 - {masses}[[1]]*
+		aa[1, moms, {masses}]^2)/(ll[2, 4, moms, {masses}]*
+		aa[2, moms, {masses}] -
+		ll[1, 4, moms, {masses}]*aa[1, moms, {masses}]);
+		If[ ! NumericQ[res] || Im[res] === 0,
+			res,
+			FCPrint[1, "Warning: A[4] not real - ", res];
+			res
+		]
+	];
 
 
 (* This is formula (6.6): *)
@@ -995,51 +1021,58 @@ factor is taken from nowhere - the minuses are not put on after all - just
 seems to improve agreement with FF: *)
 
 VeltmanD0[pf10_, pf20_, pf30_, pp10_, pp20_, pp30_, m10_, m20_, m30_, m40_, opts___] /; (D0Evaluation /. Flatten[{opts}] /. Options[VeltmanD0]) === "C0" :=
-	Block[ {$MaxExtraPrecision = 4000,(*The minus (from the Bjoerken -
-							Drell metric (-1, -1, -1, 1)) is put on here :*)
-		p10 = pf10,
-		p20 = pf20, p30 = pf30, p12 = (pp20 - p10 - p20)/2,
-		p23 = (pp30 - p20 - p30)/2,
-		p13 = (pp10 - p10 - p20 - p30 - 2*p12 - 2*p23)/2,
-		mm10 = m10*
-				aa[1, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-		mm20 = m20*
-				aa[2, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-		mm30 =
-			m30*aa[3, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-		mm40 = m40*
-				aa[4, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-		a = -qq2[3, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40],
-		b = -qq2[2, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40],
+	Block[{	$MaxExtraPrecision = 4000, p10, p20, p30, p12, p23, p13, mm10, mm20, mm30, mm40,
+			a,b,c,d,e,eps,f,g,h,j,k,optss, firstc0, secondc0, afactors},
+
+		(*The minus (from the Bjoerken - Drell metric (-1, -1, -1, 1)) is put on here :*)
+		p10 = pf10;
+		p20 = pf20;
+		p30 = pf30;
+		p12 = (pp20 - p10 - p20)/2;
+		p23 = (pp30 - p20 - p30)/2;
+		p13 = (pp10 - p10 - p20 - p30 - 2*p12 - 2*p23)/2;
+
+
+		mm10 = m10 aa[1, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+		mm20 = m20 aa[2, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+		mm30 = m30 aa[3, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+		mm40 = m40 aa[4, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+
+		a = -qq2[3, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40];
+		b = -qq2[2, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40];
 		c = -qq2[2, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] +
-				qq2[2, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] +
-				qq2[3, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40],
-		d = mm30 - mm40 +
-				qq2[3, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40],
-		e = mm20 - mm30 +
-				qq2[2, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] -
-				qq2[3, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40],
-		eps = (SmallEpsilon /. Flatten[{opts}] /. Options[VeltmanD0]),
-		f = mm40 - I*eps,
-		g = -qq2[1, 2, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40],
+			qq2[2, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] +
+			qq2[3, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40];
+		d = mm30 - mm40 + qq2[3, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40];
+
+		e = mm20 - mm30 + qq2[2, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] -
+			qq2[3, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40];
+
+		eps = (SmallEpsilon /. Flatten[{opts}] /. Options[VeltmanD0]);
+		f = mm40 - I*eps;
+		g = -qq2[1, 2, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40];
 		h = -qq2[1, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] -
-				qq2[2, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] +
-				qq2[1, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] +
-				qq2[2, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40],
+			qq2[2, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] +
+			qq2[1, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] +
+			qq2[2, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40];
+
 		j = -qq2[1, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] +
-				qq2[1, 2, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] +
-				qq2[2, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40],
-		k = mm10 - mm20 +
-				qq2[1, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] -
-				qq2[2, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40],
-		optss = Flatten[{opts}]},
+			qq2[1, 2, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] +
+			qq2[2, 3, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40];
+
+		k = mm10 - mm20 + qq2[1, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40] -
+			qq2[2, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40];
+
+
+		optss = Flatten[{opts}];
 		firstc0 = -vC0[a, b, c, d, e, f, ##] & @@Join[optss, Options[VeltmanD0]];
 		secondc0 = -vC0[a, b, c, d, (e + k), f, ##] & @@Join[optss, Options[VeltmanD0]];
-		kk = k;
+
 		afactors = {aa[1, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}],
 				aa[2, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}],
 				aa[3, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}],
 				aa[4, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]};(*?? ??*)
+
 		Pi^2*(Times @@ afactors)/k*(firstc0 - secondc0)
 	];
 
@@ -1054,6 +1087,7 @@ laa[i_, j_, moms__, {masses__}] :=
 (* This is formula (6.15): *)
 
 sss[i_, j_, k_, p10_, p20_, p30_, p12_, p13_, p23_, m10_, m20_, m30_, m40_, opts___] :=
+	Block[{rootss,x1,x2},
 	(
 	rootss =
 	Solve[	-qq2[i, j, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40]*x^2 +
@@ -1063,7 +1097,7 @@ sss[i_, j_, k_, p10_, p20_, p30_, p12_, p13_, p23_, m10_, m20_, m30_, m40_, opts
 	x1 = x /. Flatten[rootss][[1]];
 	x2 = x /. Flatten[rootss][[-1]];
 	-I Pi/(-qq2[i, j, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40]*(x1 - x2))*(Log[(x1 - 1)/x1] - Log[(x2 - 1)/x2])
-	);
+	)];
 
 ss[p10_, p20_, p30_, p12_, p13_, p23_, {m10_, m20_, m30_, m40_}, opts___] :=
 	Sign[(aa[1, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]/
@@ -1075,6 +1109,7 @@ ss[p10_, p20_, p30_, p12_, p13_, p23_, {m10_, m20_, m30_, m40_}, opts___] :=
 	sss[2, 3, 4, p10, p20, p30, p12, p13, p23, m10, m20, m30, m40, opts]));
 
 yminus[i_, j_, moms__, {masses__}, ie_] :=
+	Block[{roots},
 	(
 	roots = (y /. #) & /@ Flatten[Solve[llaa[i, j, moms, {masses}]*y^2 + laa[i, j, moms, {masses}]*y + {masses}[[j]]^2*aa[j, moms, {masses}]^2 - I*ie == 0, y]];
 
@@ -1085,9 +1120,11 @@ yminus[i_, j_, moms__, {masses__}, ie_] :=
 		],
 		roots[[1]]
 	]
-	);
+	)
+	];
 
 yplus[i_, j_, moms__, {masses__}, ie_] :=
+	Block[{roots},
 	(
 	roots = (y /. #) & /@ Flatten[Solve[llaa[i, j, moms, {masses}]*y^2 + laa[i, j, moms, {masses}]*y + {masses}[[j]]^2*aa[j, moms, {masses}]^2 - I*ie == 0, y]];
 	If[ NumericQ[roots[[1]]] && NumericQ[roots[[-1]]],
@@ -1097,12 +1134,14 @@ yplus[i_, j_, moms__, {masses__}, ie_] :=
 		],
 		roots[[-1]]
 	]
-	);
+	)
+	];
 
 
 (* The S_3 of appendix B of 't Hooft and Veltman: *)
 
 s3D[a_, b_, c_, yy0_, opts___] :=
+	Block[{epsi,delta,eps,yy1,yy2,imzero1,imzero2},
 	(
 	epsi = -Sign[Im[c]];
 	delta = -Sign[Im[a*yy0^2 + b*yy0 + c]];
@@ -1122,7 +1161,8 @@ s3D[a_, b_, c_, yy0_, opts___] :=
 			FCPrint[1, "Warning : Integral decomposition being used outside range of validity - ", imzero2]
 		]
 	];
-	rr[yy0, yy1] + rr[yy0, yy2] - (eta[-yy1, -yy2] - eta[yy0 - yy1, yy0 - yy2] - eta[a - I*epsi*eps, 1/(a - I*delta*eps)])*Log[(yy0 - 1)/yy0]);
+	rr[yy0, yy1] + rr[yy0, yy2] - (eta[-yy1, -yy2] - eta[yy0 - yy1, yy0 - yy2] - eta[a - I*epsi*eps, 1/(a - I*delta*eps)])*Log[(yy0 - 1)/yy0])
+	];
 
 (* 't Hooft and Veltman use the metric (-1,1,1,1), so the definitions are
 changed a little (dot products change sign): *)
@@ -1166,26 +1206,45 @@ FeynCalc input momenta: *)
 (* p12 is p1*p2 etc. *)
 
 VeltmanD0[pf10_, pf20_, pf30_, pp10_, pp20_, pp30_, m10_, m20_, m30_, m40_, opts___] /; (D0Evaluation /. Flatten[{opts}] /. Options[VeltmanD0]) === "Spence" :=
-	Block[ {(*The minus (from the Bjoerken - Drell metric (-1, -1, -1, 1)) is put on here :*)p10 = pf10,
-			p20 = -pf20, p30 = -pf30, p12 = -(pp20 - p10 - p20)/2,
-			p23 = -(pp30 - p20 - p30)/2,
-			p13 = -(pp10 - p10 - p20 - p30 - 2*p12 - 2*p23)/2,
-			mm10 = m10 aa[1, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-			mm20 = m20 aa[2, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-			mm30 = m30 aa[3, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-			mm40 = m40 aa[4, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-			a = heaa[p30], b = hebb[p20], c = hecc[p23],
-			d = hedd[p30, mm30, mm40], e = heee[p20, p23, mm20, mm30],
-			eps = (SmallEpsilon /. Flatten[{opts}] /. Options[VeltmanD0]),
-			f = heff[mm40, eps], g = hegg[p10], h = hehh[p13], j = hejj[p12],
-			k = hekk[p10, p12, p13, mm10, mm20], alp = alpha[b, c, a, 1],
-			y1 = -(d + e*alp)/((c + 2*alp*b)*(1 - alp)),
-			y2 = (d + e*alp)/((c + 2*alp*b)*alp),
-			y3 = -(d + e*alp + c*alp + 2*a)/(c + 2*alp*b),
-			y4 = -(d + e*alp + k*alp)/((c + 2*alp*b)*(1 - alp)),
-			y5 = (d + e*alp + k*alp)/((c + 2*alp*b)*alp),
-			y6 = -(d + e*alp + k*alp + c*alp + 2*a)/(c + 2*alp*b)},
-		(y[1] = y1;
+	Block[{	p10, p20, p30, p12, p23, p13, mm10, mm20, mm30, mm40,
+			a,b,c,d,e,eps,f,g,h,j,k,alp, y1, y2, y3, y4, y5, y6},
+
+		(*The minus (from the Bjoerken - Drell metric (-1, -1, -1, 1)) is put on here :*)
+
+		p10 = pf10;
+		p20 = -pf20;
+		p30 = -pf30;
+		p12 = -(pp20 - p10 - p20)/2;
+		p23 = -(pp30 - p20 - p30)/2;
+		p13 = -(pp10 - p10 - p20 - p30 - 2*p12 - 2*p23)/2;
+
+		mm10 = m10 aa[1, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+		mm20 = m20 aa[2, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+		mm30 = m30 aa[3, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+		mm40 = m40 aa[4, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+
+
+		a = heaa[p30];
+		b = hebb[p20];
+		c = hecc[p23];
+		d = hedd[p30, mm30, mm40];
+		e = heee[p20, p23, mm20, mm30];
+		eps = (SmallEpsilon /. Flatten[{opts}] /. Options[VeltmanD0]);
+		f = heff[mm40, eps];
+		g = hegg[p10];
+		h = hehh[p13];
+		j = hejj[p12];
+		k = hekk[p10, p12, p13, mm10, mm20];
+		alp = alpha[b, c, a, 1];
+
+		y1 = -(d + e*alp)/((c + 2*alp*b)*(1 - alp));
+		y2 = (d + e*alp)/((c + 2*alp*b)*alp);
+		y3 = -(d + e*alp + c*alp + 2*a)/(c + 2*alp*b);
+		y4 = -(d + e*alp + k*alp)/((c + 2*alp*b)*(1 - alp));
+		y5 = (d + e*alp + k*alp)/((c + 2*alp*b)*alp);
+		y6 = -(d + e*alp + k*alp + c*alp + 2*a)/(c + 2*alp*b);
+
+		y[1] = y1;
 		y[2] = y2;
 		y[3] = y3;
 		y[4] = y4;
@@ -1267,39 +1326,56 @@ VeltmanD0[pf10_, pf20_, pf30_, pp10_, pp20_, pp30_, m10_, m20_, m30_, m40_, opts
 									aa[2, p10, p20, p30, p12, p13,
 										p23, {m10, m20, m30, m40}]]]*
 						ss[p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40},
-							opts]))
+							opts])
 	];
 
 
 (* This is formula (6.10): *)
 
 VeltmanD0[pf10_, pf20_, pf30_, pp10_, pp20_, pp30_, m10_, m20_, m30_, m40_, opts___] /; (D0Evaluation /. Flatten[{opts}] /. Options[VeltmanD0]) === "direct1" :=
-	Block[ {(*The minus (from the Bjoerken - Drell metric (-1, -1, -1, 1)) is put on here :*)
-			p10 = pf10,
-			p20 = -pf20, p30 = -pf30, p12 = -(pp20 - p10 - p20)/2,
-			p23 = -(pp30 - p20 - p30)/2,
-			p13 = -(pp10 - p10 - p20 - p30 - 2*p12 - 2*p23)/2,
-			mm10 = m10 aa[1, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-			mm20 = m20 aa[2, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-			mm30 = m30 aa[3, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-			mm40 = m40 aa[4, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2,
-			a = heaa[p30], b = hebb[p20], c = hecc[p23],
-			d = hedd[p30, mm30, mm40], e = heee[p20, p23, mm20, mm30],
-			eps = (SmallEpsilon /. Flatten[{opts}] /. Options[VeltmanD0]),
-			f = heff[mm40, eps], g = hegg[p10], h = hehh[p13], j = hejj[p12],
-			k = hekk[p10, p12, p13, mm10, mm20], alp = alpha[b, c, a, 1],
-			y1 = -(d + e*alp)/((c + 2*alp*b)*(1 - alp)),
-			y2 = (d + e*alp)/((c + 2*alp*b)*alp),
-			y3 = (d + e*alp + c*alp + 2*a)/(c + 2*alp*b),
-			y4 = (d + e*alp + k*alp)/((c + 2*alp*b)*(1 - alp)),
-			y5 = (d + e*alp + k*alp)/((-c + 2*alp*b)*alp),
-			y6 = (d + e*alp + k*alp + c*alp + 2*a)/(c + 2*alp*b)},
+	Block[ {p10, p20, p30, p12, p23, p13, mm10,mm20,mm30,mm40, a,b,c,d,e,eps,f,g,h,j,k,alp, y1,y2,y3,y4,y5,y6},
+
+			(*The minus (from the Bjoerken - Drell metric (-1, -1, -1, 1)) is put on here :*)
+			p10 = pf10;
+			p20 = -pf20;
+			p30 = -pf30;
+			p12 = -(pp20 - p10 - p20)/2;
+			p23 = -(pp30 - p20 - p30)/2;
+			p13 = -(pp10 - p10 - p20 - p30 - 2*p12 - 2*p23)/2;
+
+			mm10 = m10 aa[1, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+			mm20 = m20 aa[2, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+			mm30 = m30 aa[3, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+			mm40 = m40 aa[4, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]^2;
+
+			a = heaa[p30];
+			b = hebb[p20];
+			c = hecc[p23];
+			d = hedd[p30, mm30, mm40];
+			e = heee[p20, p23, mm20, mm30];
+			eps = (SmallEpsilon /. Flatten[{opts}] /. Options[VeltmanD0]);
+			f = heff[mm40, eps];
+			g = hegg[p10];
+			h = hehh[p13];
+			j = hejj[p12];
+			k = hekk[p10, p12, p13, mm10, mm20];
+			alp = alpha[b, c, a, 1];
+
+			y1 = -(d + e*alp)/((c + 2*alp*b)*(1 - alp));
+			y2 = (d + e*alp)/((c + 2*alp*b)*alp);
+			y3 = (d + e*alp + c*alp + 2*a)/(c + 2*alp*b);
+			y4 = (d + e*alp + k*alp)/((c + 2*alp*b)*(1 - alp));
+			y5 = (d + e*alp + k*alp)/((-c + 2*alp*b)*alp);
+			y6 = (d + e*alp + k*alp + c*alp + 2*a)/(c + 2*alp*b);
+
+
 		(y[1] = y1;
 		y[2] = y2;
 		y[3] = y3;
 		y[4] = y4;
 		y[5] = y5;
 		y[6] = y6;
+
 		rr[i_, j_, k_, np10_, np20_, np30_, np12_, np13_, np23_, {nm10_, nm20_, nm30_, nm40_}] :=
 			-theta[
 			Re[-aa[i, np10, np20, np30, np12, np13, np23, {nm10, nm20, nm30, nm40}]*
@@ -1316,8 +1392,8 @@ VeltmanD0[pf10_, pf20_, pf30_, pp10_, pp20_, pp30_, m10_, m20_, m30_, m40_, opts
 			aa[2, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]*
 			aa[3, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]*
 			aa[4, p10, p20, p30, p12, p13, p23, {m10, m20, m30, m40}]/k*
-			IntegrateHeld[(a*Global`x^2 + b*Global`y^2 + c*Global`x*Global`y + d*Global`x + e*Global`y + f)^(-1) -
-				(a*Global`x^2 + b*Global`y^2 + c*Global`x*Global`y + d*Global`x + (e + k)*Global`y + f)^(-1), {Global`x, 0, 1}, {Global`y, 0, Global`x}, ##] & @@
+			IntegrateHeld[(a*FCGV["x"]^2 + b*FCGV["y"]^2 + c*FCGV["x"]*FCGV["y"] + d*FCGV["x"] + e*FCGV["y"] + f)^(-1) -
+				(a*FCGV["x"]^2 + b*FCGV["y"]^2 + c*FCGV["x"]*FCGV["y"] + d*FCGV["x"] + (e + k)*FCGV["y"] + f)^(-1), {FCGV["x"], 0, 1}, {FCGV["y"], 0, FCGV["x"]}, ##] & @@
 				Union[OptionsSelect[NIntegrate, opts], OptionsSelect[Integrate, opts]] /. IntegrateHeld -> (FCIntegrate /. Flatten[{opts}] /. Options[VeltmanD0]))
 	];
 
@@ -1335,7 +1411,7 @@ privatefeynmanparamter once for each momentum integral to be so converted. *)
 
 FeynmanParameter1[input1_, input2_, input3_:Null,
 			input4_:Null, (opts___Rule | opts___List)] :=
-	Block[ {integrator, intermediateresult1, intermediateresult2},
+	Block[ {intermediateresult1, intermediateresult2},
 		integrator = If[ FreeQ[input1, FeynmanX],
 						FeynmanX,
 						If[ FreeQ[input1, FeynmanY],
@@ -1378,7 +1454,7 @@ FeynmanParameter1[input1_, input2_, input3_:Null,
 								vector1 =!= FeynmanY && vector1 =!= FeynmanZ)*)];
 
 FeynmanParameter1[input1_, input2_, input3_:Null, input4_:Null] :=
-	Block[ {integrator, intermediateresult1, intermediateresult2},
+	Block[ {intermediateresult1, intermediateresult2},
 		integrator = If[ FreeQ[input1, FeynmanX],
 						FeynmanX,
 						If[ FreeQ[input1, FeynmanY],
@@ -1418,9 +1494,8 @@ FeynmanParameter1[input1_, input2_, input3_:Null, input4_:Null] :=
 								vector1 =!= FeynmanY && vector1 =!= FeynmanZ)*)];
 
 FeynmanParameterize[input1_, rest__, opts___Rule|opts___List] :=
-	Block[ {a,ex,ddiimm,res,momentabacklist,li,fps,len},
-		ddiimm =
-		Dimension /. Flatten[{opts}] /. Options[FeynmanParameterize];
+	Block[ {res,momentabacklist,fps,len},
+		ddiimm = Dimension /. Flatten[{opts}] /. Options[FeynmanParameterize];
 		momentabacklist = {};
 		res = input1 /.
 			{a_*ex_FeynAmpDenominator :> FeynmanParameter1[a*ex, rest, opts],
@@ -1453,8 +1528,9 @@ privatefeyparamter[ex_FeynAmpDenominator, kay_, opts___] :=
 privatefeyparamter[num___*ex_FeynAmpDenominator, kay_, opts___] :=
 	(ddiimm = Dimension /. Flatten[{opts}] /. Options[FeynmanParameterize];
 	Block[ {g, dimension = ddiimm, dum, denom = FeynAmpDenominator[dum], nokay, count, coefofksquared,
-			enn, finaldenominator, power, coefficientlist, ell, ellnumerator, elldenominator, msquared,
-			msquaredminusellsquared, numerator, eyezero, alphaenn
+			enn, finaldenominator, power, coefficientlist, ell, msquared,
+			msquaredminusellsquared, numerator, eyezero, alphaenn, denominator, momentabacklist,
+			dumb, integrators
 		},
 		Attributes[g] = {Orderless};
 		g[x_, y_]*g[x_, z_] ^:=
@@ -1525,7 +1601,7 @@ privatefeyparamter[num___*ex_FeynAmpDenominator, kay_, opts___] :=
 
 
 		(* Introduce Feynman parameters (x[i], y[i], z[i]). *)
-		finaldenominator = denom[[1]] + Sum[(denom[[iter]] - denom[[iter - 1]])* integrator[iter - 1], {iter, 2, enn}];
+		finaldenominator = denom[[1]] + Sum[(denom[[r]] - denom[[r - 1]])* integrator[r - 1], {r, 2, enn}];
 		coefficientlist = CoefficientList[finaldenominator, kay];
 
 
@@ -1541,7 +1617,7 @@ privatefeyparamter[num___*ex_FeynAmpDenominator, kay_, opts___] :=
 		numerator =
 			Expand[MomentumCombine[Times[num]]/.
 			Pair[Momentum[mom1_,___],Momentum[mom2_,___]] :>
-				(lil = Unique[li]; Pair[LorentzIndex[lil],Momentum[mom1]] Pair[LorentzIndex[lil],Momentum[mom2]])/.
+				(tmpInd = Unique["li"]; Pair[LorentzIndex[tmpInd],Momentum[mom1]] Pair[LorentzIndex[tmpInd],Momentum[mom2]])/.
 			Pair[LorentzIndex[li_, ___], Momentum[mom_, ___]] :>
 				(momentabacklist = Union[momentabacklist, Cases[MomentumExpand[Momentum[mom]], Momentum[_], Infinity, Heads -> True] /. Momentum -> Sequence];
 			MomentumExpand[Momentum[mom]] /. Momentum[momm_, ___] :> momm[li])];
@@ -1689,7 +1765,7 @@ privatefeyparamter[num___*ex_FeynAmpDenominator, kay_, opts___] :=
 		integrators =
 			If[ enn == 2,
 				{integrator[1], 0, 1},
-				Sequence @@ (Join[{{integrator[1], 0, 1}}, Table[{integrator[iterator], 0, integrator[iterator - 1]}, {iterator, 2, enn - 1}]])
+				Sequence @@ (Join[{{integrator[1], 0, 1}}, Table[{integrator[r], 0, integrator[r - 1]}, {r, 2, enn - 1}]])
 			];
 		FCPrint[3,"The final eyezero: ",eyezero];
 		FCPrint[3,"The final numerator: ",numerator];
@@ -1727,7 +1803,7 @@ privateel[xxx2_] :=
 (* The pole terms are isolated: *)
 
 VeltmanExpand[amp_, opts___?OptionQ] :=
-	(
+	Block[{res,a0opts},(
 	a0opts = Options[A0];
 	SetOptions[A0, A0ToB0->True];
 	mv[i_] :=
@@ -1745,12 +1821,13 @@ VeltmanExpand[amp_, opts___?OptionQ] :=
 			VeltmanD0[p10, p12, p23, p30, p20, p13, m10, m20, m30, m40, ##]& @@OptionsSelect[VeltmanD0, opts, Sequence @@ Select[Options[VeltmanExpand], FreeQ[#,FCIntegrate]&]]} /.
 			(B0Evaluation -> "jbar") :> (B0Evaluation -> "direct1") /.
 			If[ (OnMassShell /. Flatten[{opts}] /. Options[VeltmanExpand]),
-				Table[Pair[Momentum[mv[irep], ___], Momentum[mv[irep], ___]] -> masses1[irep]^2, {irep, Length[(Masses /. Flatten[{opts}] /. Options[VeltmanExpand])]}],
+				Table[Pair[Momentum[mv[r], ___], Momentum[mv[r], ___]] -> masses1[r]^2, {r, Length[(Masses /. Flatten[{opts}] /. Options[VeltmanExpand])]}],
 				{}
 			] /. IntegrateHeld -> (FCIntegrate /. Flatten[{opts}] /. Options[VeltmanExpand]) /. LeutwylerLambda[oopp__] :> (LeutwylerLambda[##]& @@ Complement[Flatten[{oopp}], Options[LeutwylerLambda]]);
 	SetOptions[A0,Sequence@@a0opts];
 	res
-	);
+	)
+	];
 
 
 (*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*)

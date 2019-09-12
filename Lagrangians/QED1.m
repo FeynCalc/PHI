@@ -24,8 +24,6 @@ Description:         The standard QED lagrangian
 *)
 
 
-Begin["Phi`Objects`"];
-
 (* --------------------------------------------------------------- *)
 
 QED1::usage =
@@ -36,7 +34,11 @@ unit charge (the charge of the positron).";
 
 (* --------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`QED1`Private`"]
 
 (* --------------------------------------------------------------- *)
 
@@ -74,3 +76,4 @@ FieldsSet[QED[1]] :=
 
 $Lagrangians = Union[$Lagrangians,{QED[1]}];
 
+End[]

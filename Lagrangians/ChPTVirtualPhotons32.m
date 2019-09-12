@@ -22,8 +22,6 @@ Description:         The leading order ChPT lagrangian with
 *)
 
 
-Begin["Phi`Objects`"];
-
 ChPTVirtualPhotons32::usage =
 "ChPTVirtualPhotons32 is the name of the file containing the definitions for \
 Lagrangian[ChPTVirtualPhotons3[2]], which is the leading order mesonic \
@@ -32,7 +30,11 @@ To evaluate use ArgumentsSupply.";
 
 (* --------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTVirtualPhotons32`Private`"]
 
 (* ---------------------------------------------------------------- *)
 
@@ -46,12 +48,12 @@ pt/:MakeBoxes[pt[RenormalizationState[0]],TraditionalForm]:="";
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPTVirtualPhotons3[2],st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___QuarkMassExpansionState],
+	sc___RenormalizationScheme,qs___QuarkMassExpansionState],
 	TraditionalForm]:=
 SuperscriptBox[MakeBoxes[StyleForm["C",FontSlant->"Italic"]][[1]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[pt[st]]]},{
-		  MakeBoxes[TraditionalForm[pt[sc]]]},{
-		  MakeBoxes[TraditionalForm[pt[qs]]]}]]];
+		MakeBoxes[TraditionalForm[pt[sc]]]},{
+		MakeBoxes[TraditionalForm[pt[qs]]]}]]];
 
 (* --------------------------------------------------------------- *)
 
@@ -85,3 +87,4 @@ FieldsSet[ChPTVirtualPhotons3[2]] :=
 
 $Lagrangians = Union[$Lagrangians,{ChPTVirtualPhotons3[2]}];
 
+End[]

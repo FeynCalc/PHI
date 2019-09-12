@@ -23,7 +23,6 @@ Description:         The next to leading order ChPT lagrangian
 *)
 
 
-Begin["Phi`Objects`"];
 
 (* -------------------------------------------------------------- *)
 
@@ -135,7 +134,12 @@ fourth order ChPT lagrangian.";
 
 (* ---------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTVirtualPhotons24`Private`"]
+
 
 (* ---------------------------------------------------------------- *)
 
@@ -178,23 +182,23 @@ K15 = CouplingConstant[ChPTVirtualPhotons2[4],25];
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[
-	  ChPTVirtualPhotons2[4],i_?((#<8)&),st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___QuarkMassExpansionState],
+	ChPTVirtualPhotons2[4],i_?((#<8)&),st___RenormalizationState,
+	sc___RenormalizationScheme,qs___QuarkMassExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["l",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[i]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 CouplingConstant /: MakeBoxes[
-	  CouplingConstant[
+	CouplingConstant[
 		ChPTVirtualPhotons2[4], i_?((7<#<11) &), st___RenormalizationState,
 		sc___RenormalizationScheme, qs___QuarkMassExpansionState],
-	  TraditionalForm] :=
+	TraditionalForm] :=
 	Block[ {ii = i - 7, jj},
 		SubsuperscriptBox[MakeBoxes[StyleForm["h", FontSlant -> "Italic"]][[1]],
-			 MakeBoxes[TraditionalForm[jj]],
+			MakeBoxes[TraditionalForm[jj]],
 			RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]}, {MakeBoxes[
 					TraditionalForm[IndexBox[sc]]]}, {MakeBoxes[
 					TraditionalForm[IndexBox[qs]]]}]]] /.
@@ -202,13 +206,13 @@ CouplingConstant /: MakeBoxes[
 	];
 
 CouplingConstant /: MakeBoxes[
-	  CouplingConstant[
+	CouplingConstant[
 		ChPTVirtualPhotons2[4], i_?((#>10)&), st___RenormalizationState,
 		sc___RenormalizationScheme, qs___QuarkMassExpansionState],
-	  TraditionalForm] :=
+	TraditionalForm] :=
 	Block[ {ii = i - 10, jj},
 		SubsuperscriptBox[MakeBoxes[StyleForm["k", FontSlant -> "Italic"]][[1]],
-			 MakeBoxes[TraditionalForm[jj]],
+			MakeBoxes[TraditionalForm[jj]],
 			RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]}, {MakeBoxes[
 					TraditionalForm[IndexBox[sc]]]}, {MakeBoxes[
 					TraditionalForm[IndexBox[qs]]]}]]] /.
@@ -243,7 +247,7 @@ Lagrangian[ChPTVirtualPhotons2[4]] :=
 
 	L3[0]/16*
 	NM[UTrace[ NM[Adjoint[UChiMatrix],MM] + NM[Adjoint[MM],UChiMatrix] ],
-	   UTrace[ NM[Adjoint[UChiMatrix],MM] + NM[Adjoint[MM],UChiMatrix] ] ] +
+	UTrace[ NM[Adjoint[UChiMatrix],MM] + NM[Adjoint[MM],UChiMatrix] ] ] +
 
 	L4[0]/4*
 	UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[UChiMatrix,{\[Mu]}]] +
@@ -258,7 +262,7 @@ Lagrangian[ChPTVirtualPhotons2[4]] :=
 
 	L7[0]/16*
 	NM[UTrace[ NM[Adjoint[UChiMatrix], MM] - NM[Adjoint[MM], UChiMatrix] ] ,
-	   UTrace[ NM[Adjoint[UChiMatrix], MM] - NM[Adjoint[MM], UChiMatrix] ] ] +
+	UTrace[ NM[Adjoint[UChiMatrix], MM] - NM[Adjoint[MM], UChiMatrix] ] ] +
 
 	(H1[0]+H3[0])/4*
 	UTrace[ NM[Adjoint[UChiMatrix], UChiMatrix] ] +
@@ -284,9 +288,9 @@ Lagrangian[ChPTVirtualPhotons2[4]] :=
 
 	K3[0]*
 	(NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ],
-		 UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ] ] +
-	 NM[ UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ],
-		 UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ] ])+
+		UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ] ] +
+	NM[ UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ],
+		UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ] ])+
 
 	K4[0]*
 	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ],
@@ -302,10 +306,10 @@ Lagrangian[ChPTVirtualPhotons2[4]] :=
 
 	K7[0]*
 	NM[UTrace[ NM[ NM[UChiMatrix, Adjoint[MM]] + NM[MM, Adjoint[UChiMatrix]],
-				   QQ ] +
-			   NM[ NM[Adjoint[UChiMatrix], MM] + NM[Adjoint[MM], UChiMatrix],
-				   QQ ] ],
-	   UTrace[ QQ ]
+				QQ ] +
+			NM[ NM[Adjoint[UChiMatrix], MM] + NM[Adjoint[MM], UChiMatrix],
+				QQ ] ],
+	UTrace[ QQ ]
 	] +
 
 	K8[0]*
@@ -362,3 +366,4 @@ FieldsSet[ChPTVirtualPhotons2[4]] :=
 	{IsoVector[QuantumField[Particle[Pion,RenormalizationState[0]]]],
 	QuantumField[Particle[Photon,RenormalizationState[0]]]};
 
+End[]

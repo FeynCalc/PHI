@@ -22,9 +22,6 @@ Description:         The leading order ChPT lagrangian with
 						(1997), hep-ph/9709348
 *)
 
-
-Begin["Phi`Objects`"];
-
 (* --------------------------------------------------------------- *)
 
 ChPTVirtualPhotons22::usage =
@@ -35,7 +32,11 @@ To evaluate use ArgumentsSupply.";
 
 (* --------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTVirtualPhotons22`Private`"]
 
 (* ---------------------------------------------------------------- *)
 
@@ -50,12 +51,12 @@ CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[
 ChPTVirtualPhotons2[2],st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___QuarkMassExpansionState],
+	sc___RenormalizationScheme,qs___QuarkMassExpansionState],
 	TraditionalForm]:=
 SuperscriptBox[MakeBoxes[StyleForm["C",FontSlant->"Italic"]][[1]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[pt[st]]]},{
-		  MakeBoxes[TraditionalForm[pt[sc]]]},{
-		  MakeBoxes[TraditionalForm[pt[qs]]]}]]];
+		MakeBoxes[TraditionalForm[pt[sc]]]},{
+		MakeBoxes[TraditionalForm[pt[qs]]]}]]];
 
 (* --------------------------------------------------------------- *)
 
@@ -87,3 +88,5 @@ FieldsSet[ChPTVirtualPhotons2[2]] :=
 	QuantumField[Particle[Photon]]};
 
 $Lagrangians = Union[$Lagrangians,{ChPTVirtualPhotons2[2]}];
+
+End[]s

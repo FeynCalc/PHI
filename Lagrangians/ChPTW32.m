@@ -24,8 +24,6 @@ Description:         The lowest order CP conserving weak ChPT
 *)
 
 
-Begin["Phi`Objects`"];
-
 (* -------------------------------------------------------------- *)
 
 ChPTW32::usage =
@@ -43,7 +41,11 @@ lowest order weak ChPT lagrangian.";
 
 (* -------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTW32`Private`"]
 
 (* -------------------------------------------------------------- *)
 
@@ -59,33 +61,33 @@ C5 = CouplingConstant[ChPTW3[2],2];
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPTW3[2],1,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["c",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[2]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPTW3[2],2,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["c",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[5]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 (* --------------------------------------------------------------- *)
 
 Lagrangian[ChPTW3[2]] :=
 	C2*UTrace[ NM[UGeneratorMatrix[6],
-			   Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ] +
+			Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ] +
 
 	C5*UTrace[ NM[UGeneratorMatrix[6], Adjoint[MM], UChiMatrix]+
-			   NM[UGeneratorMatrix[6], Adjoint[UChiMatrix], MM] ];
+			NM[UGeneratorMatrix[6], Adjoint[UChiMatrix], MM] ];
 
 (* --------------------------------------------------------------- *)
 
@@ -96,3 +98,4 @@ FieldsSet[ChPTW3[2]] :=
 
 $Lagrangians = Union[$Lagrangians,{ChPTW3[2]}];
 
+End[]

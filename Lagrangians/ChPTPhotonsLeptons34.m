@@ -23,9 +23,6 @@ Description:         The next to leading order ChPT lagrangian
 						(1999), hep-ph/9909284
 *)
 
-
-Begin["Phi`Objects`"];
-
 (* -------------------------------------------------------------- *)
 
 ChPTPhotonsLeptons34::usage =
@@ -190,7 +187,11 @@ fourth order ChPT lagrangian.";
 
 (* ---------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTPhotonsLeptons34`Private`"]
 
 (* ---------------------------------------------------------------- *)
 
@@ -248,21 +249,21 @@ XX7 = CouplingConstant[ChPTPhotonsLeptons3[4],38];
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPTPhotonsLeptons3[4],i_?((#<11)&),st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___QuarkMassExpansionState],
+	sc___RenormalizationScheme,qs___QuarkMassExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["L",FontSlant->"Italic"]],
 	MakeBoxes[TraditionalForm[i]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 CouplingConstant /: MakeBoxes[
-	  CouplingConstant[ChPTPhotonsLeptons3[4], i_?((10<#<13) &), st___RenormalizationState,
+	CouplingConstant[ChPTPhotonsLeptons3[4], i_?((10<#<13) &), st___RenormalizationState,
 		sc___RenormalizationScheme, qs___QuarkMassExpansionState],
-	  TraditionalForm] :=
+	TraditionalForm] :=
 	Block[ {ii = i - 10, jj},
 		SubsuperscriptBox[MakeBoxes[StyleForm["H", FontSlant -> "Italic"]],
-			 MakeBoxes[TraditionalForm[jj]],
+			MakeBoxes[TraditionalForm[jj]],
 			RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]}, {MakeBoxes[
 					TraditionalForm[IndexBox[sc]]]}, {MakeBoxes[
 					TraditionalForm[IndexBox[qs]]]}]]] /.
@@ -270,12 +271,12 @@ CouplingConstant /: MakeBoxes[
 	];
 
 CouplingConstant /: MakeBoxes[
-	  CouplingConstant[ChPTPhotonsLeptons3[4], i_?((12<#<32)&), st___RenormalizationState,
+	CouplingConstant[ChPTPhotonsLeptons3[4], i_?((12<#<32)&), st___RenormalizationState,
 		sc___RenormalizationScheme, qs___QuarkMassExpansionState],
-	  TraditionalForm] :=
+	TraditionalForm] :=
 	Block[ {ii = i - 12, jj},
 		SubsuperscriptBox[MakeBoxes[StyleForm["K", FontSlant -> "Italic"]],
-			 MakeBoxes[TraditionalForm[jj]],
+			MakeBoxes[TraditionalForm[jj]],
 			RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]}, {MakeBoxes[
 					TraditionalForm[IndexBox[sc]]]}, {MakeBoxes[
 					TraditionalForm[IndexBox[qs]]]}]]] /.
@@ -283,12 +284,12 @@ CouplingConstant /: MakeBoxes[
 	];
 
 CouplingConstant /: MakeBoxes[
-	  CouplingConstant[ChPTPhotonsLeptons3[4], i_?((31<#)&), st___RenormalizationState,
+	CouplingConstant[ChPTPhotonsLeptons3[4], i_?((31<#)&), st___RenormalizationState,
 		sc___RenormalizationScheme, qs___QuarkMassExpansionState],
-	  TraditionalForm] :=
+	TraditionalForm] :=
 	Block[ {ii = i - 31, jj},
 		SubsuperscriptBox[MakeBoxes[StyleForm["X", FontSlant -> "Italic"]],
-			 MakeBoxes[TraditionalForm[jj]],
+			MakeBoxes[TraditionalForm[jj]],
 			RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]}, {MakeBoxes[
 					TraditionalForm[IndexBox[sc]]]}, {MakeBoxes[
 					TraditionalForm[IndexBox[qs]]]}]]] /.
@@ -328,19 +329,19 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 
 	L5[0]*
 	UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}],
-							   NM[ Adjoint[UChiMatrix],MM] + NM[Adjoint[MM], UChiMatrix] ] ] +
+							NM[ Adjoint[UChiMatrix],MM] + NM[Adjoint[MM], UChiMatrix] ] ] +
 
 	L6[0]*
 	NM[UTrace[ NM[Adjoint[UChiMatrix], MM] + NM[UChiMatrix, Adjoint[MM]] ],
-	   UTrace[ NM[Adjoint[UChiMatrix], MM] + NM[UChiMatrix, Adjoint[MM]] ] ] +
+	UTrace[ NM[Adjoint[UChiMatrix], MM] + NM[UChiMatrix, Adjoint[MM]] ] ] +
 
 	L7[0]*
 	NM[UTrace[ NM[Adjoint[UChiMatrix], MM] - NM[UChiMatrix, Adjoint[MM]] ] ,
-	   UTrace[ NM[Adjoint[UChiMatrix], MM] - NM[UChiMatrix, Adjoint[MM]] ] ] +
+	UTrace[ NM[Adjoint[UChiMatrix], MM] - NM[UChiMatrix, Adjoint[MM]] ] ] +
 
 	L8[0]*
 	UTrace[ NM[Adjoint[UChiMatrix], MM, Adjoint[UChiMatrix], MM] +
-				  NM[UChiMatrix, Adjoint[MM], UChiMatrix, Adjoint[MM]]] -
+				NM[UChiMatrix, Adjoint[MM], UChiMatrix, Adjoint[MM]]] -
 
 	L9[0]*I*
 	UTrace[ NM[CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Nu]}]], GRight[\[Mu],\[Nu]]] +
@@ -351,7 +352,7 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 
 	H1[0]*
 	UTrace[ NM[GRight[\[Mu],\[Nu]], GRight[\[Mu],\[Nu]]] +
-				  NM[GLeft[\[Mu],\[Nu]], GLeft[\[Mu],\[Nu]]] ] +
+				NM[GLeft[\[Mu],\[Nu]], GLeft[\[Mu],\[Nu]]] ] +
 
 	H2[0]*
 	UTrace[ NM[Adjoint[UChiMatrix], UChiMatrix] ] +
@@ -370,9 +371,9 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 
 	K3[0]*
 	(NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ],
-		 UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ] ] +
-	 NM[ UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ],
-		 UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ] ])+
+		UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ] ] +
+	NM[ UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ],
+		UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ] ])+
 
 	K4[0]*
 	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ],
@@ -380,12 +381,12 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 
 	K5[0]*
 	UTrace[ NM[NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]]+
-				 NM[ CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Mu]}]]],
+				NM[ CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Mu]}]]],
 			NMPower[QQ, 2]]  ] +
 
 	K6[0]*
 	UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}], QQ, Adjoint[MM], QQ, MM] +
-				  NM[CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Mu]}]], QQ, MM, QQ, Adjoint[MM]]] +
+				NM[CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Mu]}]], QQ, MM, QQ, Adjoint[MM]]] +
 
 	K7[0]*
 	NM[ UTrace[ NM[Adjoint[UChiMatrix], MM] + NM[Adjoint[MM], UChiMatrix] ],
@@ -398,13 +399,13 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 	K9[0]*
 	UTrace[ NM[NM[Adjoint[UChiMatrix], MM] + NM[Adjoint[MM], UChiMatrix] +
 								NM[UChiMatrix, Adjoint[MM]] + NM[MM, Adjoint[UChiMatrix]],
-	  NMPower[QQ, 2]] ] +
+	NMPower[QQ, 2]] ] +
 
 	K10[0]*
 	UTrace[  NM[ NM[Adjoint[UChiMatrix], MM] + NM[Adjoint[MM], UChiMatrix],
-				   QQ, Adjoint[MM], QQ, MM] +
-				   NM[ NM[UChiMatrix, Adjoint[MM]] + NM[MM, Adjoint[UChiMatrix]],
-				   QQ, MM, QQ, Adjoint[MM]]  ]+
+				QQ, Adjoint[MM], QQ, MM] +
+				NM[ NM[UChiMatrix, Adjoint[MM]] + NM[MM, Adjoint[UChiMatrix]],
+				QQ, MM, QQ, Adjoint[MM]]  ]+
 
 	K11[0]*
 	UTrace[ NM[ NM[Adjoint[UChiMatrix], MM] - NM[Adjoint[MM], UChiMatrix],
@@ -520,3 +521,5 @@ $Lagrangians = Union[$Lagrangians,{ChPTPhotonsLeptons3[4]}];
 FieldsSet[ChPTPhotonsLeptons3[4]] :=
 	{IsoVector[QuantumField[Particle[PhiMeson,RenormalizationState[0]]]],
 	QuantumField[Particle[Photon,RenormalizationState[0]]]};
+
+End[]

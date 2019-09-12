@@ -22,9 +22,6 @@ Description:         The leading order ChPT lagrangian with
 						S. Steininger, hep-ph/9704377
 *)
 
-
-Begin["Phi`Objects`"];
-
 ChPTEM22::usage =
 "ChPT22 is the name of the file containing the definitions for
 Lagrangian[ChPT2EM[2]], which is the leading order pionic
@@ -33,7 +30,11 @@ To evaluate use ArgumentsSupply.";
 
 (* --------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTEM22`Private`"]
 
 (* ---------------------------------------------------------------- *)
 
@@ -47,12 +48,12 @@ pt/:MakeBoxes[pt[RenormalizationState[0]],TraditionalForm]:="";
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPTEM2[2],st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___QuarkMassExpansionState],
+	sc___RenormalizationScheme,qs___QuarkMassExpansionState],
 	TraditionalForm]:=
 SuperscriptBox[MakeBoxes[StyleForm["C",FontSlant->"Italic"]][[1]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[pt[st]]]},{
-		  MakeBoxes[TraditionalForm[pt[sc]]]},{
-		  MakeBoxes[TraditionalForm[pt[qs]]]}]]];
+		MakeBoxes[TraditionalForm[pt[sc]]]},{
+		MakeBoxes[TraditionalForm[pt[qs]]]}]]];
 
 (* --------------------------------------------------------------- *)
 
@@ -83,3 +84,5 @@ FieldsSet[ChPTEM2[2]] :=
 	{IsoVector[QuantumField[Particle[Pion]]], QuantumField[Particle[Photon]]};
 
 $Lagrangians = Union[$Lagrangians,{ChPTEM2[2]}];
+
+End[]

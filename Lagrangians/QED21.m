@@ -23,9 +23,6 @@ Description:         The standard QED lagrangian
 						McGraw-Hill 1965
 *)
 
-
-Begin["Phi`Objects`"];
-
 QED21::usage =
 "QED21.m is the name of the file containing the definitions for
 Lagrangian[QED2[1]], which is the standard QED lagrangian,
@@ -34,7 +31,11 @@ unit charge (the charge of the positron).";
 
 (* --------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`QED21`Private`"]
 
 (* --------------------------------------------------------------- *)
 
@@ -71,3 +72,5 @@ FieldsSet[QED2[1]] :=
 	QuantumField[Particle[Photon],LorentzIndex[\[Mu]]]};
 
 $Lagrangians = Union[$Lagrangians,{QED2[1]}];
+
+End[]

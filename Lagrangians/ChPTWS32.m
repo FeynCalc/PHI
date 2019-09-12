@@ -23,9 +23,6 @@ Description:         The lowest order CP conserving weak ChPT
 						CERN-TH.6610/92
 *)
 
-
-Begin["Phi`Objects`"];
-
 (* -------------------------------------------------------------- *)
 
 ChPTWS32::usage =
@@ -43,7 +40,11 @@ lowest order weak ChPT lagrangian.";
 
 (* -------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTWS32`Private`"]
 
 (* -------------------------------------------------------------- *)
 
@@ -60,37 +61,37 @@ CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPTW3[2],
 1,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["c",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[2]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPTW3[2],
 2,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["c",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[5]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 (* --------------------------------------------------------------- *)
 
 Lagrangian[ChPTWS3[2]] :=
 	C2*UTrace[ NM[QuantumField[Particle[Scalar[1]]],
-				  UGeneratorMatrix[6],
-				  Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ] +
+				UGeneratorMatrix[6],
+				Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ] +
 
 	C5*UTrace[ NM[QuantumField[Particle[Scalar[1]]],
-				  UGeneratorMatrix[6], Adjoint[MM], UChiMatrix]+
-			   NM[QuantumField[Particle[Scalar[1]]],
-			  UGeneratorMatrix[6], Adjoint[UChiMatrix], MM] ];
+				UGeneratorMatrix[6], Adjoint[MM], UChiMatrix]+
+			NM[QuantumField[Particle[Scalar[1]]],
+			UGeneratorMatrix[6], Adjoint[UChiMatrix], MM] ];
 
 (* --------------------------------------------------------------- *)
 
@@ -100,3 +101,5 @@ FieldsSet[ChPTWS3[2]] :=
 	]};
 
 $Lagrangians = Union[$Lagrangians,{ChPTWS3[2]}];
+
+End[]

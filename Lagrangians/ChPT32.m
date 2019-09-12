@@ -22,9 +22,6 @@ Description:         The simplest ChPT lagrangian.
 						the Standard Model", Cambridge
 *)
 
-
-Begin["Phi`Objects`"];
-
 (* --------------------------------------------------------------- *)
 
 ChPT32::usage =
@@ -34,7 +31,11 @@ lagrangian.  To evaluate use ArgumentsSupply.";
 
 (* --------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPT32`Private`"]
 
 (* --------------------------------------------------------------- *)
 
@@ -53,3 +54,5 @@ FieldsSet[ChPT3[2]] :=
 	]};
 
 $Lagrangians = Union[$Lagrangians,{ChPT3[2]}];
+
+End[]

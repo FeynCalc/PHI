@@ -22,9 +22,16 @@ Phi`Objects`CNDr::usage =
 "CNDr is the shorthand notation for CovariantNucleonFieldDerivative, which is the nucleon \
 covariant derivative of J. Gasser, M. E. Sainio and A. Svarc (1988), Nucl. Phys, B307, 779-853";
 
+Begin["`Package`"]
+End[]
+
+Begin["`PHI`Private`"];
+
 Options[CovariantFieldDerivative] = {
 	Explicit->True,
 	DiagonalToU->True,
 	SUNN->2,
 	UDimension->Automatic
 };
+
+End[]

@@ -24,8 +24,6 @@ Description:         The next to leading order CP conserving
 *)
 
 
-Begin["Phi`Objects`"];
-
 (* -------------------------------------------------------------- *)
 
 ChPTW34::usage =
@@ -184,7 +182,11 @@ fourth order weak ChPT lagrangian.";
 
 (* -------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTW34`Private`"]
 
 (* -------------------------------------------------------------- *)
 
@@ -241,14 +243,14 @@ RenormalizationCoefficients[ChPTW3[4]] :=
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[
-	  ChPTW3[4],i_,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	ChPTW3[4],i_,st___RenormalizationState,
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["N",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[i]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 (* --------------------------------------------------------------- *)
 
@@ -263,28 +265,28 @@ Lagrangian[ChPTW3[4]] :=
 	N2*UTrace[ NM[UDelta, USmall[\[Mu]], USmall[\[Nu]], USmall[\[Nu]], USmall[\[Mu]]] ] +
 
 	N3*NM[UTrace[ NM[UDelta, USmall[\[Mu]], USmall[\[Nu]]] ],
-	   UTrace[ NM[USmall[\[Mu]], USmall[\[Nu]]] ]] +
+	UTrace[ NM[USmall[\[Mu]], USmall[\[Nu]]] ]] +
 
 	N4*NM[UTrace[ NM[UDelta, USmall[\[Mu]]] ],
-	   UTrace[ NM[USmall[\[Mu]], USmall[\[Nu]], USmall[\[Nu]]] ]] +
+	UTrace[ NM[USmall[\[Mu]], USmall[\[Nu]], USmall[\[Nu]]] ]] +
 
 	(* ............................................................... *)
 	(* K -> 2 Pi, 3 Pi *)
 
 	N5*UTrace[ NM[UDelta, UChiPlus, USmall[\[Mu]], USmall[\[Mu]]] +
-			   NM[UDelta, USmall[\[Mu]], USmall[\[Mu]], UChiPlus] ] +
+			NM[UDelta, USmall[\[Mu]], USmall[\[Mu]], UChiPlus] ] +
 
 	N6*NM[UTrace[ NM[UDelta, USmall[\[Mu]]] ],
-	   UTrace[ NM[UChiPlus, USmall[\[Mu]]] ]] +
+	UTrace[ NM[UChiPlus, USmall[\[Mu]]] ]] +
 
 	N7*NM[UTrace[ NM[UDelta, UChiPlus] ],
-	   UTrace[ NM[USmall[\[Mu]], USmall[\[Mu]]] ]] +
+	UTrace[ NM[USmall[\[Mu]], USmall[\[Mu]]] ]] +
 
 	N8*NM[UTrace[ NM[UDelta, USmall[\[Mu]], USmall[\[Mu]]] ],
-	   UTrace[ UChiPlus ]] +
+	UTrace[ UChiPlus ]] +
 
 	N9*UTrace[ NM[UDelta, UChiMinus, USmall[\[Mu]], USmall[\[Mu]]] -
-			   NM[UDelta, USmall[\[Mu]], USmall[\[Mu]], UChiMinus] ] +
+			NM[UDelta, USmall[\[Mu]], USmall[\[Mu]], UChiMinus] ] +
 
 	N10*UTrace[ NM[UDelta, UChiPlus, UChiPlus] ] +
 
@@ -300,48 +302,48 @@ Lagrangian[ChPTW3[4]] :=
 	(* Radiative K decays *)
 
 	N14*I*UTrace[ NM[UDelta, UFPlus[\[Mu],\[Nu]], USmall[\[Mu]], USmall[\[Nu]]] +
-			   NM[UDelta, USmall[\[Mu]], USmall[\[Nu]], UFPlus[\[Mu],\[Nu]]] ] +
+			NM[UDelta, USmall[\[Mu]], USmall[\[Nu]], UFPlus[\[Mu],\[Nu]]] ] +
 
 	N15*I*UTrace[ NM[UDelta, USmall[\[Mu]], UFPlus[\[Mu],\[Nu]], USmall[\[Nu]]] ] +
 
 	N16*I*UTrace[ NM[UDelta, UFMinus[\[Mu],\[Nu]], USmall[\[Mu]], USmall[\[Nu]]] +
-			   NM[UDelta, USmall[\[Mu]], USmall[\[Nu]], UFMinus[\[Mu],\[Nu]]] ] +
+			NM[UDelta, USmall[\[Mu]], USmall[\[Nu]], UFMinus[\[Mu],\[Nu]]] ] +
 
 	N17*I*UTrace[ NM[UDelta, USmall[\[Mu]], UFMinus[\[Mu],\[Nu]], USmall[\[Nu]]] ] +
 
 	N18*I*UTrace[ NM[UDelta, UFPlus[\[Mu],\[Nu]], UFPlus[\[Mu],\[Nu]]] -
-				  NM[UDelta, UFMinus[\[Mu],\[Nu]], UFMinus[\[Mu],\[Nu]]] ] +
+				NM[UDelta, UFMinus[\[Mu],\[Nu]], UFMinus[\[Mu],\[Nu]]] ] +
 
 	(* ............................................................... *)
 	(* External W bosons*)
 
 	N19*I*UTrace[ NM[UNablaHatDelta[\[Mu]], USmall[\[Mu]], USmall[\[Nu]], USmall[\[Nu]]] -
-				 NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], USmall[\[Nu]], USmall[\[Mu]]] ] +
+				NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], USmall[\[Nu]], USmall[\[Mu]]] ] +
 
 	N20*UTrace[ NM[UNablaHatDelta[\[Mu]], UOmega[\[Mu],\[Nu]], USmall[\[Nu]]] +
-				 NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], UOmega[\[Mu],\[Nu]]] ] +
+				NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], UOmega[\[Mu],\[Nu]]] ] +
 
 	N21*I*UTrace[ NM[UNablaHatDelta[\[Mu]], UChiPlus, USmall[\[Mu]]] -
-				 NM[UNablaHatDelta[\[Mu]], USmall[\[Mu]], UChiPlus] ] +
+				NM[UNablaHatDelta[\[Mu]], USmall[\[Mu]], UChiPlus] ] +
 
 	(*N22*UTrace[ NM[UNablaHatDelta[\[Mu]], CovariantNabla[UChiPlus,{\[Mu]}]]  ] +*)
 	N22*UTrace[ NM[UNablaHatDelta[\[Mu]], NablaChiPlus[\[Mu]]]  ] +
 
 	N23*I*UTrace[ NM[UNablaHatDelta[\[Mu]], UChiMinus, USmall[\[Mu]]] +
-				 NM[UNablaHatDelta[\[Mu]], USmall[\[Mu]], UChiMinus] ] +
+				NM[UNablaHatDelta[\[Mu]], USmall[\[Mu]], UChiMinus] ] +
 
 	N24*I*NM[UTrace[ NM[UNablaHatDelta[\[Mu]], USmall[\[Mu]]] ],
-		  UTrace[ UChiMinus ]] +
+		UTrace[ UChiMinus ]] +
 
 	N25*UTrace[ NM[UNablaHatDelta[\[Mu]], UFPlus[\[Mu],\[Nu]], USmall[\[Nu]]] +
-				 NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], UFPlus[\[Mu],\[Nu]]] ] +
+				NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], UFPlus[\[Mu],\[Nu]]] ] +
 
 	N26*UTrace[ NM[UNablaHatDelta[\[Mu]], UFMinus[\[Mu],\[Nu]], USmall[\[Nu]]] +
-				 NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], UFMinus[\[Mu],\[Nu]]] ] +
+				NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], UFMinus[\[Mu],\[Nu]]] ] +
 
 	N27*UTrace[ NM[2*UFPlus[\[Mu],\[Nu]], UFPlus[\[Mu],\[Nu]]] -
-				 NM[UFPlus[\[Mu],\[Nu]], UFMinus[\[Mu],\[Nu]]] -
-		 NM[UFMinus[\[Mu],\[Nu]], UFPlus[\[Mu],\[Nu]]] ]+
+				NM[UFPlus[\[Mu],\[Nu]], UFMinus[\[Mu],\[Nu]]] -
+		NM[UFMinus[\[Mu],\[Nu]], UFPlus[\[Mu],\[Nu]]] ]+
 
 	(* ............................................................... *)
 	(* Radiative K decays (anomalous couplings) *)
@@ -425,3 +427,5 @@ FieldsSet[ChPTW3[2]] :=
 	]};
 
 $Lagrangians = Union[$Lagrangians,{ChPTW3[4]}];
+
+End[]

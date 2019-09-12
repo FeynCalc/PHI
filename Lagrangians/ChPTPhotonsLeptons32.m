@@ -23,9 +23,6 @@ Description:         The leading order ChPT lagrangian with
 						(1999), hep-ph/9909284
 *)
 
-
-Begin["Phi`Objects`"];
-
 ChPTPhotonsLeptons32::usage =
 "ChPTPhotonsLeptons32 is the name of the file containing the definitions for \
 Lagrangian[ChPTPhotonsLeptons3[2]], which is the leading order mesonic \
@@ -34,7 +31,11 @@ To evaluate use ArgumentsSupply.";
 
 (* --------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTPhotonsLeptons32`Private`"]
 
 (* ---------------------------------------------------------------- *)
 
@@ -48,12 +49,12 @@ pt/:MakeBoxes[pt[RenormalizationState[0]],TraditionalForm]:="";
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPTPhotonsLeptons3[2],st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___QuarkMassExpansionState],
+	sc___RenormalizationScheme,qs___QuarkMassExpansionState],
 	TraditionalForm]:=
 SuperscriptBox[MakeBoxes[StyleForm["C",FontSlant->"Italic"]][[1]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[pt[st]]]},{
-		  MakeBoxes[TraditionalForm[pt[sc]]]},{
-		  MakeBoxes[TraditionalForm[pt[qs]]]}]]];
+		MakeBoxes[TraditionalForm[pt[sc]]]},{
+		MakeBoxes[TraditionalForm[pt[qs]]]}]]];
 
 (* --------------------------------------------------------------- *)
 
@@ -104,3 +105,5 @@ FieldsSet[ChPTPhotonsLeptons3[2]] :=
 	QuantumField[Particle[Photon]]};
 
 $Lagrangians = Union[$Lagrangians,{ChPTPhotonsLeptons3[2]}];
+
+End[]

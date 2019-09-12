@@ -46,6 +46,12 @@ directory 'Factors'.
 Phi`Objects`PMV::usage =
 	"PMV[x_,opts___] := PhiMesonIsoVector[opts][x].";
 
+Begin["`Package`"]
+End[]
+
+Begin["`PhiStart`Private`"]
+
+
 PMV[x_,opts___] :=
 	PhiMesonIsoVector[opts][x];
 
@@ -370,8 +376,10 @@ DeclareNonCommutative[WFFactor1];
 Phi`Objects`FunctionalDerivative::usage =
 	"FunctionalDerivative is FunctionalD adapted for use with Phi";
 
+
+
 Phi`Objects`FunctionalDerivative[x_, o__] :=
-	Block[ {tr, r, nm, c, d, i, f},
+	Block[ {tr, nm, i, f},
 		i = 0;
 		f := (++i);
 		FunctionalD[ PhiToFC[x /. HoldPattern[NM[d__]] :> DOT[nm[f], d]] /. UTrace1 -> ((tr*#) &), o] //.
@@ -489,8 +497,8 @@ $UExpansionCoefficients =
 (* Which configuration should be used? *)
 (* Overridden is set before loading FeynCalc *)
 
-If[ ValueQ[Global`$Configuration] =!= True || Global`$Configuration === None || Global`$Configuration === "None",
-	Global`$Configuration = "ChPT2";
+If[ ValueQ[$Configuration] =!= True || $Configuration === None || $Configuration === "None",
+	$Configuration = "ChPT2";
 	(*standard SU(2) ChPT*)
 	(*"ChPTPhoton2";*)(*standard SU(2) ChPT with coupling to a photon source*)
 	(*"ChPT3";*)      (*Standard SU(3) ChPT*)
@@ -505,21 +513,21 @@ If[ ValueQ[Global`$Configuration] =!= True || Global`$Configuration === None || 
 ]
 
 (* Actual loading of configuration *)
-If[ $PaletteConfiguration=!="None"&&$PaletteConfiguration=!=None&&$Phi===True,
+If[ $PaletteConfiguration=!="None" && $PaletteConfiguration=!=None,
 	FCPrint[2,"Using ",$PaletteConfiguration," chosen from palette"];
-	Global`$Configuration = Evaluate[$PaletteConfiguration]
+	$Configuration = Evaluate[$PaletteConfiguration]
 ];
 
-FCPrint[2,"Loading configuration ",Global`$Configuration];
+FCPrint[2,"Loading configuration ",$Configuration];
 
 tmp`olddir1 = tmp`olddir;
-LoadConfiguration[Global`$Configuration];
+LoadConfiguration[$Configuration];
 tmp`olddir = tmp`olddir1;
 
 (* Which lagrangians should be loaded? *)
 
-If[ ValueQ[Global`$Lagrangians] =!= True || Global`$Lagrangians === {},
-	Global`$Lagrangians = {"ChPT2"[2],"ChPT2"[4]};
+If[ ValueQ[$Lagrangians] =!= True || $Lagrangians === {},
+	$Lagrangians = {"ChPT2"[2],"ChPT2"[4]};
 		(*{"ChPTPhoton2"[2],"ChPTPhoton2"[4]};*)
 		(*{"ChPT3"[2],"ChPT3"[4]};*)
 		(*{"ChPTW3"[2],"ChPTW3"[4]};*)
@@ -533,9 +541,8 @@ If[ ValueQ[Global`$Lagrangians] =!= True || Global`$Lagrangians === {},
 ]
 
 (* Actual loading of lagrangians *)
-FCPrint[2,"Loading lagrangians ",Global`$Lagrangians];
-
-LoadLagrangian/@Global`$Lagrangians;
+FCPrint[2,"Loading lagrangians ", $Lagrangians];
+LoadLagrangian/@$Lagrangians;
 
 (* Setting of $VerticesSpecifications using all stored vertices
 	belonging to the chosen configuration *)
@@ -651,3 +658,4 @@ If[ AtomQ[$FrontEnd]=!=True,
 		This is the default: {"UnmatchedBracketStyle" -> "UnmatchedBracket"}*)
 	SetOptions[$FrontEnd, AutoStyleOptions -> {"UnmatchedBracketStyle" -> None}];
 ];
+End[]

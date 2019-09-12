@@ -23,8 +23,6 @@ Description:         The next to leading order ChPT lagrangian
 *)
 
 
-Begin["Phi`Objects`"];
-
 (* -------------------------------------------------------------- *)
 
 ChPTEM24::usage =
@@ -96,7 +94,11 @@ fourth order ChPT lagrangian.";
 
 (* ---------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPTEM22`Private`"]
 
 
 (* ---------------------------------------------------------------- *)
@@ -126,13 +128,13 @@ K15 = CouplingConstant[ChPTEM2[4],15];
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[ChPTEM2[4],i_,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___QuarkMassExpansionState],
+	sc___RenormalizationScheme,qs___QuarkMassExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["k",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[i]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 (* ---------------------------------------------------------------- *)
 
@@ -149,18 +151,18 @@ Lagrangian[ChPTEM2[4]] :=
 	K1[0]*
 	DecayConstant[Pion]^4*
 	NMPower[UTrace[ NM[UMatrix[UChiralSpurion],MM,
-			   UMatrix[UChiralSpurion],Adjoint[MM]]],2]+
+			UMatrix[UChiralSpurion],Adjoint[MM]]],2]+
 
 	K2[0]*
 	DecayConstant[Pion]^2*
 	NM[UTrace[ NM[UMatrix[UChiralSpurion],MM,
-			   UMatrix[UChiralSpurion],Adjoint[MM]]],
+			UMatrix[UChiralSpurion],Adjoint[MM]]],
 	UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]] ]]+
 
 	K3[0]*
 	DecayConstant[Pion]^2*
 	(NMPower[UTrace[ NM[Adjoint[MM],CDr[MM,{\[Mu]}],UMatrix[UChiralSpurion]] ],2] +
-	 NMPower[UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[MM],UMatrix[UChiralSpurion]] ],2])+
+	NMPower[UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[MM],UMatrix[UChiralSpurion]] ],2])+
 
 	K4[0]*
 	DecayConstant[Pion]^2*
@@ -170,22 +172,22 @@ Lagrangian[ChPTEM2[4]] :=
 	K5[0]*
 	DecayConstant[Pion]^2*
 	UTrace[NM[(NM[UMatrix[UChiralSpurion], CDr[UMatrix[UChiralSpurion],{\[Mu]}]]-
-			   NM[CDr[UMatrix[UChiralSpurion],{\[Mu]}], UMatrix[UChiralSpurion]]),
-			   Adjoint[MM], CDr[MM,{\[Mu]}]] -
+			NM[CDr[UMatrix[UChiralSpurion],{\[Mu]}], UMatrix[UChiralSpurion]]),
+			Adjoint[MM], CDr[MM,{\[Mu]}]] -
 
-		   NM[(NM[UMatrix[UChiralSpurion], CDr[UMatrix[UChiralSpurion],{\[Mu]}]]-
-			   NM[CDr[UMatrix[UChiralSpurion],{\[Mu]}], UMatrix[UChiralSpurion]]),
-			   CDr[MM,{\[Mu]}], Adjoint[MM]] ]+
+		NM[(NM[UMatrix[UChiralSpurion], CDr[UMatrix[UChiralSpurion],{\[Mu]}]]-
+			NM[CDr[UMatrix[UChiralSpurion],{\[Mu]}], UMatrix[UChiralSpurion]]),
+			CDr[MM,{\[Mu]}], Adjoint[MM]] ]+
 
 	K6[0]*
 	DecayConstant[Pion]^2*
 	UTrace[NM[CDr[UMatrix[UChiralSpurion],{\[Mu]}], MM,
-			  CDr[UMatrix[UChiralSpurion],{\[Mu]}], Adjoint[MM]] ]+
+			CDr[UMatrix[UChiralSpurion],{\[Mu]}], Adjoint[MM]] ]+
 
 	K7[0]*
 	DecayConstant[Pion]^2*
 	NM[UTrace[ NM[UMatrix[UChiralSpurion],MM,
-			   UMatrix[UChiralSpurion],Adjoint[MM]] ],
+			UMatrix[UChiralSpurion],Adjoint[MM]] ],
 	UTrace[ NM[UChiMatrix,Adjoint[MM]]+NM[Adjoint[UChiMatrix],MM] ]]+
 
 	K8[0]*
@@ -212,9 +214,9 @@ Lagrangian[ChPTEM2[4]] :=
 	K12[0]*
 	DecayConstant[Pion]^2*
 	UTrace[ NM[CDr[UMatrix[UChiralSpurionRight], {\[Mu]}],
-			   CDr[UMatrix[UChiralSpurionRight], {\[Mu]}] ] +
+			CDr[UMatrix[UChiralSpurionRight], {\[Mu]}] ] +
 			NM[CDr[UMatrix[UChiralSpurionLeft], {\[Mu]}],
-			   CDr[UMatrix[UChiralSpurionLeft], {\[Mu]}] ] ]+
+			CDr[UMatrix[UChiralSpurionLeft], {\[Mu]}] ] ]+
 
 	K13[0]*
 	DecayConstant[Pion]^4*
@@ -242,3 +244,4 @@ FieldsSet[ChPTEM2[4]] :=
 	{IsoVector[QuantumField[Particle[Pion,RenormalizationState[0]]]],
 	QuantumField[Particle[Photon,RenormalizationState[0]]]};
 
+End[]

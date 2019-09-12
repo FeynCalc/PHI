@@ -23,7 +23,7 @@ Description:         The simplest ChPT lagrangian.
 *)
 
 
-Begin["Phi`Objects`"];
+
 
 (* --------------------------------------------------------------- *)
 
@@ -34,7 +34,11 @@ lagrangian.  To evaluate use ArgumentsSupply.";
 
 (* --------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`ChPT22`Private`"]
 
 (* --------------------------------------------------------------- *)
 
@@ -53,3 +57,5 @@ FieldsSet[ChPT2[2]] :=
 	]};
 
 $Lagrangians = Union[$Lagrangians,{ChPT2[2]}];
+
+End[]

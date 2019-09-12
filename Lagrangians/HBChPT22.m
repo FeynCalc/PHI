@@ -21,9 +21,6 @@ Description:         The simplest ChPT lagrangian.
 						hep-ph/9508204
 *)
 
-
-Begin["Phi`Objects`"];
-
 (* ------------------------------------------------------------------ *)
 
 HBChPT22::usage =
@@ -37,7 +34,11 @@ coupling constant.";
 
 (* ------------------------------------------------------------------ *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`HBChPT22`Private`"]
 
 (* ------------------------------------------------------------------ *)
 
@@ -45,13 +46,13 @@ CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[
 HBChPT2[2],st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___QuarkMassExpansionState],
+	sc___RenormalizationScheme,qs___QuarkMassExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["g",FontSlant->"Italic"]][[1]],
 	MakeBoxes["A"],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 (* ------------------------------------------------------------------ *)
 
@@ -85,3 +86,5 @@ FieldsSet[HBChPT2[2]] :=
 	UVector[QuantumField[Particle[Nucleon,RenormalizationState[0]]]]};
 
 $Lagrangians = Union[$Lagrangians,{HBChPT2[2]}];
+
+End[]

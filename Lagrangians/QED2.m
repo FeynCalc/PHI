@@ -26,9 +26,6 @@ Description:         Counterterm QED lagrangian
 						time metric (1,-1,-1,-1)
 *)
 
-
-Begin["Phi`Objects`"];
-
 (* --------------------------------------------------------------- *)
 
 QED2::usage =
@@ -51,7 +48,11 @@ physical photon field.";
 
 (* --------------------------------------------------------------- *)
 
-End[];
+Begin["`Package`"]
+End[]
+
+
+Begin["`QED2`Private`"]
 
 (* --------------------------------------------------------------- *)
 
@@ -61,37 +62,37 @@ CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[
 QED[2],1,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 	SuperscriptBox[
 	MakeBoxes[StyleForm["\[Delta]m",FontSlant->"Italic"]][[1]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[
 QED[2],2,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["Z",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[2]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 CouplingConstant/:
 MakeBoxes[
 	CouplingConstant[
 QED[2],3,st___RenormalizationState,
-	  sc___RenormalizationScheme,qs___ExpansionState],
+	sc___RenormalizationScheme,qs___ExpansionState],
 	TraditionalForm]:=
 SubsuperscriptBox[MakeBoxes[StyleForm["Z",FontSlant->"Italic"]][[1]],
 	MakeBoxes[TraditionalForm[3]],
 	RowBox[Join[{MakeBoxes[TraditionalForm[IndexBox[st]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
-		  MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
+		MakeBoxes[TraditionalForm[IndexBox[sc]]]},{
+		MakeBoxes[TraditionalForm[IndexBox[qs]]]}]]];
 
 (* --------------------------------------------------------------- *)
 
@@ -135,3 +136,5 @@ FieldsSet[QED[2]] :=
 	QuantumField[Particle[Photon,RenormalizationState[0]],LorentzIndex[\[Mu]]]};
 
 $Lagrangians = Union[$Lagrangians,{QED[2]}];
+
+End[]
