@@ -22,7 +22,7 @@ PHI is designed as an add-on for FeynCalc. To use it you need at least FeynCalc 
 * Run the following instruction in a Kernel or Notebook session of Mathematica
 
 	```
-	Import["https://raw.githubusercontent.com/FeynCalc/phi/master/install.m"]
+	Import["https://raw.githubusercontent.com/FeynCalc/PHI/master/install.m"]
 	InstallPHI[InstallPHIDevelopmentVersion -> True]
 	```
 
@@ -30,7 +30,7 @@ If the above code fails with `URLFetch::invhttp: SSL connect error` (e.g. with M
 
 
 ```
-	ImportString[URLFetch["https://raw.githubusercontent.com/FeynCalc/phi/master/install.m"]]
+	ImportString[URLFetch["https://raw.githubusercontent.com/FeynCalc/PHI/master/install.m"]]
 	InstallPHI[InstallPHIDevelopmentVersion -> True]
 ```
 
