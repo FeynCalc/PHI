@@ -61,19 +61,19 @@ SuperscriptBox[MakeBoxes[StyleForm["C",FontSlant->"Italic"]][[1]],
 Lagrangian[ChPTVirtualPhotons3[2]] :=
 	1/4*DecayConstant[PhiMeson]^2*
 
-	(UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]] ] +
+	(UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]] ] +
 
 	UTrace[ NM[UChiMatrix,Adjoint[MM]]+NM[Adjoint[UChiMatrix],MM] ]) -
 
 	1/4*
-	NM[FieldStrengthTensor[LorentzIndex[\[Mu]],
-	QuantumField[Particle[Photon],LorentzIndex[\[Nu]]]],
-	FieldStrengthTensor[LorentzIndex[\[Mu]],
-	QuantumField[Particle[Photon],LorentzIndex[\[Nu]]]]]-
+	NM[FieldStrengthTensor[LorentzIndex[Global`\[Mu]],
+	QuantumField[Particle[Photon],LorentzIndex[Global`\[Nu]]]],
+	FieldStrengthTensor[LorentzIndex[Global`\[Mu]],
+	QuantumField[Particle[Photon],LorentzIndex[Global`\[Nu]]]]]-
 
 	$Gauge/2*
-	FDr[QuantumField[Particle[Photon],LorentzIndex[\[Mu]]],{\[Mu]}]*
-	FDr[QuantumField[Particle[Photon],LorentzIndex[\[Nu]]],{\[Nu]}]+
+	FDr[QuantumField[Particle[Photon],LorentzIndex[Global`\[Mu]]],{Global`\[Mu]}]*
+	FDr[QuantumField[Particle[Photon],LorentzIndex[Global`\[Nu]]],{Global`\[Nu]}]+
 
 	CouplingConstant[ChPTVirtualPhotons3[2]]*
 	UTrace[NM[UMatrix[UChiralSpurionRight],MM,
