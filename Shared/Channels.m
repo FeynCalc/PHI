@@ -1482,107 +1482,99 @@ IndicesCleanup[ww_, opts___] :=
 	] /.
 
 	cheapnesthackrule/.fixtraceplus//.tracerule1/.isowaitrules1/.isowaitrules0;
+
 	larul = {{}, {}, {}};
 	Which[
-	!FreeQ[w,LorentzIndex[_, D] | Momentum[_, D]],
+		!FreeQ[w,LorentzIndex[_, D] | Momentum[_, D]],
 
 		If[ ExtendedCleanup /. Flatten[{opts}] /. Options[IndicesCleanup],
-			FCPrint[1,
-				"Found occurence of D, using this as number of \
-space-time dimensions for all momenta, Dirac gamma matrices and Lorentz \
-indices"];
-			larul = {LorentzIndex[llii_] -> LorentzIndex[llii, D],
-				dg[dig_] -> dg[dig, D],
-				Momentum[mo_] -> Momentum[mo, D]}
+			FCPrint[1, "Found occurence of D, using this as number of space-time dimensions for all momenta, Dirac gamma matrices and Lorentz indices"];
+			larul = {LorentzIndex[llii_] -> LorentzIndex[llii, D], dg[dig_] -> dg[dig, D], Momentum[mo_] -> Momentum[mo, D]}
 		];,
 
 
-				!FreeQ[w, LorentzIndex[_, D] | Momentum[_, D]],
-				If[ ExtendedCleanup /. Flatten[{opts}] /. Options[IndicesCleanup],
-					FCPrint[1,
-					"Found occurence of D, using this as number of space-time \
-dimensions for all momenta, Dirac gamma matrices and Lorentz indices"];
-					larul = {LorentzIndex[llii_] -> LorentzIndex[llii, D], dg[dig_] -> dg[dig, D],
-						Momentum[mo_] -> Momentum[mo, D]}
-				];
+		!FreeQ[w, LorentzIndex[_, D] | Momentum[_, D]],
+		If[ ExtendedCleanup /. Flatten[{opts}] /. Options[IndicesCleanup],
+			FCPrint[1, "Found occurence of D, using this as number of space-time dimensions for all momenta, Dirac gamma matrices and Lorentz indices"];
+			larul = {LorentzIndex[llii_] -> LorentzIndex[llii, D], dg[dig_] -> dg[dig, D], Momentum[mo_] -> Momentum[mo, D]}
+		];
 	];
 	isodummycounter = 1;
 	isoexterndummycounter = 1;
 	w1 = If[ ExtendedCleanup /. Flatten[{opts}] /. Options[IndicesCleanup],
 			FCPrint[1, "Using ExtendedCleanup->True"];
-			w /. {SU2Delta -> su2delta1, SU2F -> su2f1,
-					SU3Delta -> su3delta1, SU3F -> su3f1, SU3D -> su3d1,
-					SUNDelta -> sundelta1, SUNF -> sunf1,
-					SUND -> sund1},
-			FCPrint[1,
-					"Using ExtendedCleanup->False\nWill not work if mixed Times \
-and NM products are present"]w
-		] /.
+			w /. {
+				SU2Delta -> su2delta1, SU2F -> su2f1,
+				SU3Delta -> su3delta1, SU3F -> su3f1, SU3D -> su3d1,
+				SUNDelta -> sundelta1, SUNF -> sunf1, SUND -> sund1
+			},
+			FCPrint[1,"Using ExtendedCleanup->False\nWill not work if mixed Times and NM products are present"];
+			w] /.
 	(*Cleaned up a bit below. 20/6-2003*)
-	(((SUNIndex[#] -> protectisoconstant[#])&) /@ (((#[[1]])&) /@
-								Cases[w, faso[_?((Head[#]=!=SUNIndex)&),___], Infinity])) /.
+	(((SUNIndex[#] -> protectisoconstant[#])&) /@ (((#[[1]])&) /@ Cases[w, faso[_?((Head[#]=!=SUNIndex)&),___], Infinity])) /.
+		faso[SUNIndex[a_], b___] -> faso[protectisoconstant[a], b];
 
-			faso[SUNIndex[a_], b___] -> faso[protectisoconstant[a], b];
 	FCPrint[3,"Doing reduction on ", w1//StandardForm];
 	subres = FixedPoint[
 	(If[ FreeQ[#,isowait],
 		w2 = #/.isowaitrules3,
 		w2 = #
 	];
-	FixedPoint[(FCPrint[2, "Applying renaming rules"];
-				IndicesCleanup1[#, opts]) &,
-	If[ FCleanup /. Flatten[{opts}] /. Options[IndicesCleanup],
-		FCPrint[2, "Using FCleanup->True"];
-		FCPrint[2,
-			"Renaming product functions and protecting constants"];
-		w2 /. {SUNIndex[a_] :> protectisoconstant[a]/; (UScalarQ[a] ||
-			!FreeQ[$ConstantIsoIndices, a]),
-								LorentzIndex[a_] :> protectliconstant[a] /; UScalarQ[a]} /.
-						dummyrulesf3 /. dummyrulesf2 /.
-				dummyrulesf1 /. {NM -> NM1,
-				Times -> NM1,
-				DOT -> NM2,(*change 19/1 - 1999*)
-					Power[a_, b_ /; b > 0 && IntegerQ[b]] :>
-					NM1 @@ Table[a, {y, 1, b}]},
-		FCPrint[2,
-			"Renaming product functions and protecting constants"];
-		w2 /. {SUNIndex[a_/; (UScalarQ[a] || !FreeQ[$ConstantIsoIndices, a])]  ->
-						protectisoconstant[a],
-					LorentzIndex[a_] :> protectliconstant[a] /; UScalarQ[a] } /. {NM ->
-					NM1, Times -> NM1, DOT -> NM2,
-					Power[a_, b_ /; b > 0 && IntegerQ[b]] :>
+	FixedPoint[(
+		FCPrint[2, "Applying renaming rules"];
+		IndicesCleanup1[#, opts]) &,
+		If[ FCleanup /. Flatten[{opts}] /. Options[IndicesCleanup],
+
+			FCPrint[2, "Using FCleanup->True"];
+			FCPrint[2, "Renaming product functions and protecting constants"];
+			w2 /. {
+				SUNIndex[a_] :> protectisoconstant[a]/; (UScalarQ[a] || !FreeQ[$ConstantIsoIndices, a]),
+				LorentzIndex[a_] :> protectliconstant[a] /; UScalarQ[a]
+			} /. dummyrulesf3 /. dummyrulesf2 /. dummyrulesf1 /. {
+				NM -> NM1, Times -> NM1, DOT -> NM2,(*change 19/1 - 1999*)
+				Power[a_, b_ /; b > 0 && IntegerQ[b]] :>
+					NM1 @@ Table[a, {y, 1, b}]
+			},
+
+			FCPrint[2, "Renaming product functions and protecting constants"];
+			w2 /. {
+				SUNIndex[a_/; (UScalarQ[a] || !FreeQ[$ConstantIsoIndices, a])]  -> protectisoconstant[a],
+				LorentzIndex[a_] :> protectliconstant[a] /; UScalarQ[a] } /. {
+				NM -> NM1, Times -> NM1, DOT -> NM2,
+				Power[a_, b_ /; b > 0 && IntegerQ[b]] :>
 					NM1 @@ Table[a, {y, 1, b}]}
-	]])&,w1];
-	FCPrint[2,
-				"Putting back product function names and constants"];
-	subres /. {isomult->Sequence[],lorentzmult->Sequence[]} /.
-	{NM1 ->NM, NM2 -> DOT} /. {protectisoconstant -> SUNIndex,
-											protectliconstant -> LorentzIndex} /.
-	(*Commented out 20/6-2003*)(*faso[SUNIndex[ii_]] -> faso[ii] /.*) {su2delta1 -> SU2Delta,
-									su2f1 -> SU2F, su3delta1 -> SU3Delta, su3f1 -> SU3F,
-									su3d1 -> SU3D, sundelta1 -> SUNDelta, sunf1 -> SUNF,
-									sund1 -> SUND} /.
-							dummynames[
-								IsoDummys /. Flatten[{opts}] /. Options[IndicesCleanup],
-								LorentzDummys /. Flatten[{opts}] /.
-									Options[IndicesCleanup]] /.
-					DiracGamma -> dg /. Flatten[{larul[[1]], larul[[3]]}] /.
-			larul[[2]] /. dg -> DiracGamma /. Null->Sequence[] //.
-			tracerule2 /. tracerule3 /. cheapnesthackruleback //
-					(If[ declutr,
-						FCPrint[2, "DeclareUScalar[UTrace1]"];
+		]])&,w1];
+
+	FCPrint[2, "Putting back product function names and constants"];
+
+	subres /. {isomult->Sequence[],lorentzmult->Sequence[]} /. {
+		NM1 ->NM, NM2 -> DOT
+	} /. {
+		protectisoconstant -> SUNIndex,
+		protectliconstant -> LorentzIndex
+	} /. (*Commented out 20/6-2003*)(*faso[SUNIndex[ii_]] -> faso[ii] /.*) {
+		su2delta1 -> SU2Delta,
+		su2f1 -> SU2F, su3delta1 -> SU3Delta, su3f1 -> SU3F,
+		su3d1 -> SU3D, sundelta1 -> SUNDelta, sunf1 -> SUNF,
+		sund1 -> SUND
+	} /. dummynames[IsoDummys /. Flatten[{opts}] /. Options[IndicesCleanup], LorentzDummys /. Flatten[{opts}] /. Options[IndicesCleanup]] /.
+		DiracGamma -> dg /. Flatten[{larul[[1]], larul[[3]]}] /.
+		larul[[2]] /. dg -> DiracGamma /. Null->Sequence[] //.
+		tracerule2 /. tracerule3 /. cheapnesthackruleback //
+		(If[ declutr,
+			FCPrint[2, "DeclareUScalar[UTrace1]"];
 						DeclareUScalar[UTrace1]
-					];
-					If[ (CommutatorReduce /. Flatten[{opts}] /. Options[IndicesCleanup]),
-						FCPrint[2, "Applying CommutatorReduce"];
-						# // ( CommutatorReduce[#,opts])&,
-						#
-					])& //
-					If[ (ExtendedCleanup /. Flatten[{opts}] /. Options[IndicesCleanup]),
-						FCPrint[2, "Applying SortIndices"];
-						# // ( SortIndices[#,opts])&,
-						#
-					]&)];
+			];
+		If[ (CommutatorReduce /. Flatten[{opts}] /. Options[IndicesCleanup]),
+			FCPrint[2, "Applying CommutatorReduce"];
+			# // ( CommutatorReduce[#,opts])&,
+			#
+			])& //
+		If[ (ExtendedCleanup /. Flatten[{opts}] /. Options[IndicesCleanup]),
+			FCPrint[2, "Applying SortIndices"];
+			# // ( SortIndices[#,opts])&,
+			#
+		]&)];
 
 
 
