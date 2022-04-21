@@ -2,10 +2,12 @@
 
 (*
 	This software is covered by the GNU General Public License 3.
-	Copyright (C) 2015-2018 Vladyslav Shtabovenko
-																			*)
+	Copyright (C) 1990-2022 Rolf Mertig
+	Copyright (C) 1997-2022 Frederik Orellana
+	Copyright (C) 2014-2022 Vladyslav Shtabovenko
+*)
 
-(* :Summary:    Test Suite for FeynOnium via MUnit. Doesn't require
+(* :Summary: Test Suite for PHI via MUnit. Doesn't require
 	Wolfram	Worbench to run                       							*)
 
 (* ------------------------------------------------------------------------ *)
