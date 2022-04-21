@@ -43,7 +43,7 @@ Begin["`ChPTPhoton22`Private`"]
 Lagrangian[ChPTPhoton2[2]] :=
 	1/4*DecayConstant[Pion,RenormalizationState[0]]^2*
 
-	(UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]] ] +
+	(UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]] ] +
 
 	UTrace[ NM[UChiMatrix,Adjoint[MM]]+NM[MM,Adjoint[UChiMatrix]] ]);
 
@@ -52,7 +52,7 @@ Lagrangian[ChPTPhoton2[2]] :=
 FieldsSet[ChPTPhoton2[2]] :=
 	{IsoVector[
 	QuantumField[Particle[Pion,RenormalizationState[0]]],
-	QuantumField[Particle[Photon,RenormalizationState[0]],LorentzIndex[\[Mu]]]
+	QuantumField[Particle[Photon,RenormalizationState[0]],LorentzIndex[Global`\[Mu]]]
 	]};
 
 $Lagrangians = Union[$Lagrangians,{ChPTPhoton2[2]}];

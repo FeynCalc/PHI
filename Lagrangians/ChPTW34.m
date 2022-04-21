@@ -260,33 +260,33 @@ Lagrangian[ChPTW3[4]] :=
 	(* ............................................................... *)
 	(* K -> 3 Pi *)
 
-	N1*UTrace[ NM[UDelta, USmall[\[Mu]], USmall[\[Mu]], USmall[\[Nu]], USmall[\[Nu]]] ] +
+	N1*UTrace[ NM[UDelta, USmall[Global`\[Mu]], USmall[Global`\[Mu]], USmall[Global`\[Nu]], USmall[Global`\[Nu]]] ] +
 
-	N2*UTrace[ NM[UDelta, USmall[\[Mu]], USmall[\[Nu]], USmall[\[Nu]], USmall[\[Mu]]] ] +
+	N2*UTrace[ NM[UDelta, USmall[Global`\[Mu]], USmall[Global`\[Nu]], USmall[Global`\[Nu]], USmall[Global`\[Mu]]] ] +
 
-	N3*NM[UTrace[ NM[UDelta, USmall[\[Mu]], USmall[\[Nu]]] ],
-	UTrace[ NM[USmall[\[Mu]], USmall[\[Nu]]] ]] +
+	N3*NM[UTrace[ NM[UDelta, USmall[Global`\[Mu]], USmall[Global`\[Nu]]] ],
+	UTrace[ NM[USmall[Global`\[Mu]], USmall[Global`\[Nu]]] ]] +
 
-	N4*NM[UTrace[ NM[UDelta, USmall[\[Mu]]] ],
-	UTrace[ NM[USmall[\[Mu]], USmall[\[Nu]], USmall[\[Nu]]] ]] +
+	N4*NM[UTrace[ NM[UDelta, USmall[Global`\[Mu]]] ],
+	UTrace[ NM[USmall[Global`\[Mu]], USmall[Global`\[Nu]], USmall[Global`\[Nu]]] ]] +
 
 	(* ............................................................... *)
 	(* K -> 2 Pi, 3 Pi *)
 
-	N5*UTrace[ NM[UDelta, UChiPlus, USmall[\[Mu]], USmall[\[Mu]]] +
-			NM[UDelta, USmall[\[Mu]], USmall[\[Mu]], UChiPlus] ] +
+	N5*UTrace[ NM[UDelta, UChiPlus, USmall[Global`\[Mu]], USmall[Global`\[Mu]]] +
+			NM[UDelta, USmall[Global`\[Mu]], USmall[Global`\[Mu]], UChiPlus] ] +
 
-	N6*NM[UTrace[ NM[UDelta, USmall[\[Mu]]] ],
-	UTrace[ NM[UChiPlus, USmall[\[Mu]]] ]] +
+	N6*NM[UTrace[ NM[UDelta, USmall[Global`\[Mu]]] ],
+	UTrace[ NM[UChiPlus, USmall[Global`\[Mu]]] ]] +
 
 	N7*NM[UTrace[ NM[UDelta, UChiPlus] ],
-	UTrace[ NM[USmall[\[Mu]], USmall[\[Mu]]] ]] +
+	UTrace[ NM[USmall[Global`\[Mu]], USmall[Global`\[Mu]]] ]] +
 
-	N8*NM[UTrace[ NM[UDelta, USmall[\[Mu]], USmall[\[Mu]]] ],
+	N8*NM[UTrace[ NM[UDelta, USmall[Global`\[Mu]], USmall[Global`\[Mu]]] ],
 	UTrace[ UChiPlus ]] +
 
-	N9*UTrace[ NM[UDelta, UChiMinus, USmall[\[Mu]], USmall[\[Mu]]] -
-			NM[UDelta, USmall[\[Mu]], USmall[\[Mu]], UChiMinus] ] +
+	N9*UTrace[ NM[UDelta, UChiMinus, USmall[Global`\[Mu]], USmall[Global`\[Mu]]] -
+			NM[UDelta, USmall[Global`\[Mu]], USmall[Global`\[Mu]], UChiMinus] ] +
 
 	N10*UTrace[ NM[UDelta, UChiPlus, UChiPlus] ] +
 
@@ -301,110 +301,110 @@ Lagrangian[ChPTW3[4]] :=
 	(* ............................................................... *)
 	(* Radiative K decays *)
 
-	N14*I*UTrace[ NM[UDelta, UFPlus[\[Mu],\[Nu]], USmall[\[Mu]], USmall[\[Nu]]] +
-			NM[UDelta, USmall[\[Mu]], USmall[\[Nu]], UFPlus[\[Mu],\[Nu]]] ] +
+	N14*I*UTrace[ NM[UDelta, UFPlus[Global`\[Mu],Global`\[Nu]], USmall[Global`\[Mu]], USmall[Global`\[Nu]]] +
+			NM[UDelta, USmall[Global`\[Mu]], USmall[Global`\[Nu]], UFPlus[Global`\[Mu],Global`\[Nu]]] ] +
 
-	N15*I*UTrace[ NM[UDelta, USmall[\[Mu]], UFPlus[\[Mu],\[Nu]], USmall[\[Nu]]] ] +
+	N15*I*UTrace[ NM[UDelta, USmall[Global`\[Mu]], UFPlus[Global`\[Mu],Global`\[Nu]], USmall[Global`\[Nu]]] ] +
 
-	N16*I*UTrace[ NM[UDelta, UFMinus[\[Mu],\[Nu]], USmall[\[Mu]], USmall[\[Nu]]] +
-			NM[UDelta, USmall[\[Mu]], USmall[\[Nu]], UFMinus[\[Mu],\[Nu]]] ] +
+	N16*I*UTrace[ NM[UDelta, UFMinus[Global`\[Mu],Global`\[Nu]], USmall[Global`\[Mu]], USmall[Global`\[Nu]]] +
+			NM[UDelta, USmall[Global`\[Mu]], USmall[Global`\[Nu]], UFMinus[Global`\[Mu],Global`\[Nu]]] ] +
 
-	N17*I*UTrace[ NM[UDelta, USmall[\[Mu]], UFMinus[\[Mu],\[Nu]], USmall[\[Nu]]] ] +
+	N17*I*UTrace[ NM[UDelta, USmall[Global`\[Mu]], UFMinus[Global`\[Mu],Global`\[Nu]], USmall[Global`\[Nu]]] ] +
 
-	N18*I*UTrace[ NM[UDelta, UFPlus[\[Mu],\[Nu]], UFPlus[\[Mu],\[Nu]]] -
-				NM[UDelta, UFMinus[\[Mu],\[Nu]], UFMinus[\[Mu],\[Nu]]] ] +
+	N18*I*UTrace[ NM[UDelta, UFPlus[Global`\[Mu],Global`\[Nu]], UFPlus[Global`\[Mu],Global`\[Nu]]] -
+				NM[UDelta, UFMinus[Global`\[Mu],Global`\[Nu]], UFMinus[Global`\[Mu],Global`\[Nu]]] ] +
 
 	(* ............................................................... *)
 	(* External W bosons*)
 
-	N19*I*UTrace[ NM[UNablaHatDelta[\[Mu]], USmall[\[Mu]], USmall[\[Nu]], USmall[\[Nu]]] -
-				NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], USmall[\[Nu]], USmall[\[Mu]]] ] +
+	N19*I*UTrace[ NM[UNablaHatDelta[Global`\[Mu]], USmall[Global`\[Mu]], USmall[Global`\[Nu]], USmall[Global`\[Nu]]] -
+				NM[UNablaHatDelta[Global`\[Mu]], USmall[Global`\[Nu]], USmall[Global`\[Nu]], USmall[Global`\[Mu]]] ] +
 
-	N20*UTrace[ NM[UNablaHatDelta[\[Mu]], UOmega[\[Mu],\[Nu]], USmall[\[Nu]]] +
-				NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], UOmega[\[Mu],\[Nu]]] ] +
+	N20*UTrace[ NM[UNablaHatDelta[Global`\[Mu]], UOmega[Global`\[Mu],Global`\[Nu]], USmall[Global`\[Nu]]] +
+				NM[UNablaHatDelta[Global`\[Mu]], USmall[Global`\[Nu]], UOmega[Global`\[Mu],Global`\[Nu]]] ] +
 
-	N21*I*UTrace[ NM[UNablaHatDelta[\[Mu]], UChiPlus, USmall[\[Mu]]] -
-				NM[UNablaHatDelta[\[Mu]], USmall[\[Mu]], UChiPlus] ] +
+	N21*I*UTrace[ NM[UNablaHatDelta[Global`\[Mu]], UChiPlus, USmall[Global`\[Mu]]] -
+				NM[UNablaHatDelta[Global`\[Mu]], USmall[Global`\[Mu]], UChiPlus] ] +
 
-	(*N22*UTrace[ NM[UNablaHatDelta[\[Mu]], CovariantNabla[UChiPlus,{\[Mu]}]]  ] +*)
-	N22*UTrace[ NM[UNablaHatDelta[\[Mu]], NablaChiPlus[\[Mu]]]  ] +
+	(*N22*UTrace[ NM[UNablaHatDelta[Global`\[Mu]], CovariantNabla[UChiPlus,{Global`\[Mu]}]]  ] +*)
+	N22*UTrace[ NM[UNablaHatDelta[Global`\[Mu]], NablaChiPlus[Global`\[Mu]]]  ] +
 
-	N23*I*UTrace[ NM[UNablaHatDelta[\[Mu]], UChiMinus, USmall[\[Mu]]] +
-				NM[UNablaHatDelta[\[Mu]], USmall[\[Mu]], UChiMinus] ] +
+	N23*I*UTrace[ NM[UNablaHatDelta[Global`\[Mu]], UChiMinus, USmall[Global`\[Mu]]] +
+				NM[UNablaHatDelta[Global`\[Mu]], USmall[Global`\[Mu]], UChiMinus] ] +
 
-	N24*I*NM[UTrace[ NM[UNablaHatDelta[\[Mu]], USmall[\[Mu]]] ],
+	N24*I*NM[UTrace[ NM[UNablaHatDelta[Global`\[Mu]], USmall[Global`\[Mu]]] ],
 		UTrace[ UChiMinus ]] +
 
-	N25*UTrace[ NM[UNablaHatDelta[\[Mu]], UFPlus[\[Mu],\[Nu]], USmall[\[Nu]]] +
-				NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], UFPlus[\[Mu],\[Nu]]] ] +
+	N25*UTrace[ NM[UNablaHatDelta[Global`\[Mu]], UFPlus[Global`\[Mu],Global`\[Nu]], USmall[Global`\[Nu]]] +
+				NM[UNablaHatDelta[Global`\[Mu]], USmall[Global`\[Nu]], UFPlus[Global`\[Mu],Global`\[Nu]]] ] +
 
-	N26*UTrace[ NM[UNablaHatDelta[\[Mu]], UFMinus[\[Mu],\[Nu]], USmall[\[Nu]]] +
-				NM[UNablaHatDelta[\[Mu]], USmall[\[Nu]], UFMinus[\[Mu],\[Nu]]] ] +
+	N26*UTrace[ NM[UNablaHatDelta[Global`\[Mu]], UFMinus[Global`\[Mu],Global`\[Nu]], USmall[Global`\[Nu]]] +
+				NM[UNablaHatDelta[Global`\[Mu]], USmall[Global`\[Nu]], UFMinus[Global`\[Mu],Global`\[Nu]]] ] +
 
-	N27*UTrace[ NM[2*UFPlus[\[Mu],\[Nu]], UFPlus[\[Mu],\[Nu]]] -
-				NM[UFPlus[\[Mu],\[Nu]], UFMinus[\[Mu],\[Nu]]] -
-		NM[UFMinus[\[Mu],\[Nu]], UFPlus[\[Mu],\[Nu]]] ]+
+	N27*UTrace[ NM[2*UFPlus[Global`\[Mu],Global`\[Nu]], UFPlus[Global`\[Mu],Global`\[Nu]]] -
+				NM[UFPlus[Global`\[Mu],Global`\[Nu]], UFMinus[Global`\[Mu],Global`\[Nu]]] -
+		NM[UFMinus[Global`\[Mu],Global`\[Nu]], UFPlus[Global`\[Mu],Global`\[Nu]]] ]+
 
 	(* ............................................................... *)
 	(* Radiative K decays (anomalous couplings) *)
 
-	N28*I*LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*
-	NM[UTrace[ NM[UDelta, USmall[\[Mu]]] ],
-	UTrace[ NM[USmall[\[Nu]], USmall[\[Rho]], USmall[\[Sigma]]] ]]+
+	N28*I*LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*
+	NM[UTrace[ NM[UDelta, USmall[Global`\[Mu]]] ],
+	UTrace[ NM[USmall[Global`\[Nu]], USmall[Global`\[Rho]], USmall[Global`\[Sigma]]] ]]+
 
 	N29*UTrace[NM[UDelta,
-	NM[LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*
-	(UFPlus[\[Rho], \[Sigma]]-UFMinus[\[Rho], \[Sigma]]),
-	USmall[\[Mu]], USmall[\[Nu]]] -
-	NM[USmall[\[Mu]], USmall[\[Nu]],
-	LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*
-	(UFPlus[\[Rho], \[Sigma]]-UFMinus[\[Rho], \[Sigma]])]] ]+
+	NM[LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*
+	(UFPlus[Global`\[Rho], Global`\[Sigma]]-UFMinus[Global`\[Rho], Global`\[Sigma]]),
+	USmall[Global`\[Mu]], USmall[Global`\[Nu]]] -
+	NM[USmall[Global`\[Mu]], USmall[Global`\[Nu]],
+	LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*
+	(UFPlus[Global`\[Rho], Global`\[Sigma]]-UFMinus[Global`\[Rho], Global`\[Sigma]])]] ]+
 
-	N30*NM[UTrace[ NM[UDelta, USmall[\[Mu]]] ],
-	UTrace[ NM[LC[\[Mu], \[Nu], \[Rho], \[Sigma]],
-	UFPlus[\[Rho], \[Sigma]], USmall[\[Nu]]] ]]+
+	N30*NM[UTrace[ NM[UDelta, USmall[Global`\[Mu]]] ],
+	UTrace[ NM[LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]],
+	UFPlus[Global`\[Rho], Global`\[Sigma]], USmall[Global`\[Nu]]] ]]+
 
-	N31*NM[UTrace[ NM[UDelta, USmall[\[Mu]]] ],
-	UTrace[ NM[LC[\[Mu], \[Nu], \[Rho], \[Sigma]],
-	UFMinus[\[Rho],\[Sigma]], USmall[\[Nu]]] ]]+
+	N31*NM[UTrace[ NM[UDelta, USmall[Global`\[Mu]]] ],
+	UTrace[ NM[LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]],
+	UFMinus[Global`\[Rho],Global`\[Sigma]], USmall[Global`\[Nu]]] ]]+
 
 	(* ............................................................... *)
 	(* External W bosons *)
 
 	N32*I*UTrace[
-	NM[UNablaHatDelta[\[Mu]],UDelta,
+	NM[UNablaHatDelta[Global`\[Mu]],UDelta,
 	NM[
-	LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*UFPlus[\[Rho], \[Sigma]],USmall[\[Nu]]]-
+	LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*UFPlus[Global`\[Rho], Global`\[Sigma]],USmall[Global`\[Nu]]]-
 	NM[
-	USmall[\[Nu]],LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*UFPlus[\[Rho], \[Sigma]]]] ]+
+	USmall[Global`\[Nu]],LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*UFPlus[Global`\[Rho], Global`\[Sigma]]]] ]+
 
 	N32*I*UTrace[
-	NM[UNablaHatDelta[\[Mu]],UDelta,
+	NM[UNablaHatDelta[Global`\[Mu]],UDelta,
 	NM[
-	LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*UFMinus[\[Rho], \[Sigma]],USmall[\[Nu]]]-
+	LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*UFMinus[Global`\[Rho], Global`\[Sigma]],USmall[Global`\[Nu]]]-
 	NM[
-	USmall[\[Nu]],LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*UFMinus[\[Rho] ,\[Sigma]]]] ]+
+	USmall[Global`\[Nu]],LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*UFMinus[Global`\[Rho] ,Global`\[Sigma]]]] ]+
 
 	N34*UTrace[
 	NM[UDelta,
 	NM[
-	LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*UFPlus[\[Rho], \[Sigma]]+
-	LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*UFMinus[\[Rho], \[Sigma]],
-	USmall[\[Mu]], USmall[\[Nu]]]-
+	LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*UFPlus[Global`\[Rho], Global`\[Sigma]]+
+	LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*UFMinus[Global`\[Rho], Global`\[Sigma]],
+	USmall[Global`\[Mu]], USmall[Global`\[Nu]]]-
 	NM[
-	USmall[\[Mu]], USmall[\[Nu]],
-	LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*UFPlus[\[Rho], \[Sigma]]+
-	LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*UFMinus[\[Rho], \[Sigma]]]
+	USmall[Global`\[Mu]], USmall[Global`\[Nu]],
+	LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*UFPlus[Global`\[Rho], Global`\[Sigma]]+
+	LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*UFMinus[Global`\[Rho], Global`\[Sigma]]]
 	] ]+
 
 	N35*I*UTrace[
 	NM[UDelta,
 	NM[
-	UFPlus[\[Mu],\[Nu]],
-	LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*UFMinus[\[Rho], \[Sigma]]]-
+	UFPlus[Global`\[Mu],Global`\[Nu]],
+	LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*UFMinus[Global`\[Rho], Global`\[Sigma]]]-
 	NM[
-	LC[\[Mu], \[Nu], \[Rho], \[Sigma]]*UFMinus[\[Rho], \[Sigma]],
-	UFPlus[\[Mu], \[Nu]]]] ]+
+	LC[Global`\[Mu], Global`\[Nu], Global`\[Rho], Global`\[Sigma]]*UFMinus[Global`\[Rho], Global`\[Sigma]],
+	UFPlus[Global`\[Mu], Global`\[Nu]]]] ]+
 
 	(* ............................................................... *)
 	(* Renormalization *)
@@ -414,8 +414,8 @@ Lagrangian[ChPTW3[4]] :=
 	NM[UChiPlus, UChiPlus]-NM[UChiMinus, UChiMinus]] ] +
 
 	N37*UTrace[ NM[UDelta,
-	UFPlus[\[Mu],\[Nu]]+UFMinus[\[Mu],\[Nu]],
-	UFPlus[\[Mu],\[Nu]]+UFMinus[\[Mu],\[Nu]]] ]
+	UFPlus[Global`\[Mu],Global`\[Nu]]+UFMinus[Global`\[Mu],Global`\[Nu]],
+	UFPlus[Global`\[Mu],Global`\[Nu]]+UFMinus[Global`\[Mu],Global`\[Nu]]] ]
 
 	);
 

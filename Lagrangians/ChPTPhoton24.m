@@ -154,23 +154,23 @@ RenormalizationCoefficients[ChPTPhoton2[4]] :=
 
 Lagrangian[ChPTPhoton2[4]] :=
 	L1[0]*
-	NM[ UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]]],
-		UTrace[ NM[CDr[MM,{\[Nu]}],Adjoint[CDr[MM,{\[Nu]}]]] ] ]+
+	NM[ UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]]],
+		UTrace[ NM[CDr[MM,{Global`\[Nu]}],Adjoint[CDr[MM,{Global`\[Nu]}]]] ] ]+
 
 	L2[0]*
-	NM[ UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Nu]}]]] ],
-		UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Nu]}]]] ] ]+
+	NM[ UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Nu]}]]] ],
+		UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Nu]}]]] ] ]+
 
 	L3[0]*
-	UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]],
-			CDr[MM,{\[Nu]}],Adjoint[CDr[MM,{\[Nu]}]]] ]+
+	UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]],
+			CDr[MM,{Global`\[Nu]}],Adjoint[CDr[MM,{Global`\[Nu]}]]] ]+
 
 	L4[0]*
-	NM[ UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]]],
+	NM[ UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]]],
 		UTrace[ NM[UChiMatrix,Adjoint[MM]]+NM[MM,Adjoint[UChiMatrix]] ] ]+
 
 	L5[0]*
-	UTrace[ NM[NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]],
+	UTrace[ NM[NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]],
 			NM[UChiMatrix,Adjoint[MM]]+NM[MM,Adjoint[UChiMatrix]]] ]+
 
 	L6[0]*
@@ -187,26 +187,26 @@ Lagrangian[ChPTPhoton2[4]] :=
 
 	L9[0]*I*
 	UTrace[
-	NM[FieldStrengthTensor[{\[Mu]},QuantumField[Particle[Photon],{\[Nu]}]],
+	NM[FieldStrengthTensor[{Global`\[Mu]},QuantumField[Particle[Photon],{Global`\[Nu]}]],
 	UQuarkChargeMatrix,
-	CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Nu]}]]]+
+	CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Nu]}]]]+
 
-	NM[FieldStrengthTensor[{\[Mu]},QuantumField[Particle[Photon],{\[Nu]}]],
+	NM[FieldStrengthTensor[{Global`\[Mu]},QuantumField[Particle[Photon],{Global`\[Nu]}]],
 	UQuarkChargeMatrix,
-	Adjoint[CDr[MM,{\[Mu]}]],CDr[MM,{\[Nu]}]] ]+
+	Adjoint[CDr[MM,{Global`\[Mu]}]],CDr[MM,{Global`\[Nu]}]] ]+
 
 	L10[0]*
 	UTrace[
-	NM[FieldStrengthTensor[{\[Mu]},QuantumField[Particle[Photon],{\[Nu]}]],
+	NM[FieldStrengthTensor[{Global`\[Mu]},QuantumField[Particle[Photon],{Global`\[Nu]}]],
 	UQuarkChargeMatrix,MM,
-	FieldStrengthTensor[{\[Mu]},QuantumField[Particle[Photon],{\[Nu]}]],
+	FieldStrengthTensor[{Global`\[Mu]},QuantumField[Particle[Photon],{Global`\[Nu]}]],
 	UQuarkChargeMatrix,Adjoint[MM]] ]+
 
 	H1[0]*
 	2*UTrace[
-	NM[FieldStrengthTensor[{\[Mu]},QuantumField[Particle[Photon],{\[Nu]}]],
+	NM[FieldStrengthTensor[{Global`\[Mu]},QuantumField[Particle[Photon],{Global`\[Nu]}]],
 	UQuarkChargeMatrix,
-	FieldStrengthTensor[{\[Mu]},QuantumField[Particle[Photon],{\[Nu]}]],
+	FieldStrengthTensor[{Global`\[Mu]},QuantumField[Particle[Photon],{Global`\[Nu]}]],
 	UQuarkChargeMatrix] ]+
 
 	H2[0]*
@@ -219,7 +219,7 @@ $Lagrangians = Union[$Lagrangians,{ChPTPhoton2[4]}];
 FieldsSet[ChPTPhoton2[4]] :=
 	{IsoVector[
 	QuantumField[Particle[Pion,RenormalizationState[0]]],
-	QuantumField[Particle[Photon,RenormalizationState[0]],LorentzIndex[\[Mu]]]
+	QuantumField[Particle[Photon,RenormalizationState[0]],LorentzIndex[Global`\[Mu]]]
 	]};
 
 End[]

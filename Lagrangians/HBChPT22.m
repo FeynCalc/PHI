@@ -63,8 +63,8 @@ GAV = CouplingConstant[HBChPT2[2]];
 Lagrangian[HBChPT2[2]] :=
 	I*(UDot[UVector[
 	DiracBar[QuantumField[Particle[Nucleon]]]],
-	DiracMatrix[LorentzIndex[\[Mu]]],
-	CDr[UVector[QuantumField[Particle[Nucleon]]],{\[Mu]}]])-
+	DiracMatrix[LorentzIndex[Global`\[Mu]]],
+	CDr[UVector[QuantumField[Particle[Nucleon]]],{Global`\[Mu]}]])-
 
 
 	ParticleMass[Nucleon]*
@@ -75,7 +75,7 @@ Lagrangian[HBChPT2[2]] :=
 	CouplingConstant[
 	HBChPT2[2],RenormalizationState[0]]/2*
 	(UDot[UVector[DiracBar[QuantumField[Particle[Nucleon]]]],
-	DiracMatrix[LorentzIndex[\[Mu]]],USmall[\[Mu]],
+	DiracMatrix[LorentzIndex[Global`\[Mu]]],USmall[Global`\[Mu]],
 	UVector[QuantumField[Particle[Nucleon]]]]);
 
 (* ------------------------------------------------------------------ *)

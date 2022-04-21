@@ -81,11 +81,11 @@ UVector[QuantumField[Particle[Nucleon]]]]);*)
 
 (* Paul's lagrangian. F.Orellana *)
 Lagrangian[BChPT2[2]] :=
-	UTrace[NM[USmall[\[Mu]],USmall[\[Nu]]]]*
+	UTrace[NM[USmall[Global`\[Mu]],USmall[Global`\[Nu]]]]*
 	(UDot[UVector[DiracBar[QuantumField[Particle[Nucleon]]]],
-	CNDr[CNDr[UVector[QuantumField[Particle[Nucleon]]],{\[Nu]}],{\[Mu]}]]+
+	CNDr[CNDr[UVector[QuantumField[Particle[Nucleon]]],{Global`\[Nu]}],{Global`\[Mu]}]]+
 	Adjoint[UDot[UVector[DiracBar[QuantumField[Particle[Nucleon]]]],
-	CNDr[CNDr[UVector[QuantumField[Particle[Nucleon]]],{\[Nu]}],{\[Mu]}]]]);
+	CNDr[CNDr[UVector[QuantumField[Particle[Nucleon]]],{Global`\[Nu]}],{Global`\[Mu]}]]]);
 
 (* ------------------------------------------------------------------ *)
 

@@ -86,7 +86,7 @@ SubsuperscriptBox[MakeBoxes[StyleForm["c",FontSlant->"Italic"]][[1]],
 Lagrangian[ChPTWS3[2]] :=
 	C2*UTrace[ NM[QuantumField[Particle[Scalar[1]]],
 				UGeneratorMatrix[6],
-				Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ] +
+				Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ] +
 
 	C5*UTrace[ NM[QuantumField[Particle[Scalar[1]]],
 				UGeneratorMatrix[6], Adjoint[MM], UChiMatrix]+

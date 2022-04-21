@@ -84,7 +84,7 @@ SubsuperscriptBox[MakeBoxes[StyleForm["c",FontSlant->"Italic"]][[1]],
 
 Lagrangian[ChPTW3[2]] :=
 	C2*UTrace[ NM[UGeneratorMatrix[6],
-			Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ] +
+			Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ] +
 
 	C5*UTrace[ NM[UGeneratorMatrix[6], Adjoint[MM], UChiMatrix]+
 			NM[UGeneratorMatrix[6], Adjoint[UChiMatrix], MM] ];

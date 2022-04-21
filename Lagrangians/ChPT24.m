@@ -152,23 +152,23 @@ RenormalizationCoefficients[ChPT2[4]] :=
 
 Lagrangian[ChPT2[4]] :=
 	L1[0]*
-	NM[ UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]]],
-		UTrace[ NM[CDr[MM,{\[Nu]}],Adjoint[CDr[MM,{\[Nu]}]]] ] ]+
+	NM[ UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]]],
+		UTrace[ NM[CDr[MM,{Global`\[Nu]}],Adjoint[CDr[MM,{Global`\[Nu]}]]] ] ]+
 
 	L2[0]*
-	NM[ UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Nu]}]]] ],
-		UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Nu]}]]] ] ]+
+	NM[ UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Nu]}]]] ],
+		UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Nu]}]]] ] ]+
 
 	L3[0]*
-	UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]],
-			CDr[MM,{\[Nu]}],Adjoint[CDr[MM,{\[Nu]}]]] ]+
+	UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]],
+			CDr[MM,{Global`\[Nu]}],Adjoint[CDr[MM,{Global`\[Nu]}]]] ]+
 
 	L4[0]*
-	NM[ UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]]],
+	NM[ UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]]],
 		UTrace[ NM[UChiMatrix,Adjoint[MM]]+NM[MM,Adjoint[UChiMatrix]] ] ]+
 
 	L5[0]*
-	UTrace[ NM[NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]],
+	UTrace[ NM[NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]],
 			NM[UChiMatrix,Adjoint[MM]]+NM[MM,Adjoint[UChiMatrix]]] ]+
 
 	L6[0]*
@@ -184,18 +184,18 @@ Lagrangian[ChPT2[4]] :=
 			NM[MM,Adjoint[UChiMatrix],MM,Adjoint[UChiMatrix]] ]+
 
 	L9[0]*I*
-	UTrace[ NM[FST[LeftComponent[0],{\[Mu]},{\[Nu]}],
-			CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Nu]}]]]+
-			NM[FST[RightComponent[0],{\[Mu]},{\[Nu]}],
-			Adjoint[CDr[MM,{\[Mu]}]],CDr[MM,{\[Nu]}]] ]+
+	UTrace[ NM[FST[LeftComponent[0],{Global`\[Mu]},{Global`\[Nu]}],
+			CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Nu]}]]]+
+			NM[FST[RightComponent[0],{Global`\[Mu]},{Global`\[Nu]}],
+			Adjoint[CDr[MM,{Global`\[Mu]}]],CDr[MM,{Global`\[Nu]}]] ]+
 
 	L10[0]*
-	UTrace[ NM[FST[LeftComponent[0],{\[Mu]},{\[Nu]}],MM,
-			FST[RightComponent[0],{\[Mu]},{\[Nu]}],Adjoint[MM]] ]+
+	UTrace[ NM[FST[LeftComponent[0],{Global`\[Mu]},{Global`\[Nu]}],MM,
+			FST[RightComponent[0],{Global`\[Mu]},{Global`\[Nu]}],Adjoint[MM]] ]+
 
 	H1[0]*
-	UTrace[ NM[FST[LeftComponent[0],{\[Mu]},{\[Nu]}],FST[LeftComponent[0],{\[Mu]},{\[Nu]}]]+
-			NM[FST[RightComponent[0],{\[Mu]},{\[Nu]}],FST[RightComponent[0],{\[Mu]},{\[Nu]}]] ]+
+	UTrace[ NM[FST[LeftComponent[0],{Global`\[Mu]},{Global`\[Nu]}],FST[LeftComponent[0],{Global`\[Mu]},{Global`\[Nu]}]]+
+			NM[FST[RightComponent[0],{Global`\[Mu]},{Global`\[Nu]}],FST[RightComponent[0],{Global`\[Mu]},{Global`\[Nu]}]] ]+
 
 	H2[0]*
 	UTrace[ NM[Adjoint[UChiMatrix],UChiMatrix] ];

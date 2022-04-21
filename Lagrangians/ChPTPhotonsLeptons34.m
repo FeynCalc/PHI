@@ -312,23 +312,23 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 
 (* p^4 *)
 	L1[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ],
-		UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ] ] +
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ],
+		UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ] ] +
 
 	L2[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Nu]}]] ],
-		UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Nu]}]] ] ] +
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Nu]}]] ],
+		UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Nu]}]] ] ] +
 
 	L3[0]*
-	UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}],
-								Adjoint[CDr[MM,{\[Nu]}]], CDr[MM,{\[Nu]}]] ] +
+	UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}],
+								Adjoint[CDr[MM,{Global`\[Nu]}]], CDr[MM,{Global`\[Nu]}]] ] +
 
 	L4[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ],
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ],
 		UTrace[ NM[Adjoint[UChiMatrix],MM] + NM[UChiMatrix, Adjoint[MM]] ] ] +
 
 	L5[0]*
-	UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}],
+	UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}],
 							NM[ Adjoint[UChiMatrix],MM] + NM[Adjoint[MM], UChiMatrix] ] ] +
 
 	L6[0]*
@@ -344,15 +344,15 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 				NM[UChiMatrix, Adjoint[MM], UChiMatrix, Adjoint[MM]]] -
 
 	L9[0]*I*
-	UTrace[ NM[CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Nu]}]], GRight[\[Mu],\[Nu]]] +
-			NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Nu]}], GLeft[\[Mu],\[Nu]]] ] +
+	UTrace[ NM[CDr[MM,{Global`\[Mu]}], Adjoint[CDr[MM,{Global`\[Nu]}]], GRight[Global`\[Mu],Global`\[Nu]]] +
+			NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Nu]}], GLeft[Global`\[Mu],Global`\[Nu]]] ] +
 
 	L10[0]*
-	UTrace[ NM[GRight[\[Mu],\[Nu]], MM, GLeft[\[Mu],\[Nu]], Adjoint[MM]] ] +
+	UTrace[ NM[GRight[Global`\[Mu],Global`\[Nu]], MM, GLeft[Global`\[Mu],Global`\[Nu]], Adjoint[MM]] ] +
 
 	H1[0]*
-	UTrace[ NM[GRight[\[Mu],\[Nu]], GRight[\[Mu],\[Nu]]] +
-				NM[GLeft[\[Mu],\[Nu]], GLeft[\[Mu],\[Nu]]] ] +
+	UTrace[ NM[GRight[Global`\[Mu],Global`\[Nu]], GRight[Global`\[Mu],Global`\[Nu]]] +
+				NM[GLeft[Global`\[Mu],Global`\[Nu]], GLeft[Global`\[Mu],Global`\[Nu]]] ] +
 
 	H2[0]*
 	UTrace[ NM[Adjoint[UChiMatrix], UChiMatrix] ] +
@@ -362,31 +362,31 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 	DecayConstant[PhiMeson]^2*(
 
 	K1[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ],
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ],
 		UTrace[ NMPower[QQ, 2] ] ] +
 
 	K2[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ],
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ],
 		UTrace[ NM[QQ, MM, QQ, Adjoint[MM]] ] ] +
 
 	K3[0]*
-	(NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ],
-		UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ] ] +
-	NM[ UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ],
-		UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ] ])+
+	(NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], QQ, MM] ],
+		UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], QQ, MM] ] ] +
+	NM[ UTrace[ NM[CDr[MM,{Global`\[Mu]}], QQ, Adjoint[MM]] ],
+		UTrace[ NM[CDr[MM,{Global`\[Mu]}], QQ, Adjoint[MM]] ] ])+
 
 	K4[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ],
-		UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ] ] +
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], QQ, MM] ],
+		UTrace[ NM[CDr[MM,{Global`\[Mu]}], QQ, Adjoint[MM]] ] ] +
 
 	K5[0]*
-	UTrace[ NM[NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]]+
-				NM[ CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Mu]}]]],
+	UTrace[ NM[NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]]+
+				NM[ CDr[MM,{Global`\[Mu]}], Adjoint[CDr[MM,{Global`\[Mu]}]]],
 			NMPower[QQ, 2]]  ] +
 
 	K6[0]*
-	UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}], QQ, Adjoint[MM], QQ, MM] +
-				NM[CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Mu]}]], QQ, MM, QQ, Adjoint[MM]]] +
+	UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}], QQ, Adjoint[MM], QQ, MM] +
+				NM[CDr[MM,{Global`\[Mu]}], Adjoint[CDr[MM,{Global`\[Mu]}]], QQ, MM, QQ, Adjoint[MM]]] +
 
 	K7[0]*
 	NM[ UTrace[ NM[Adjoint[UChiMatrix], MM] + NM[Adjoint[MM], UChiMatrix] ],
@@ -414,26 +414,26 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 			QQ, MM, QQ,Adjoint[MM] ] ] +
 
 	K12[0]*
-	UTrace[ NM[ Adjoint[CDr[MM,{\[Mu]}]],
-			NM[CQRight[\[Mu]], QQ] -
-			NM[QQ, CQRight[\[Mu]]], MM ] +
-			NM[ CDr[MM,{\[Mu]}],
-			NM[CQLeft[\[Mu]], QQ] -
-			NM[QQ, CQLeft[\[Mu]]], Adjoint[MM] ] ] +
+	UTrace[ NM[ Adjoint[CDr[MM,{Global`\[Mu]}]],
+			NM[CQRight[Global`\[Mu]], QQ] -
+			NM[QQ, CQRight[Global`\[Mu]]], MM ] +
+			NM[ CDr[MM,{Global`\[Mu]}],
+			NM[CQLeft[Global`\[Mu]], QQ] -
+			NM[QQ, CQLeft[Global`\[Mu]]], Adjoint[MM] ] ] +
 
 	K13[0]*
-	UTrace[ NM[ CQRight[\[Mu]], MM, CQLeft[\[Mu]], Adjoint[MM] ] ] +
+	UTrace[ NM[ CQRight[Global`\[Mu]], MM, CQLeft[Global`\[Mu]], Adjoint[MM] ] ] +
 
 	K14[0]*
-	UTrace[ NM[ CQRight[\[Mu]], CQRight[\[Mu]] ] +
-			NM[ CQLeft[\[Mu]], CQLeft[\[Mu]] ] ]+
+	UTrace[ NM[ CQRight[Global`\[Mu]], CQRight[Global`\[Mu]] ] +
+			NM[ CQLeft[Global`\[Mu]], CQLeft[Global`\[Mu]] ] ]+
 
 	(*Tentative correction of Urech*)
 	K19[0]*
-	UTrace[ NM[ Adjoint[CDr[MM,{\[Mu]}]],
-			QQ, MM, CQLeft[\[Mu]] ] +
-			NM[CDr[MM,{\[Mu]}],
-			QQ, Adjoint[MM], CQRight[\[Mu]] ] ]
+	UTrace[ NM[ Adjoint[CDr[MM,{Global`\[Mu]}]],
+			QQ, MM, CQLeft[Global`\[Mu]] ] +
+			NM[CDr[MM,{Global`\[Mu]}],
+			QQ, Adjoint[MM], CQRight[Global`\[Mu]] ] ]
 
 	) +
 
@@ -458,25 +458,25 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 
 	K18[0]*
 	UTrace[NMPower[QQ,2]]*
-	NM[FieldStrengthTensor[{\[Mu]}, QuantumField[Particle[Photon],LorentzIndex[\[Nu]]]],
-	FieldStrengthTensor[{\[Mu]}, QuantumField[Particle[Photon],LorentzIndex[\[Nu]]]]]+
+	NM[FieldStrengthTensor[{Global`\[Mu]}, QuantumField[Particle[Photon],LorentzIndex[Global`\[Nu]]]],
+	FieldStrengthTensor[{Global`\[Mu]}, QuantumField[Particle[Photon],LorentzIndex[Global`\[Nu]]]]]+
 
 	(* Lepton terms *)
 	CouplingConstant[QED[1]]^2*
 	(
 	XX1[0]*DecayConstant[PhiMeson]^2*
 	NM[DOT[DiracBar[QuantumField[Particle[Lepton],SUNIndex[i]]],
-	DiracMatrix[LorentzIndex[\[Mu]]],
+	DiracMatrix[LorentzIndex[Global`\[Mu]]],
 	DiracMatrix[7],
 	QuantumField[Particle[Neutrino],SUNIndex[i]]],
-	UTrace[NM[USmall[\[Mu]],UAntiCommutator[QQ,UChiralSpurionLeft1Matrix]]]]+
+	UTrace[NM[USmall[Global`\[Mu]],UAntiCommutator[QQ,UChiralSpurionLeft1Matrix]]]]+
 
 	XX2[0]*DecayConstant[PhiMeson]^2*
 	NM[DOT[DiracBar[QuantumField[Particle[Lepton],SUNIndex[i]]],
-	DiracMatrix[LorentzIndex[\[Mu]]],
+	DiracMatrix[LorentzIndex[Global`\[Mu]]],
 	DiracMatrix[7],
 	QuantumField[Particle[Neutrino],SUNIndex[i]]],
-	UTrace[NM[USmall[\[Mu]],UCommutator[QQ,UChiralSpurionLeft1Matrix]]]]+
+	UTrace[NM[USmall[Global`\[Mu]],UCommutator[QQ,UChiralSpurionLeft1Matrix]]]]+
 
 	XX3[0]*DecayConstant[PhiMeson]^2*
 	ParticleMass[Lepton,SUNIndex[i]]*
@@ -487,25 +487,25 @@ Lagrangian[ChPTPhotonsLeptons3[4]] :=
 
 	XX4[0]*DecayConstant[PhiMeson]^2*
 	I*NM[DOT[DiracBar[QuantumField[Particle[Lepton],SUNIndex[i]]],
-	DiracMatrix[LorentzIndex[\[Mu]]],
+	DiracMatrix[LorentzIndex[Global`\[Mu]]],
 	DiracMatrix[7],
 	QuantumField[Particle[Neutrino],SUNIndex[i]]],
-	UTrace[NM[UChiralSpurionLeft1Matrix,CQLeft[\[Mu]]]]]+
+	UTrace[NM[UChiralSpurionLeft1Matrix,CQLeft[Global`\[Mu]]]]]+
 
 	XX5[0]*DecayConstant[PhiMeson]^2*
 	I*NM[DOT[DiracBar[QuantumField[Particle[Lepton],SUNIndex[i]]],
-	DiracMatrix[LorentzIndex[\[Mu]]],
+	DiracMatrix[LorentzIndex[Global`\[Mu]]],
 	DiracMatrix[7],
 	QuantumField[Particle[Neutrino],SUNIndex[i]]],
-	UTrace[NM[UChiralSpurionLeft1Matrix,CQRight[\[Mu]]]]]+
+	UTrace[NM[UChiralSpurionLeft1Matrix,CQRight[Global`\[Mu]]]]]+
 
 	XX6[0]*
 	DOT[DiracBar[QuantumField[Particle[Lepton],SUNIndex[i]]],
-	DiracMatrix[LorentzIndex[\[Mu]]],
-	(I*QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+	DiracMatrix[LorentzIndex[Global`\[Mu]]],
+	(I*QuantumField[FCPartialD[LorentzIndex[Global`\[Mu]]],
 	Particle[Lepton],SUNIndex[i]]+
 	CouplingConstant[QED[1]]*
-	DOT[QuantumField[Particle[Photon],LorentzIndex[\[Mu]]],
+	DOT[QuantumField[Particle[Photon],LorentzIndex[Global`\[Mu]]],
 	QuantumField[Particle[Lepton],SUNIndex[i]]])]+
 
 	XX7[0]*

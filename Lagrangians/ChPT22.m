@@ -1,3 +1,5 @@
+(* ::Package:: *)
+
 (* *************************************************************** *)
 (*                                                                 *)
 (*                      ChPT22                                     *)
@@ -45,7 +47,7 @@ Begin["`ChPT22`Private`"]
 Lagrangian[ChPT2[2]] :=
 	1/4*DecayConstant[Pion]^2*
 
-	(UTrace[ NM[CDr[MM, {\[Mu]}],Adjoint[CDr[MM, {\[Mu]}]]] ] +
+	(UTrace[ NM[CDr[MM, {Global`\[Mu]}],Adjoint[CDr[MM, {Global`\[Mu]}]]] ] +
 
 	UTrace[ NM[UChiMatrix, Adjoint[MM]]+NM[MM, Adjoint[UChiMatrix]] ]);
 

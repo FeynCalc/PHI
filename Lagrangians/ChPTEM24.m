@@ -157,32 +157,32 @@ Lagrangian[ChPTEM2[4]] :=
 	DecayConstant[Pion]^2*
 	NM[UTrace[ NM[UMatrix[UChiralSpurion],MM,
 			UMatrix[UChiralSpurion],Adjoint[MM]]],
-	UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]] ]]+
+	UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]] ]]+
 
 	K3[0]*
 	DecayConstant[Pion]^2*
-	(NMPower[UTrace[ NM[Adjoint[MM],CDr[MM,{\[Mu]}],UMatrix[UChiralSpurion]] ],2] +
-	NMPower[UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[MM],UMatrix[UChiralSpurion]] ],2])+
+	(NMPower[UTrace[ NM[Adjoint[MM],CDr[MM,{Global`\[Mu]}],UMatrix[UChiralSpurion]] ],2] +
+	NMPower[UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[MM],UMatrix[UChiralSpurion]] ],2])+
 
 	K4[0]*
 	DecayConstant[Pion]^2*
-	NM[UTrace[ NM[Adjoint[MM],CDr[MM,{\[Mu]}],UMatrix[UChiralSpurion]] ],
-	UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[MM],UMatrix[UChiralSpurion]] ]]+
+	NM[UTrace[ NM[Adjoint[MM],CDr[MM,{Global`\[Mu]}],UMatrix[UChiralSpurion]] ],
+	UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[MM],UMatrix[UChiralSpurion]] ]]+
 
 	K5[0]*
 	DecayConstant[Pion]^2*
-	UTrace[NM[(NM[UMatrix[UChiralSpurion], CDr[UMatrix[UChiralSpurion],{\[Mu]}]]-
-			NM[CDr[UMatrix[UChiralSpurion],{\[Mu]}], UMatrix[UChiralSpurion]]),
-			Adjoint[MM], CDr[MM,{\[Mu]}]] -
+	UTrace[NM[(NM[UMatrix[UChiralSpurion], CDr[UMatrix[UChiralSpurion],{Global`\[Mu]}]]-
+			NM[CDr[UMatrix[UChiralSpurion],{Global`\[Mu]}], UMatrix[UChiralSpurion]]),
+			Adjoint[MM], CDr[MM,{Global`\[Mu]}]] -
 
-		NM[(NM[UMatrix[UChiralSpurion], CDr[UMatrix[UChiralSpurion],{\[Mu]}]]-
-			NM[CDr[UMatrix[UChiralSpurion],{\[Mu]}], UMatrix[UChiralSpurion]]),
-			CDr[MM,{\[Mu]}], Adjoint[MM]] ]+
+		NM[(NM[UMatrix[UChiralSpurion], CDr[UMatrix[UChiralSpurion],{Global`\[Mu]}]]-
+			NM[CDr[UMatrix[UChiralSpurion],{Global`\[Mu]}], UMatrix[UChiralSpurion]]),
+			CDr[MM,{Global`\[Mu]}], Adjoint[MM]] ]+
 
 	K6[0]*
 	DecayConstant[Pion]^2*
-	UTrace[NM[CDr[UMatrix[UChiralSpurion],{\[Mu]}], MM,
-			CDr[UMatrix[UChiralSpurion],{\[Mu]}], Adjoint[MM]] ]+
+	UTrace[NM[CDr[UMatrix[UChiralSpurion],{Global`\[Mu]}], MM,
+			CDr[UMatrix[UChiralSpurion],{Global`\[Mu]}], Adjoint[MM]] ]+
 
 	K7[0]*
 	DecayConstant[Pion]^2*
@@ -204,7 +204,7 @@ Lagrangian[ChPTEM2[4]] :=
 	K10[0]*
 	DecayConstant[Pion]^2*
 	NM[UTrace[ NMPower[UMatrix[UChiralSpurion], 2] ],
-	UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]] ]]+
+	UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]] ]]+
 
 	K11[0]*
 	DecayConstant[Pion]^2*
@@ -213,10 +213,10 @@ Lagrangian[ChPTEM2[4]] :=
 
 	K12[0]*
 	DecayConstant[Pion]^2*
-	UTrace[ NM[CDr[UMatrix[UChiralSpurionRight], {\[Mu]}],
-			CDr[UMatrix[UChiralSpurionRight], {\[Mu]}] ] +
-			NM[CDr[UMatrix[UChiralSpurionLeft], {\[Mu]}],
-			CDr[UMatrix[UChiralSpurionLeft], {\[Mu]}] ] ]+
+	UTrace[ NM[CDr[UMatrix[UChiralSpurionRight], {Global`\[Mu]}],
+			CDr[UMatrix[UChiralSpurionRight], {Global`\[Mu]}] ] +
+			NM[CDr[UMatrix[UChiralSpurionLeft], {Global`\[Mu]}],
+			CDr[UMatrix[UChiralSpurionLeft], {Global`\[Mu]}] ] ]+
 
 	K13[0]*
 	DecayConstant[Pion]^4*
@@ -232,8 +232,8 @@ Lagrangian[ChPTEM2[4]] :=
 
 	K15[0]*
 	UTrace[NMPower[UMatrix[UChiralSpurion],2]]*
-	NM[FieldStrengthTensor[{\[Mu]}, QuantumField[Particle[Photon],{\[Nu]}]],
-	FieldStrengthTensor[{\[Mu]}, QuantumField[Particle[Photon],{\[Nu]}]]];
+	NM[FieldStrengthTensor[{Global`\[Mu]}, QuantumField[Particle[Photon],{Global`\[Nu]}]],
+	FieldStrengthTensor[{Global`\[Mu]}, QuantumField[Particle[Photon],{Global`\[Nu]}]]];
 
 
 (* ---------------------------------------------------------------- *)

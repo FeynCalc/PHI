@@ -62,30 +62,30 @@ Lagrangian[
 ChPTPhotonsLeptons3[2]] :=
 	1/4*DecayConstant[PhiMeson]^2*
 
-	(UTrace[ NM[CDr[MM,{\[Mu]}],Adjoint[CDr[MM,{\[Mu]}]]] ] +
+	(UTrace[ NM[CDr[MM,{Global`\[Mu]}],Adjoint[CDr[MM,{Global`\[Mu]}]]] ] +
 
 	UTrace[ NM[UChiMatrix,Adjoint[MM]]+NM[Adjoint[UChiMatrix],MM] ]) -
 
 	1/4*
-	NM[FieldStrengthTensor[LorentzIndex[\[Mu]],
-	QuantumField[Particle[Photon],LorentzIndex[\[Nu]]]],
-	FieldStrengthTensor[LorentzIndex[\[Mu]],
-	QuantumField[Particle[Photon],LorentzIndex[\[Nu]]]]]-
+	NM[FieldStrengthTensor[LorentzIndex[Global`\[Mu]],
+	QuantumField[Particle[Photon],LorentzIndex[Global`\[Nu]]]],
+	FieldStrengthTensor[LorentzIndex[Global`\[Mu]],
+	QuantumField[Particle[Photon],LorentzIndex[Global`\[Nu]]]]]-
 
 	$Gauge/2*
-	FDr[QuantumField[Particle[Photon],LorentzIndex[\[Mu]]],{\[Mu]}]*
-	FDr[QuantumField[Particle[Photon],LorentzIndex[\[Nu]]],{\[Nu]}]+
+	FDr[QuantumField[Particle[Photon],LorentzIndex[Global`\[Mu]]],{Global`\[Mu]}]*
+	FDr[QuantumField[Particle[Photon],LorentzIndex[Global`\[Nu]]],{Global`\[Nu]}]+
 
 	CouplingConstant[ChPTPhotonsLeptons3[2]]*
 	UTrace[NM[UChiralSpurionRightMatrix,MM,
 	UChiralSpurionLeftMatrix,Adjoint[MM]]]+
 
 	DOT[DiracBar[QuantumField[Particle[Lepton],SUNIndex[i]]],
-	DiracMatrix[LorentzIndex[\[Mu]]],
-	(I*QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+	DiracMatrix[LorentzIndex[Global`\[Mu]]],
+	(I*QuantumField[FCPartialD[LorentzIndex[Global`\[Mu]]],
 	Particle[Lepton],SUNIndex[i]]+
 	CouplingConstant[QED[1]]*
-	DOT[QuantumField[Particle[Photon],LorentzIndex[\[Mu]]],
+	DOT[QuantumField[Particle[Photon],LorentzIndex[Global`\[Mu]]],
 	QuantumField[Particle[Lepton],SUNIndex[i]]])]-
 
 	ParticleMass[Lepton,SUNIndex[i]]*
@@ -93,9 +93,9 @@ ChPTPhotonsLeptons3[2]] :=
 	QuantumField[Particle[Lepton],SUNIndex[i]]]+
 
 	DOT[DiracBar[QuantumField[Particle[Neutrino],SUNIndex[i]]],
-	DiracMatrix[LorentzIndex[\[Mu]]],
+	DiracMatrix[LorentzIndex[Global`\[Mu]]],
 	DiracMatrix[6],
-	I*QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+	I*QuantumField[FCPartialD[LorentzIndex[Global`\[Mu]]],
 	Particle[Neutrino],SUNIndex[i]]];
 
 (* --------------------------------------------------------------- *)

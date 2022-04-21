@@ -106,18 +106,18 @@ Z3 = CouplingConstant[QED[2],3];
 
 Lagrangian[QED[2]] :=
 	-1/4*(Z3[0]-1)*
-	DOT[FieldStrengthTensor[LorentzIndex[\[Mu]],
-	QuantumField[Particle[Photon],LorentzIndex[\[Nu]]]],
-	FieldStrengthTensor[LorentzIndex[\[Mu]],
-	QuantumField[Particle[Photon],LorentzIndex[\[Nu]]]]]+
+	DOT[FieldStrengthTensor[LorentzIndex[Global`\[Mu]],
+	QuantumField[Particle[Photon],LorentzIndex[Global`\[Nu]]]],
+	FieldStrengthTensor[LorentzIndex[Global`\[Mu]],
+	QuantumField[Particle[Photon],LorentzIndex[Global`\[Nu]]]]]+
 
 	(Z2[0]-1)*
 	(DOT[
 	DiracBar[QuantumField[Particle[Electron]]],
-	DiracMatrix[LorentzIndex[\[Mu]]],
-	(I*QuantumField[FCPartialD[LorentzIndex[\[Mu]]],Particle[Electron]]+
+	DiracMatrix[LorentzIndex[Global`\[Mu]]],
+	(I*QuantumField[FCPartialD[LorentzIndex[Global`\[Mu]]],Particle[Electron]]+
 	CouplingConstant[QED[1]]*
-	DOT[QuantumField[Particle[Photon],LorentzIndex[\[Mu]]],
+	DOT[QuantumField[Particle[Photon],LorentzIndex[Global`\[Mu]]],
 	QuantumField[Particle[Electron]]])
 	]-
 
@@ -133,7 +133,7 @@ Lagrangian[QED[2]] :=
 
 FieldsSet[QED[2]] :=
 	{QuantumField[Particle[Electron,RenormalizationState[0]]],
-	QuantumField[Particle[Photon,RenormalizationState[0]],LorentzIndex[\[Mu]]]};
+	QuantumField[Particle[Photon,RenormalizationState[0]],LorentzIndex[Global`\[Mu]]]};
 
 $Lagrangians = Union[$Lagrangians,{QED[2]}];
 

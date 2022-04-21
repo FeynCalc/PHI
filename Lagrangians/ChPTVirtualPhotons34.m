@@ -258,23 +258,23 @@ Lagrangian[ChPTVirtualPhotons3[4]] :=
 
 (* p^4 *)
 	L1[0]/4*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ],
-		UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ] ] +
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ],
+		UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ] ] +
 
 	L2[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Nu]}]] ],
-		UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Nu]}]] ] ] +
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Nu]}]] ],
+		UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Nu]}]] ] ] +
 
 	L3[0]*
-	UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}],
-								Adjoint[CDr[MM,{\[Nu]}]], CDr[MM,{\[Nu]}]] ] +
+	UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}],
+								Adjoint[CDr[MM,{Global`\[Nu]}]], CDr[MM,{Global`\[Nu]}]] ] +
 
 	L4[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Nu]}]] ],
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Nu]}]] ],
 		UTrace[ NM[Adjoint[UChiMatrix],MM] + NM[UChiMatrix, Adjoint[MM]] ] ] +
 
 	L5[0]*
-	UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Nu]}],
+	UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Nu]}],
 							NM[ Adjoint[UChiMatrix],MM] + NM[UChiMatrix, Adjoint[MM]] ] ] +
 
 	L6[0]*
@@ -290,15 +290,15 @@ Lagrangian[ChPTVirtualPhotons3[4]] :=
 				NM[UChiMatrix, Adjoint[MM], UChiMatrix, Adjoint[MM]]] -
 
 	L9[0]*I*
-	UTrace[ NM[CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Nu]}]], GRight[\[Mu],\[Nu]]] +
-			NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Nu]}], GLeft[\[Mu],\[Nu]]] ] +
+	UTrace[ NM[CDr[MM,{Global`\[Mu]}], Adjoint[CDr[MM,{Global`\[Nu]}]], GRight[Global`\[Mu],Global`\[Nu]]] +
+			NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Nu]}], GLeft[Global`\[Mu],Global`\[Nu]]] ] +
 
 	L10[0]*
-	UTrace[ NM[GRight[\[Mu],\[Nu]], Adjoint[GLeft[\[Mu],\[Nu]]]] ] +
+	UTrace[ NM[GRight[Global`\[Mu],Global`\[Nu]], Adjoint[GLeft[Global`\[Mu],Global`\[Nu]]]] ] +
 
 	H1[0]*
-	UTrace[ NM[GRight[\[Mu],\[Nu]], GRight[\[Mu],\[Nu]]] +
-				NM[GLeft[\[Mu],\[Nu]], GLeft[\[Mu],\[Nu]]] ] +
+	UTrace[ NM[GRight[Global`\[Mu],Global`\[Nu]], GRight[Global`\[Mu],Global`\[Nu]]] +
+				NM[GLeft[Global`\[Mu],Global`\[Nu]], GLeft[Global`\[Mu],Global`\[Nu]]] ] +
 
 	H2[0]*
 	UTrace[ NM[Adjoint[UChiMatrix], UChiMatrix] ] +
@@ -311,31 +311,31 @@ Lagrangian[ChPTVirtualPhotons3[4]] :=
 	DecayConstant[PhiMeson]^2*(
 
 	K1[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ],
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ],
 		UTrace[ NMPower[QQ, 2] ] ] +
 
 	K2[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]] ],
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]] ],
 		UTrace[ NM[QQ, MM, QQ, Adjoint[MM]] ] ] +
 
 	K3[0]*
-	(NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ],
-		UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ] ] +
-	NM[ UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ],
-		UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ] ])+
+	(NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], QQ, MM] ],
+		UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], QQ, MM] ] ] +
+	NM[ UTrace[ NM[CDr[MM,{Global`\[Mu]}], QQ, Adjoint[MM]] ],
+		UTrace[ NM[CDr[MM,{Global`\[Mu]}], QQ, Adjoint[MM]] ] ])+
 
 	K4[0]*
-	NM[ UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], QQ, MM] ],
-		UTrace[ NM[CDr[MM,{\[Mu]}], QQ, Adjoint[MM]] ] ] +
+	NM[ UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], QQ, MM] ],
+		UTrace[ NM[CDr[MM,{Global`\[Mu]}], QQ, Adjoint[MM]] ] ] +
 
 	K5[0]*
-	UTrace[ NM[NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}]]+
-				NM[ CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Mu]}]]],
+	UTrace[ NM[NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}]]+
+				NM[ CDr[MM,{Global`\[Mu]}], Adjoint[CDr[MM,{Global`\[Mu]}]]],
 			NMPower[QQ, 2]]  ] +
 
 	K6[0]*
-	UTrace[ NM[Adjoint[CDr[MM,{\[Mu]}]], CDr[MM,{\[Mu]}], QQ, Adjoint[MM], QQ, MM] +
-				NM[CDr[MM,{\[Mu]}], Adjoint[CDr[MM,{\[Mu]}]], QQ, MM, QQ, Adjoint[MM]]] +
+	UTrace[ NM[Adjoint[CDr[MM,{Global`\[Mu]}]], CDr[MM,{Global`\[Mu]}], QQ, Adjoint[MM], QQ, MM] +
+				NM[CDr[MM,{Global`\[Mu]}], Adjoint[CDr[MM,{Global`\[Mu]}]], QQ, MM, QQ, Adjoint[MM]]] +
 
 	K7[0]*
 	NM[ UTrace[ NM[Adjoint[UChiMatrix], MM] + NM[Adjoint[MM], UChiMatrix] ],
@@ -363,26 +363,26 @@ Lagrangian[ChPTVirtualPhotons3[4]] :=
 			QQ, MM, QQ,Adjoint[MM] ] ] +
 
 	K12[0]*
-	UTrace[ NM[ Adjoint[CDr[MM,{\[Mu]}]],
-			NM[CQRight[\[Mu]], QQ] -
-			NM[QQ, CQRight[\[Mu]]], MM ] +
-			NM[ CDr[MM,{\[Mu]}],
-			NM[CQLeft[\[Mu]], QQ] -
-			NM[QQ, CQLeft[\[Mu]]], Adjoint[MM] ] ] +
+	UTrace[ NM[ Adjoint[CDr[MM,{Global`\[Mu]}]],
+			NM[CQRight[Global`\[Mu]], QQ] -
+			NM[QQ, CQRight[Global`\[Mu]]], MM ] +
+			NM[ CDr[MM,{Global`\[Mu]}],
+			NM[CQLeft[Global`\[Mu]], QQ] -
+			NM[QQ, CQLeft[Global`\[Mu]]], Adjoint[MM] ] ] +
 
 	K13[0]*
-	UTrace[ NM[ CQRight[\[Mu]], MM, CQLeft[\[Mu]], Adjoint[MM] ] ] +
+	UTrace[ NM[ CQRight[Global`\[Mu]], MM, CQLeft[Global`\[Mu]], Adjoint[MM] ] ] +
 
 	K14[0]*
-	UTrace[ NM[ CQRight[\[Mu]], CQRight[\[Mu]] ] +
-			NM[ CQLeft[\[Mu]], CQLeft[\[Mu]] ] ] +
+	UTrace[ NM[ CQRight[Global`\[Mu]], CQRight[Global`\[Mu]] ] +
+			NM[ CQLeft[Global`\[Mu]], CQLeft[Global`\[Mu]] ] ] +
 
 	(*Tentative correction of Urech*)
 	K19[0]*
-	UTrace[ NM[ Adjoint[CDr[MM,{\[Mu]}]],
-			QQ, MM, CQLeft[\[Mu]] ] +
-			NM[CDr[MM,{\[Mu]}],
-			QQ, Adjoint[MM], CQRight[\[Mu]] ] ]
+	UTrace[ NM[ Adjoint[CDr[MM,{Global`\[Mu]}]],
+			QQ, MM, CQLeft[Global`\[Mu]] ] +
+			NM[CDr[MM,{Global`\[Mu]}],
+			QQ, Adjoint[MM], CQRight[Global`\[Mu]] ] ]
 
 	) +
 
@@ -406,8 +406,8 @@ Lagrangian[ChPTVirtualPhotons3[4]] :=
 
 	K18[0]*
 	UTrace[NMPower[QQ,2]]*
-	NM[FieldStrengthTensor[{\[Mu]}, QuantumField[Particle[Photon],{\[Nu]}]],
-	FieldStrengthTensor[{\[Mu]}, QuantumField[Particle[Photon],{\[Nu]}]]];
+	NM[FieldStrengthTensor[{Global`\[Mu]}, QuantumField[Particle[Photon],{Global`\[Nu]}]],
+	FieldStrengthTensor[{Global`\[Mu]}, QuantumField[Particle[Photon],{Global`\[Nu]}]]];
 
 (* ---------------------------------------------------------------- *)
 
