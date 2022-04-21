@@ -5,12 +5,12 @@
 	Copyright (C) 2015-2018 Vladyslav Shtabovenko
 *)
 
-(* :Summary:  Unit tests for FeynOnium									*)
+(* :Summary:  Unit tests for Shared functions								*)
 
 (* ------------------------------------------------------------------------ *)
 
 
-If [!StringQ[FeynCalc`$FeynOniumDirectory],
+If [!StringQ[FeynCalc`$PHIDirectory],
 	BeginPackage["FeynCalc`"];
 	FCDeclareHeader@ToFileName[{$FeynCalcDirectory, "AddOns",
 	"FeynOnium"}, "FeynOnium.m"];
@@ -20,7 +20,7 @@ If [!StringQ[FeynCalc`$FeynOniumDirectory],
 ]
 
 ClearAll[tests];
-tests = FileNames["*.test",FileNameJoin[{$FeynOniumDirectory, "Tests", "Shared"}]]
+tests = FileNames["*.test",FileNameJoin[{$PHIDirectory, "Tests", "Shared"}]]
 Get/@tests;
 
 Map[Test[ToExpression[(#[[2]])],ToExpression[(#[[3]])],TestID->#[[1]]]&,
