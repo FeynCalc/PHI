@@ -610,7 +610,7 @@ UNucleonCharge::usage =
 UChiralSpurion::usage =
 "UMatrix[UChiralSpurion[]][x] represents some \
 spurion.  It should be defined in the model configuration files.  \
-Usually it is set the the quark charge matrix in the end.";
+Usually it is set to the quark charge matrix in the end.";
 
 UChiralSpurionLeft::usage =
 "UMatrix[UChiralSpurionLeft[]][x] represents some lefthanded \

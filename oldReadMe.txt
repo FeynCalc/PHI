@@ -12,7 +12,7 @@ the lightest 2 (or 3) quark masses and the external momenta.
 
 As of version 4.1.1 of FeynCalc, PHI is distributed with FeynCalc.
 A changelog and further information than given below can be found at
-http://www.feyncalc.org/phi/. Future changelogs will be given in in the
+http://www.feyncalc.org/phi/. Future changelogs will be given in the
 main FeynCalc readme file FCReadme.txt.
 
 

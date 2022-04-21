@@ -234,7 +234,7 @@ RenormalizationCoefficients[lag][[i]].";
 Renormalize::usage =
 "Renormalize[m,opts], where m is a counterterm amplitude, substitutes \
 coupling constants with the renormalized equivalents expressed in terms of \
-the the infinite quantity specified by the option InfinityFactor in opts.  \
+the infinite quantity specified by the option InfinityFactor in opts.  \
 The factors specified by the option RenormalizationCoefficientFunction are \
 used.    When the renormalized counterterm amplitude is added to the \
 corresponding loop amplitudes, the infinities should cancel.";
