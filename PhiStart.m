@@ -277,8 +277,6 @@ FeynArts`TheLabel[PseudoScalar0] :=
 
 (* Change a few FeynCalc options *)
 
-$FCS = Union[$FCS, {PMV}];
-
 FeynCalc`Lagrangian::usage =
 "Lagrangian[m[pars]] returns the raw form of the lagrangian of the model \
 m and with parameters pars (e.g. the dimension of the gauge group and the \
