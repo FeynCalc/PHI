@@ -1262,6 +1262,11 @@ UFPlus::usage =
 (Ecker, Kambor and Wyler (1992), CERN-TH.6610/92). \
 To evaluate use ArgumentsSupply.";
 
+CombinationLists::usage =
+"CombinationLists[l, n] returns a list of all possible sets containing n
+elements from the list l. (this function is probably in the combinatorics
+package, but we have enough in memory already)";
+
 Begin["`Package`"]
 End[]
 
@@ -2588,24 +2593,9 @@ SelfConjugation[$FermionHeads[_]] :=
 SelfConjugation[$ScalarHeads[_]] :=
 	True;
 
-(* --------------------------------------------------------------------- *)
-(*Functions in context FeynCalc`Private`*)
-
-BeginPackage["FeynCalc`"];
-
-(*CombinationLists[l, n] returns a list of all possible sets containing n
-elements from the list l. (this function is probably in the combinatorics
-package, but we have enough in memory already)*)
-
-Begin["`Private`"];
 
 CombinationLists[m_List, n_Integer] :=
 	Union[Select[Sort /@ Flatten[Outer[List, Sequence @@ Table[m, {n}]], n - 1], (Union[#] === #) &]];
-
-End[];
-EndPackage[];
-
-(* --------------------------------------------------------------------- *)
 
 
 Options[UGenerator] = {
@@ -5376,21 +5366,23 @@ IsoIndicesSupply[x_Plus] :=
 
 
 IsoIndicesSupply[aa_, (optss___Rule | optss___List)] :=
-	(
-	FCPrint[2,
-	"Starting with number ", $IsoIndicesCounter];
+	Block[{tmp},
+
+	FCPrint[2,	"Starting with number ", $IsoIndicesCounter];
 	iicintern = 0;
-	aa //.{
+	tmp = aa //.{
 		(c_?(!FreeQ[{#}, IsoDot[_, _], Infinity] &))^n_ :> (FCPrint[2, "Fixing powers"]; times1 @@ Table[c, {n}])
-	} /. IsoSymmetricCross -> isctemp //. {
-		(
-			FCPrint[2, "Recursively resolving iso-vector products"];
-			{indicesdotrule[optss], indicescrossrule[optss], indicessymmcrossrule[optss]}
-		) } /. {
+	};
+	tmp = tmp /. IsoSymmetricCross -> isctemp;
+	FCPrint[2, "Recursively resolving iso-vector products"];
+	tmp = tmp //. Join[{indicesdotrule[optss], indicescrossrule[optss], indicessymmcrossrule[optss]}];
+
+	tmp = tmp /. {
 		sunitemp -> SUNIndex,
 		supptemp -> id,
 		isctemp -> IsoSymmetricCross
-		} //. freeindicesrules0 /.
+		};
+	tmp = tmp //. freeindicesrules0 /.
 			If[ NumerateFree /. Flatten[{optss}] /. Options[IsoIndicesSupply],
 				FCPrint[2, "Non-contracted indices will be numerated"];
 				freeindicesrules1[optss],
@@ -5402,8 +5394,10 @@ IsoIndicesSupply[aa_, (optss___Rule | optss___List)] :=
 				{
 					Conjugate[a_Symbol][(SUNIndex | ExplicitSUNIndex)[i_]][x_Symbol] :> Conjugate[a[x][SUNIndex[i]](*[x]*)],
 					Conjugate[a_Symbol][(SUNIndex | ExplicitSUNIndex)[i_]] :> Conjugate[a[SUNIndex[i]]]
-				}
-	);
+				};
+	tmp
+	];
+
 
 
 (* Support functions for UIndicesSupply: *)

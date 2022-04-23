@@ -64,3 +64,1759 @@ DiagonalToU\[Rule]True,SUNN\[Rule]3],SUNN\[Rule]3]//Simplify",
 "{{ParticleMass[Fermion[14]], 0, 0}, {0, \
 ParticleMass[Fermion[13]], 0}, {0, 0, ParticleMass[Fermion[15]]}}"}
 })
+
+
+Tests`Shared`ArgumentsSupply =
+({
+{"fcstPHI-ArgumentsSupply-ID1",
+"ArgumentsSupply[(DecayConstant[
+	PseudoScalar[2]]^2*(UTrace1[NM[MM, Adjoint[UChiMatrix]]] +
+	UTrace1[NM[UChiMatrix, Adjoint[MM]]] +
+	UTrace1[NM[CovariantFieldDerivative[MM, {\[Mu]}],
+		Adjoint[CovariantFieldDerivative[MM, {\[Mu]}]]]]))/4, x,
+RenormalizationState[0], ExpansionOrder -> 4, DropOrder -> 4]",
+"1/4 DecayConstant[PseudoScalar[2],
+RenormalizationState[
+0]]^2 (UTrace1[
+	NM[(I DropFactor[PseudoScalar[2], RenormalizationState[0]] IsoDot[
+		IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]])/
+	DecayConstant[PseudoScalar[2],
+		RenormalizationState[
+		0]] - (DropFactor[PseudoScalar[2],
+		RenormalizationState[
+		0]]^2 (NM[
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]]] +
+		NM[IsoDot[
+			IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x],
+			IsoVector[UMatrix[UGenerator[]]]]]))/(2 DecayConstant[
+		PseudoScalar[2], RenormalizationState[0]]^2) +
+	1/2 I NM[
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[AxialVector[0], RenormalizationState[0]],
+			LorentzIndex[\[Mu]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]] +
+		IsoDot[IsoVector[
+			QuantumField[Particle[Vector[0], RenormalizationState[0]],
+			LorentzIndex[\[Mu]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]], (
+		I DropFactor[PseudoScalar[2],
+		RenormalizationState[0]] IsoDot[
+		IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]])/
+		DecayConstant[PseudoScalar[2],
+		RenormalizationState[
+		0]] - (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^2 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x],
+			IsoVector[UMatrix[UGenerator[]]]]])/(2 DecayConstant[
+			PseudoScalar[2],
+			RenormalizationState[0]]^2) - (I DropFactor[
+			PseudoScalar[2], RenormalizationState[0]]^3 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(6 DecayConstant[
+			PseudoScalar[2],
+			RenormalizationState[0]]^3) + (DropFactor[
+			PseudoScalar[2], RenormalizationState[0]]^4 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(24 DecayConstant[
+			PseudoScalar[2], RenormalizationState[0]]^4) +
+		UMatrix[UIdentity]] -
+	1/2 I NM[(
+		I DropFactor[PseudoScalar[2],
+		RenormalizationState[0]] IsoDot[
+		IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]])/
+		DecayConstant[PseudoScalar[2],
+		RenormalizationState[
+		0]] - (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^2 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(2 DecayConstant[
+			PseudoScalar[2],
+			RenormalizationState[0]]^2) - (I DropFactor[
+			PseudoScalar[2], RenormalizationState[0]]^3 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(6 DecayConstant[
+			PseudoScalar[2],
+			RenormalizationState[0]]^3) + (DropFactor[
+			PseudoScalar[2], RenormalizationState[0]]^4 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(24 DecayConstant[
+			PseudoScalar[2], RenormalizationState[0]]^4) +
+		UMatrix[UIdentity], -IsoDot[
+		IsoVector[
+			QuantumField[
+			Particle[AxialVector[0], RenormalizationState[0]],
+			LorentzIndex[\[Mu]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]] +
+		IsoDot[IsoVector[
+			QuantumField[Particle[Vector[0], RenormalizationState[0]],
+			LorentzIndex[\[Mu]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]]] - (I DropFactor[
+		PseudoScalar[2],
+		RenormalizationState[
+		0]]^3 (NM[
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]] +
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]]] +
+		NM[IsoDot[
+			IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]]))/(6 DecayConstant[
+		PseudoScalar[2], RenormalizationState[0]]^3) + (DropFactor[
+		PseudoScalar[2],
+		RenormalizationState[
+
+		0]]^4 (NM[
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]] +
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]]] +
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]]] +
+		NM[IsoDot[
+			IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]]))/(24 DecayConstant[
+		PseudoScalar[2],
+		RenormalizationState[
+
+		0]]^4), -((I DropFactor[PseudoScalar[2],
+			RenormalizationState[0]] IsoDot[
+			IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]])/
+		DecayConstant[PseudoScalar[2],
+		RenormalizationState[0]]) - (DropFactor[PseudoScalar[2],
+		RenormalizationState[
+		0]]^2 (NM[
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]]] +
+		NM[IsoDot[
+			IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]]))/(2 DecayConstant[
+		PseudoScalar[2], RenormalizationState[0]]^2) +
+	1/2 I NM[-IsoDot[
+		IsoVector[
+			QuantumField[
+			Particle[AxialVector[0], RenormalizationState[0]],
+			LorentzIndex[\[Mu]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]] +
+		IsoDot[IsoVector[
+			QuantumField[Particle[Vector[0], RenormalizationState[0]],
+			LorentzIndex[\[Mu]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]], -((
+		I DropFactor[PseudoScalar[2],
+			RenormalizationState[0]] IsoDot[
+			IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]])/
+		DecayConstant[PseudoScalar[2],
+		RenormalizationState[
+			0]]) - (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^2 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(2 DecayConstant[
+			PseudoScalar[2],
+			RenormalizationState[0]]^2) + (I DropFactor[
+			PseudoScalar[2], RenormalizationState[0]]^3 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(6 DecayConstant[
+			PseudoScalar[2],
+			RenormalizationState[0]]^3) + (DropFactor[
+			PseudoScalar[2], RenormalizationState[0]]^4 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(24 DecayConstant[
+			PseudoScalar[2], RenormalizationState[0]]^4) +
+		UMatrix[UIdentity]] -
+	1/2 I NM[-((
+		I DropFactor[PseudoScalar[2],
+			RenormalizationState[0]] IsoDot[
+			IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]])/
+		DecayConstant[PseudoScalar[2],
+		RenormalizationState[
+			0]]) - (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^2 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(2 DecayConstant[
+			PseudoScalar[2],
+			RenormalizationState[0]]^2) + (I DropFactor[
+			PseudoScalar[2], RenormalizationState[0]]^3 NM[
+
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(6 DecayConstant[
+			PseudoScalar[2],
+			RenormalizationState[0]]^3) + (DropFactor[
+			PseudoScalar[2], RenormalizationState[0]]^4 NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x],
+			IsoVector[UMatrix[UGenerator[]]]]])/(24 DecayConstant[
+			PseudoScalar[2], RenormalizationState[0]]^4) +
+		UMatrix[UIdentity],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[AxialVector[0], RenormalizationState[0]],
+			LorentzIndex[\[Mu]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]] +
+		IsoDot[IsoVector[
+			QuantumField[Particle[Vector[0], RenormalizationState[0]],
+			LorentzIndex[\[Mu]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]]] + (I DropFactor[
+		PseudoScalar[2],
+		RenormalizationState[
+		0]]^3 (NM[
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]] +
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]]] +
+		NM[IsoDot[
+			IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]]))/(6 DecayConstant[
+		PseudoScalar[2], RenormalizationState[0]]^3) + (DropFactor[
+		PseudoScalar[2],
+		RenormalizationState[
+		0]]^4 (NM[
+			NM[NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+
+				IsoDot[IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]] +
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]] +
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]]] +
+		NM[IsoDot[
+			IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]]))/(24 DecayConstant[
+		PseudoScalar[2], RenormalizationState[0]]^4)]] +
+2 QuarkCondensate[RenormalizationState[0]] UTrace1[
+	NM[(I DropFactor[PseudoScalar[2],
+		RenormalizationState[0]] IsoDot[
+		IsoVector[
+		QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]])/
+	DecayConstant[PseudoScalar[2],
+		RenormalizationState[
+		0]] - (DropFactor[PseudoScalar[2],
+		RenormalizationState[0]]^2 NM[
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]]])/(2 DecayConstant[
+		PseudoScalar[2],
+		RenormalizationState[0]]^2) - (I DropFactor[
+		PseudoScalar[2], RenormalizationState[0]]^3 NM[
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]]])/(6 DecayConstant[
+		PseudoScalar[2], RenormalizationState[0]]^3) + (DropFactor[
+		PseudoScalar[2], RenormalizationState[0]]^4 NM[
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(24 DecayConstant[
+		PseudoScalar[2], RenormalizationState[0]]^4) +
+	UMatrix[UIdentity],
+	IsoDot[IsoVector[
+		QuantumField[Particle[Scalar[2], RenormalizationState[0]]]][
+		x], IsoVector[UMatrix[UGenerator[]]]] + (
+	ParticleMass[PseudoScalar[2],
+		RenormalizationState[0]]^2 UMatrix[UIdentity])/(
+	2 QuarkCondensate[RenormalizationState[0]]) -
+	I (IsoDot[
+		IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[0], RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]] +
+		UMatrix[UIdentity] QuantumField[
+			Particle[PseudoScalar[0], RenormalizationState[0]],
+			ExplicitSUNIndex[0]][x]) +
+	UMatrix[UIdentity] QuantumField[
+		Particle[Scalar[2], RenormalizationState[0]],
+		ExplicitSUNIndex[0]][x]]] +
+2 QuarkCondensate[RenormalizationState[0]] UTrace1[
+	NM[IsoDot[
+		IsoVector[
+		QuantumField[Particle[Scalar[2], RenormalizationState[0]]]][
+		x], IsoVector[UMatrix[UGenerator[]]]] + (
+	ParticleMass[PseudoScalar[2],
+		RenormalizationState[0]]^2 UMatrix[UIdentity])/(
+	2 QuarkCondensate[RenormalizationState[0]]) +
+	I (IsoDot[
+		IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[0], RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]] +
+		UMatrix[UIdentity] QuantumField[
+			Particle[PseudoScalar[0], RenormalizationState[0]],
+			ExplicitSUNIndex[0]][x]) +
+	UMatrix[
+		UIdentity] QuantumField[
+		Particle[Scalar[2], RenormalizationState[0]],
+		ExplicitSUNIndex[0]][x], -((
+		I DropFactor[PseudoScalar[2], RenormalizationState[0]] IsoDot[
+		IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+		IsoVector[UMatrix[UGenerator[]]]])/
+		DecayConstant[PseudoScalar[2],
+		RenormalizationState[
+		0]]) - (DropFactor[PseudoScalar[2],
+		RenormalizationState[0]]^2 NM[
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]]])/(2 DecayConstant[
+		PseudoScalar[2],
+		RenormalizationState[0]]^2) + (I DropFactor[
+		PseudoScalar[2], RenormalizationState[0]]^3 NM[
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]]])/(6 DecayConstant[
+		PseudoScalar[2], RenormalizationState[0]]^3) + (DropFactor[
+		PseudoScalar[2], RenormalizationState[0]]^4 NM[
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[
+			UMatrix[UGenerator[]]]]])/(24 DecayConstant[
+		PseudoScalar[2], RenormalizationState[0]]^4) +
+	UMatrix[UIdentity]]])"}
+})
+
+
+Tests`Shared`DiscardTerms =
+({
+{"fcstPHI-DiscardTerms-ID1", "DiscardTerms[(DecayConstant[PseudoScalar[2],
+	RenormalizationState[0]]^2*(UTrace1[
+	NM[(I*DropFactor[PseudoScalar[2], RenormalizationState[0]]*
+			IsoDot[IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]])/
+		DecayConstant[PseudoScalar[2],
+		RenormalizationState[
+			0]] - (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^2*(NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]] +
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]]))/(2*
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[0]]^2) + (I/2)*
+		NM[IsoDot[
+			IsoVector[
+			QuantumField[
+				Particle[AxialVector[0], RenormalizationState[0]],
+				LorentzIndex[\[Mu]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]] +
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[Vector[0], RenormalizationState[0]],
+				LorentzIndex[\[Mu]]]][x],
+			IsoVector[
+			UMatrix[UGenerator[]]]], (I*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]*
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]])/
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+			0]] - (DropFactor[PseudoScalar[2],
+				RenormalizationState[0]]^2*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/(2*
+			DecayConstant[PseudoScalar[2],
+				RenormalizationState[0]]^2) - ((I/6)*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]^3*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+				0]]^3 + (DropFactor[PseudoScalar[2],
+				RenormalizationState[0]]^4*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/(24*
+			DecayConstant[PseudoScalar[2],
+				RenormalizationState[0]]^4) +
+			UMatrix[UIdentity]] - (I/2)*
+		NM[(I*DropFactor[PseudoScalar[2], RenormalizationState[0]]*
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]])/
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+			0]] - (DropFactor[PseudoScalar[2],
+				RenormalizationState[0]]^2*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/(2*
+			DecayConstant[PseudoScalar[2],
+				RenormalizationState[0]]^2) - ((I/6)*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]^3*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+				0]]^3 + (DropFactor[PseudoScalar[2],
+				RenormalizationState[0]]^4*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/(24*
+			DecayConstant[PseudoScalar[2],
+				RenormalizationState[0]]^4) +
+			UMatrix[
+			UIdentity], -IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[AxialVector[0], RenormalizationState[0]],
+				LorentzIndex[\[Mu]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]] +
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[Vector[0], RenormalizationState[0]],
+				LorentzIndex[\[Mu]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]] - ((I/6)*
+			DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^3*(NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			NM[IsoDot[
+				IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+					QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]] +
+				NM[IsoDot[
+				IsoVector[
+					QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]]] +
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]]))/
+		DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+			0]]^3 + (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^4*(NM[
+
+				IsoDot[
+				IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			NM[IsoDot[
+				IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				NM[IsoDot[
+					IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+					IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[
+					IsoVector[
+					QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+					IsoVector[UMatrix[UGenerator[]]]]] +
+				NM[IsoDot[
+					IsoVector[
+					QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+					IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[
+					IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+					IsoVector[UMatrix[UGenerator[]]]]]] +
+				NM[IsoDot[
+				IsoVector[
+					QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]]] +
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]]))/(24*
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[0]]^4), ((-I)*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]*
+			IsoDot[IsoVector[
+			QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]])/
+		DecayConstant[PseudoScalar[2],
+		RenormalizationState[
+			0]] - (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^2*(NM[
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]] +
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]]))/(2*
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[0]]^2) + (I/2)*
+		NM[-IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[AxialVector[0], RenormalizationState[0]],
+				LorentzIndex[\[Mu]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]] +
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[Vector[0], RenormalizationState[0]],
+				LorentzIndex[\[Mu]]]][x],
+			IsoVector[
+			UMatrix[UGenerator[]]]], ((-I)*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]*
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]])/
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+			0]] - (DropFactor[PseudoScalar[2],
+				RenormalizationState[0]]^2*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/(2*
+			DecayConstant[PseudoScalar[2],
+				RenormalizationState[0]]^2) + ((I/6)*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]^3*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+				0]]^3 + (DropFactor[PseudoScalar[2],
+				RenormalizationState[0]]^4*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/(24*
+			DecayConstant[PseudoScalar[2],
+				RenormalizationState[0]]^4) +
+			UMatrix[UIdentity]] - (I/2)*
+		NM[((-I)*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]*
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]])/
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+			0]] - (DropFactor[PseudoScalar[2],
+				RenormalizationState[0]]^2*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/(2*
+			DecayConstant[PseudoScalar[2],
+				RenormalizationState[0]]^2) + ((I/6)*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]^3*
+
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+				0]]^3 + (DropFactor[PseudoScalar[2],
+				RenormalizationState[0]]^4*
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+				QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]])/(24*
+			DecayConstant[PseudoScalar[2],
+				RenormalizationState[0]]^4) + UMatrix[UIdentity],
+		IsoDot[IsoVector[
+			QuantumField[
+				Particle[AxialVector[0], RenormalizationState[0]],
+				LorentzIndex[\[Mu]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]] +
+			IsoDot[IsoVector[
+			QuantumField[
+				Particle[Vector[0], RenormalizationState[0]],
+				LorentzIndex[\[Mu]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]] + ((I/6)*
+			DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^3*(NM[
+			NM[IsoDot[
+				IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+					QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]] +
+				NM[IsoDot[
+				IsoVector[
+					QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]] +
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]]))/
+		DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+			0]]^3 + (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^4*(NM[
+			NM[NM[IsoDot[
+					IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+					IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[
+					IsoVector[
+					QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+					IsoVector[UMatrix[UGenerator[]]]]] +
+				NM[IsoDot[
+					IsoVector[
+					QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+					IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[
+					IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+					IsoVector[UMatrix[UGenerator[]]]]],
+				IsoDot[IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]] +
+				NM[IsoDot[
+				IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+					QuantumField[
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+				IsoDot[IsoVector[
+					QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+
+					Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]] +
+			NM[IsoDot[
+				IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+				Particle[PseudoScalar[2],
+					RenormalizationState[0]]]][x],
+				IsoVector[UMatrix[UGenerator[]]]]]))/(24*
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[0]]^4)]] +
+	2*QuarkCondensate[RenormalizationState[0]]*
+	UTrace1[NM[(I*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]*
+
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]])/
+		DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+			0]] - (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^2*
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]])/(2*
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[0]]^2) - ((I/6)*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]^3*
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]])/
+		DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+			0]]^3 + (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^4*
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]])/(24*
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[0]]^4) + UMatrix[UIdentity],
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[Scalar[2], RenormalizationState[0]]]][x],
+		IsoVector[
+			UMatrix[
+			UGenerator[]]]] + (ParticleMass[PseudoScalar[2],
+			RenormalizationState[0]]^2*UMatrix[UIdentity])/(2*
+			QuarkCondensate[RenormalizationState[0]]) -
+		I*(IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[0], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]] +
+			UMatrix[UIdentity]*
+			QuantumField[
+				Particle[PseudoScalar[0], RenormalizationState[0]],
+				ExplicitSUNIndex[0]][x]) +
+		UMatrix[UIdentity]*
+		QuantumField[Particle[Scalar[2], RenormalizationState[0]],
+			ExplicitSUNIndex[0]][x]]] +
+	2*QuarkCondensate[RenormalizationState[0]]*
+	UTrace1[NM[
+		IsoDot[IsoVector[
+			QuantumField[
+			Particle[Scalar[2], RenormalizationState[0]]]][x],
+		IsoVector[
+			UMatrix[
+			UGenerator[]]]] + (ParticleMass[PseudoScalar[2],
+			RenormalizationState[0]]^2*UMatrix[UIdentity])/(2*
+			QuarkCondensate[RenormalizationState[0]]) +
+		I*(IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[0], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]] +
+			UMatrix[UIdentity]*
+			QuantumField[
+				Particle[PseudoScalar[0], RenormalizationState[0]],
+				ExplicitSUNIndex[0]][x]) +
+		UMatrix[UIdentity]*
+		QuantumField[Particle[Scalar[2], RenormalizationState[0]],
+			ExplicitSUNIndex[0]][
+			x], ((-I)*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]*
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2], RenormalizationState[0]]]][
+			x], IsoVector[UMatrix[UGenerator[]]]])/
+		DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+			0]] - (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^2*
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]])/(2*
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[0]]^2) + ((I/6)*
+			DropFactor[PseudoScalar[2], RenormalizationState[0]]^3*
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]])/
+		DecayConstant[PseudoScalar[2],
+			RenormalizationState[
+			0]]^3 + (DropFactor[PseudoScalar[2],
+			RenormalizationState[0]]^4*
+			NM[IsoDot[
+			IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]],
+			IsoDot[IsoVector[
+				QuantumField[
+				Particle[PseudoScalar[2],
+				RenormalizationState[0]]]][x],
+			IsoVector[UMatrix[UGenerator[]]]]])/(24*
+			DecayConstant[PseudoScalar[2],
+			RenormalizationState[0]]^4) + UMatrix[UIdentity]]]))/4,
+Retain -> {Particle[Pion, RenormalizationState[0]] -> 4},
+Method -> Expand]",
+"(ParticleMass[PseudoScalar[2], RenormalizationState[0]]^2 UTrace1[
+	NM[IsoDot[
+	IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]]]])/(48 DecayConstant[
+	PseudoScalar[2], RenormalizationState[0]]^2) -
+UTrace1[NM[
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]]]]/(24 DecayConstant[
+	PseudoScalar[2], RenormalizationState[0]]^2) +
+UTrace1[NM[
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]]]]/(48 DecayConstant[
+	PseudoScalar[2], RenormalizationState[0]]^2) +
+UTrace1[NM[
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]]]]/(16 DecayConstant[
+	PseudoScalar[2], RenormalizationState[0]]^2) -
+UTrace1[NM[
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]]]]/(48 DecayConstant[
+	PseudoScalar[2], RenormalizationState[0]]^2) +
+UTrace1[NM[
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]]]]/(48 DecayConstant[
+	PseudoScalar[2], RenormalizationState[0]]^2) -
+UTrace1[NM[
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]],
+	IsoDot[IsoVector[
+	QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[UMatrix[UGenerator[]]]]]]/(24 DecayConstant[
+	PseudoScalar[2], RenormalizationState[0]]^2)"}
+})
+
+
+Tests`Shared`ExpandU =
+({
+{"fcstPHI-ExpandU-ID1", "ExpandU[(-2*
+	IsoDot[IsoCross[
+		IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+		IsoVector[
+		QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x]],
+	IsoCross[
+		IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+		IsoVector[
+		QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][
+		x]]] + 2*
+	IsoDot[IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+		IsoVector[
+		QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][
+		x]]^2)/(24*
+	DecayConstant[PseudoScalar[2], RenormalizationState[0]]^2) + (2*
+	IsoDot[IsoCross[
+		IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+		IsoVector[
+		QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x]],
+	IsoCross[
+		IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+		IsoVector[
+		QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][
+		x]]] + 2*
+	IsoDot[IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+		IsoVector[
+		QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][
+		x]]^2)/(24*
+	DecayConstant[PseudoScalar[2],
+	RenormalizationState[0]]^2) - (IsoDot[
+	IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x]]*
+	IsoDot[IsoVector[
+		QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[
+		QuantumField[FCPartialD[LorentzIndex[\[Mu]]],
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x]])/(6*
+	DecayConstant[PseudoScalar[2],
+	RenormalizationState[0]]^2) + (IsoDot[
+	IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x],
+	IsoVector[
+		QuantumField[
+		Particle[PseudoScalar[2], RenormalizationState[0]]]][x]]^2*
+	ParticleMass[PseudoScalar[2], RenormalizationState[0]]^2)/(24*
+	DecayConstant[PseudoScalar[2], RenormalizationState[0]]^2),
+CommutatorReduce -> True]",
+"(-2*IsoDot[IsoCross[IsoVector[QuantumField[Particle[PseudoScalar[2], RenormalizationState[0]]]][x], IsoVector[QuantumField[FCPartialD[LorentzIndex[\[Mu]]], Particle[PseudoScalar[2], RenormalizationState[0]]]][x]],
+	IsoCross[IsoVector[QuantumField[Particle[PseudoScalar[2], RenormalizationState[0]]]][x], IsoVector[QuantumField[FCPartialD[LorentzIndex[\[Mu]]], Particle[PseudoScalar[2], RenormalizationState[0]]]][x]]] +
+2*IsoDot[IsoVector[QuantumField[Particle[PseudoScalar[2], RenormalizationState[0]]]][x], IsoVector[QuantumField[FCPartialD[LorentzIndex[\[Mu]]], Particle[PseudoScalar[2], RenormalizationState[0]]]][x]]^2)/(24*DecayConstant[PseudoScalar[2], RenormalizationState[0]]^2) +
+(2*IsoDot[IsoCross[IsoVector[QuantumField[Particle[PseudoScalar[2], RenormalizationState[0]]]][x], IsoVector[QuantumField[FCPartialD[LorentzIndex[\[Mu]]], Particle[PseudoScalar[2], RenormalizationState[0]]]][x]],
+	IsoCross[IsoVector[QuantumField[Particle[PseudoScalar[2], RenormalizationState[0]]]][x], IsoVector[QuantumField[FCPartialD[LorentzIndex[\[Mu]]], Particle[PseudoScalar[2], RenormalizationState[0]]]][x]]] +
+2*IsoDot[IsoVector[QuantumField[Particle[PseudoScalar[2], RenormalizationState[0]]]][x], IsoVector[QuantumField[FCPartialD[LorentzIndex[\[Mu]]], Particle[PseudoScalar[2], RenormalizationState[0]]]][x]]^2)/(24*DecayConstant[PseudoScalar[2], RenormalizationState[0]]^2) -
+(IsoDot[IsoVector[QuantumField[Particle[PseudoScalar[2], RenormalizationState[0]]]][x], IsoVector[QuantumField[Particle[PseudoScalar[2], RenormalizationState[0]]]][x]]*
+IsoDot[IsoVector[QuantumField[FCPartialD[LorentzIndex[\[Mu]]], Particle[PseudoScalar[2], RenormalizationState[0]]]][x], IsoVector[QuantumField[FCPartialD[LorentzIndex[\[Mu]]], Particle[PseudoScalar[2], RenormalizationState[0]]]][x]])/
+(6*DecayConstant[PseudoScalar[2], RenormalizationState[0]]^2) + (IsoDot[IsoVector[QuantumField[Particle[PseudoScalar[2], RenormalizationState[0]]]][x], IsoVector[QuantumField[Particle[PseudoScalar[2], RenormalizationState[0]]]][x]]^2*
+ParticleMass[PseudoScalar[2], RenormalizationState[0]]^2)/(24*DecayConstant[PseudoScalar[2], RenormalizationState[0]]^2)"}
+});
+
